@@ -1,0 +1,46 @@
+#categoryBudgetEvery {
+    display: flex;
+    justify-content: space-between;
+}
+
+#categoryBudgetEvery_Number {
+    width: 30px;
+    text-align: center;
+}
+
+#categoryBudgetEvery_TimePeriod {
+    width: calc(100% - 48px);
+}
+
+#editCategory input[type=button], #editTransaction input[type=button] {
+    display: block;
+    margin: 25px auto;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+#addTransactionWithinCategory {
+    background-color: #3d854d;
+    color: white;
+}
+
+#deleteCategory {
+    background-color: #b82525;
+    color: white;
+}
+
+@media only screen and (min-width: 768px) {
+    #categoryBudgetEvery_Number {
+        width: 35px;
+    }
+
+    #categoryBudgetEvery_TimePeriod {
+        width: calc(100% - 55px);
+    }
+
+    #editCategory input[type=button], #editTransaction input[type=button] {
+        margin: 30px auto;
+        padding: 13px 20px;
+    }
+}
