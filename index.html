@@ -6,11 +6,13 @@
 
 	    <title>Spending Tracker</title>
 
-        <script src="jquery/jquery.js"></script>
-        <script src="jquery/jquery-ui.js"></script>
-        <link href="jquery/jquery-ui.css" rel="stylesheet">
+        <script src="libraries/jquery/jquery.js"></script>
+        <script src="libraries/jquery/jquery-ui.js"></script>
+        <link href="libraries/jquery/jquery-ui.css" rel="stylesheet">
+        <script src="libraries/parsley.min.js"></script>
 
-        <link  rel="stylesheet" href="css/format.css" >
+        <link  rel="stylesheet" href="css/format.css">
+        <link  rel="stylesheet" href="css/addEditPages.css">
         <script src="js/spending-tracker.js"></script>
     </head>
     <body>
@@ -18,8 +20,65 @@
             <div id="container">
                 <div id="phoneBorderTop" class="phoneBorder"></div>
                 <div id="content">
-                    <div id="topBorder"></div>
+                    <div id="topBorder">
+                        <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
+                        <h1 class="addEditCategories">Category</h1>
+                        <button class="addEditCategories addEditTransactions" id='saveButton'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </button>
+                    </div>
                     <div id="pageContent">
+
+                        <div class="addEditCategories">
+                            <div class='inputField'>
+                                <label for="categoryName">Name:</label>
+                                <input type="text" id="categoryName" name="categoryName">
+                            </div>
+
+                            <div class='inputField'>
+                                <label for="categoryColour">Colour:</label>
+                                <input type="color" id="categoryColour" name="categoryColour">
+                            </div>
+
+                            <div id="expenseCategory">
+                                <div class='inputField'>
+                                    <label for='categoryBudget'>Budget:</label>
+                                    <input type="text" id="categoryBudget" name="categoryBudget">
+                                </div>
+
+                                <div class='inputField'>
+                                    <label for="categoryBudgetEvery_Number">&nbsp;&nbsp;Every:</label>
+
+                                    <div id="categoryBudgetEvery">
+                                        <label for="categoryBudgetEvery_Number" style="display: none">Number:</label>
+                                        <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number">
+
+                                        <label for="categoryBudgetEvery_TimePeriod" style="display: none">Time Period:</label>
+                                        <select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod">
+                                            <option value="">Select...</option>
+                                            <option value="days">Day(s)</option>
+                                            <option value="weeks">Week(s)</option>
+                                            <option value="months">Month(s)</option>
+                                            <option value="years">Year(s)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class='inputField'>
+                                    <label for="categoryWarning">Warning:</label>
+                                    <input type="text" id="categoryWarning" name="categoryWarning">
+                                </div>
+                            </div>
+
+                            <div id="editCategory">
+                                <hr>
+                                <input type="button" id="addTransactionWithinCategory" value="Add Transaction">
+                                <hr>
+                                <input type='button' id='deleteCategory' value="Delete">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="phoneBorderBottom" class="phoneBorder"></div>
