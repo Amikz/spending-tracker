@@ -33,6 +33,16 @@ body {
     font-weight: bolder;
 }
 
+#saveButton {
+    height: 22pt;
+}
+
+#saveButton svg {
+    height: 22pt;
+    width: 22pt;
+    color: white;
+}
+
 #topBorder h1 {
     color: white;
     font-size: 20pt;
@@ -122,6 +132,15 @@ input[type=color], select {
 
     #cancelButton, #saveButton {
         font-size: 20pt;
+    }
+
+    #saveButton {
+        height: 26pt;
+    }
+    
+    #saveButton svg {
+        height: 26pt;
+        width: 26pt;
     }
 
     :root {
