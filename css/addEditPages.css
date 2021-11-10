@@ -43,32 +43,36 @@ div.addEditCategories label, div.addEditCategories>input, div.addEditCategories 
     grid-column-end: end;
 }
 
-div.addEditCategories label {
+div.addEditCategories label, div.addEditTransactions label {
     grid-column-start: label;
     align-self: center;
 }
 
-div.addEditCategories>input, #categoryBudgetEvery {
+div.addEditCategories>input, #categoryBudgetEvery, div.addEditTransactions>input, #transactionRepeatEvery {
     grid-column-start: input;
     justify-self: left;
 }
 
-div.addEditCategories>input[type=text] {
+div.addEditCategories>input[type=text], div.addEditTransactions>input[type=text] {
     width: calc(100% - 6px);
 }
 
-#categoryBudgetEvery {
+div.addEditTransactions>input[type=date] {
+    width: calc(100% - 3px);
+}
+
+#categoryBudgetEvery, #transactionRepeatEvery {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-#categoryBudgetEvery_Number {
+#categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
     width: 30px;
     text-align: center;
 }
 
-#categoryBudgetEvery_TimePeriod {
+#categoryBudgetEvery_TimePeriod, #transactionRepeatEvery_TimePeriod {
     width: calc(100% - 48px);
 }
 
@@ -90,45 +94,6 @@ div.addEditCategories>input[type=text] {
     color: white;
 }
 
-/* Added these */
-#transactionName_Select {
-	height:40px;
-    width: calc(100% - 100px);
-	background-color:white;
-}
-
-#transactionEvery {
-    display: flex;
-    justify-content: space-between;
-}
-
-#transactionRepeat_Check {
-	border: 1px solid #767676;
-    border-radius: 5px;
-	height: 30px;
-	width: 30px;
-	/*border-radius: 10px; Won't work idk why*/
-}
-
-#transactionEvery_Number {
-	width: 30px;
-    text-align: center;
-}
-
-#transactionEvery_TimePeriod {
-	width: calc(100% - 48px);
-}
-
-#transactionDate {
-	font-size: 16pt;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-	
-	border: 1px solid #767676;
-    border-radius: 5px;
-    height: 30px;
-}
-
 @media only screen and (min-width: 768px) {
     #cancelButton, #saveButton {
         font-size: 20pt;
@@ -143,11 +108,11 @@ div.addEditCategories>input[type=text] {
         width: 26pt;
     }
 
-    #categoryBudgetEvery_Number {
+    #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
         width: 35px;
     }
 
-    #categoryBudgetEvery_TimePeriod {
+    #categoryBudgetEvery_TimePeriod, #transactionRepeatEvery_TimePeriod {
         width: calc(100% - 55px);
     }
 
@@ -155,23 +120,4 @@ div.addEditCategories>input[type=text] {
         margin: 30px auto;
         padding: 13px 20px;
     }
-	
-	#transactionName_Select {
-		font-size:12pt;
-		width: calc(100% - 140px);
-}
-	
-	#transactionEvery_Number {
-		width: 35px;
-		text-align: center;
-	}	
-
-	#transactionEvery_TimePeriod {
-		font-size:12pt;
-		width: calc(100% - 45px);
-	}
-	
-	#transactionDate {
-		font-size:12pt;
-	}
 }
