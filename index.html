@@ -45,7 +45,7 @@
                             <label for='categoryBudget' class='categoryBudget'>Budget:</label>
                             <input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget'>
                             
-                            <label for="categoryBudgetEvery_Number" class='categoryBudget'>&nbsp;&nbsp;Every:</label>
+                            <label for="categoryBudgetEvery" class='categoryBudget'>&nbsp;&nbsp;Every:</label>
                             <div id="categoryBudgetEvery" class='categoryBudget'>
                                 <label for="categoryBudgetEvery_Number" style="display: none">Number:</label>
                                 <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number">
@@ -71,54 +71,39 @@
                             </div>
                         </div>
 						<div class="addEditTransactions">
-							<div class='inputField'>
-                                <label for="transactionName_Select">Category:</label>
-								<select id="transactionName_Select" name="transactionName_Select">
-                                            <option value="">Select...</option>
-                                            <option value="days">General</option>
-                                            <option value="weeks">Food</option>
-                                            <option value="months">Rent</option>
-                                            <option value="years">Entertainment</option>
-                                        </select>
-                            </div>
-
-                            <div class='inputField'>
-                                <label for="transactionAmount">Amount:</label>
-                                <input type="text" id="transactionAmount" name="transactionAmount">
-                            </div>
-							
-							<div class='inputField'>
-                                <label for="transactionDate">Date:</label>
-                                <input type="date" id="transactionDate" name="transactionDate">
-                            </div>
-							
-							<div class='inputField'>
-                                <label for="transactionRepeat">Repeat:</label>
+							<label for="transactionName_Select">Category:</label>
+							<select id="transactionName_Select" name="transactionName_Select">
+                                <option value="">Select...</option>
+                                <option value="days">General</option>
+                                <option value="weeks">Food</option>
+                                <option value="months">Rent</option>
+                                <option value="years">Entertainment</option>
+                            </select>
+                            
+                            <label for="transactionAmount">Amount:</label>
+                            <input type="text" id="transactionAmount" name="transactionAmount">
+                            
+                            <label for="transactionDate">Date:</label>
+                            <input type="date" id="transactionDate" name="transactionDate">
+                            
+                            <label for="transactionRepeat_Check">Repeat:</label>
+                            <input type="checkbox" id="transactionRepeat_Check" name="transactionRepeat_Check">
+                            
+                            <label for="transactionRepeatEvery" class='transactionRepeat'>&nbsp;&nbsp;Every:</label>
+                            <div id="transactionRepeatEvery" class='transactionRepeat'>
+                                <label for="transactionRepeatEvery_Number" style="display: none">Number:</label>
+                                <input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number">
                                 
-								<div class="transactionRepeat_Check">
-									<label for="transactionRepeat_Check" style="display: none">Check:</label>
-									<input type="checkbox" id="transactionRepeat_Check" name="transactionRepeat_Check">
-								</div>
+                                <label for="transactionRepeatEvery_TimePeriod" style="display: none">Time Period:</label>
+                                <select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod">
+                                    <option value="">Select...</option>
+                                    <option value="days">Day(s)</option>
+                                    <option value="weeks">Week(s)</option>
+                                    <option value="months">Month(s)</option>
+                                    <option value="years">Year(s)</option>
+                                </select>
                             </div>
-							
-							<div class="transactionOptionalField">
-								<div class='inputField'>
-                                    <label for="transactionEvery">&nbsp;&nbsp;Every:</label>
-                                    <div id="transactionEvery">
-                                        <label for="transactionEvery_Number" style="display: none">Number:</label>
-                                        <input type="text" id="transactionEvery_Number" name="transactionEvery_Number">
 
-                                        <label for="transactionEvery_TimePeriod" style="display: none">Time Period:</label>
-                                        <select id="transactionEvery_TimePeriod" name="transactionEvery_TimePeriod">
-                                            <option value="">Select...</option>
-                                            <option value="days">Day(s)</option>
-                                            <option value="weeks">Week(s)</option>
-                                            <option value="months">Month(s)</option>
-                                            <option value="years">Year(s)</option>
-                                        </select>
-                                    </div>
-                                </div>
-							</div>
 							<div id="editTransaction">
                                 <hr>
                                 <input type='button' id="deleteTransaction" value="Delete">

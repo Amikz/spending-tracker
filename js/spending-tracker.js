@@ -1,14 +1,12 @@
 $(document).ready(function() {
 	
-	$('.transactionOptionalField').hide();	
-	
-	$('#transactionRepeat_Check').click(function(){
+	$('.transactionRepeat').hide();
+	$('#transactionRepeat_Check').click(function() {
+        $(".transactionRepeat").toggle();
 		if ($("#transactionRepeat_Check").is(':checked')) {
-			console.log("checked");
-			$(".transactionOptionalField").show();
+            $('div.addEditTransactions').css('grid-template-rows', 'repeat(5, [inputField] max-content) [buttons] auto [end]');
 		} else {
-			console.log("unchecked");
-			$(".transactionOptionalField").hide();
+            $('div.addEditTransactions').css('grid-template-rows', 'repeat(4, [inputField] max-content) [buttons] auto [end]');
 		}
 	});
 
@@ -17,11 +15,12 @@ $(document).ready(function() {
         $('.categoryBudget').toggle();
 
         if($(this).is(":checked")) {
-            $('.addEditCategories').css('grid-template-rows', 'repeat(6, [inputField] max-content) [buttons] auto [end]');
+            $('div.addEditCategories').css('grid-template-rows', 'repeat(6, [inputField] max-content) [buttons] auto [end]');
         } else {
-            $('.addEditCategories').css('grid-template-rows', 'repeat(3, [inputField] max-content) [buttons] auto [end]');
+            $('div.addEditCategories').css('grid-template-rows', 'repeat(3, [inputField] max-content) [buttons] auto [end]');
         }
     });
 
-    //$('.addEditCategories').hide();
+    $('.addEditCategories').hide();
+    $('.addEditTransactions').show();
 });

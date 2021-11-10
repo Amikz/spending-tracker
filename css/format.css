@@ -38,7 +38,7 @@ body {
     grid-row-start: pageContent;
 }
 
-label, input[type=text], select, option, input[type=button] {
+label, input[type=text], input[type=date], select, option, input[type=button] {
     font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
@@ -52,11 +52,16 @@ option {
     font-size: 12pt;
 }
 
-input[type=text], input[type=color], select{
+input[type=text], input[type=date], input[type=color], select {
     border: 1px solid #767676;
     border-radius: 5px;
     height: 30px;
     width: 100%;
+}
+
+
+input[type=date] {
+    height: 32px;
 }
 
 input[type=color], select {
@@ -125,6 +130,10 @@ input[type=checkbox] {
     
     input[type=text] {
         height: 35px;
+    }
+
+    input[type=date] {
+        height: 37px;
     }
     
     input[type=color], select {
