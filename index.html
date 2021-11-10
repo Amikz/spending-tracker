@@ -82,8 +82,14 @@
                         </div>
 						<div class="addEditTransactions">
 							<div class='inputField'>
-                                <label for="categoryName">Name:</label>
-                                <input type="text" id="categoryName" name="categoryName">
+                                <label for="transactionName_Select">Category:</label>
+								<select id="transactionName_Select" name="transactionName_Select">
+                                            <option value="">Select...</option>
+                                            <option value="days">General</option>
+                                            <option value="weeks">Food</option>
+                                            <option value="months">Rent</option>
+                                            <option value="years">Entertainment</option>
+                                        </select>
                             </div>
 
                             <div class='inputField'>
@@ -123,6 +129,10 @@
                                     </div>
                                 </div>
 							</div>
+							<div id="editTransaction">
+                                <hr>
+                                <input type='button' id="deleteTransaction" value="Delete">
+                            </div>
 						</div>
                     </div>
                 </div>

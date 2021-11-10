@@ -25,12 +25,17 @@
     color: white;
 }
 
-#deleteCategory {
+#deleteCategory, #deleteTransaction {
     background-color: #b82525;
     color: white;
 }
 
 /* Added these */
+#transactionName_Select {
+	height:40px;
+    width: calc(100% - 100px);
+	background-color:white;
+}
 
 #transactionEvery {
     display: flex;
@@ -78,12 +83,22 @@
         padding: 13px 20px;
     }
 	
+	#transactionName_Select {
+		font-size:12pt;
+		width: calc(100% - 140px);
+}
+	
 	#transactionEvery_Number {
 		width: 35px;
 		text-align: center;
 	}	
 
 	#transactionEvery_TimePeriod {
-		width: calc(100% - 55px);
+		font-size:12pt;
+		width: calc(100% - 45px);
+	}
+	
+	#transactionDate {
+		font-size:12pt;
 	}
 }
