@@ -16,22 +16,28 @@
     color: white;
 }
 
-div.addEditCategories {
+div.addEditCategories, div.addEditTransactions {
     width: inherit;
     max-width: 100%;
     display: grid;
     grid-template-columns: [label] max-content [input] 1fr [end];
     column-gap: 15px;
-    grid-template-rows: repeat(3, [inputField] max-content) [buttons] auto [end];
     row-gap: 20px;
+}
+
+div.addEditCategories {
+    grid-template-rows: repeat(3, [inputField] max-content) [buttons] auto [end];
+}
+
+div.addEditTransactions {
+    grid-template-rows: repeat(4, [inputField] max-content) [buttons] auto [end];
 }
 
 div.addEditCategories label, div.addEditCategories>input, div.addEditCategories #categoryBudgetEvery {
     grid-row-start: auto;
 }
 
-
-#editCategory {
+#editCategory, #editTransaction {
     grid-row-start: buttons;
     grid-column-start: label;
     grid-column-end: end;
