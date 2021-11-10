@@ -79,9 +79,48 @@ div.addEditCategories>input[type=text] {
     color: white;
 }
 
-#deleteCategory {
+#deleteCategory, #deleteTransaction {
     background-color: #b82525;
     color: white;
+}
+
+/* Added these */
+#transactionName_Select {
+	height:40px;
+    width: calc(100% - 100px);
+	background-color:white;
+}
+
+#transactionEvery {
+    display: flex;
+    justify-content: space-between;
+}
+
+#transactionRepeat_Check {
+	border: 1px solid #767676;
+    border-radius: 5px;
+	height: 30px;
+	width: 30px;
+	/*border-radius: 10px; Won't work idk why*/
+}
+
+#transactionEvery_Number {
+	width: 30px;
+    text-align: center;
+}
+
+#transactionEvery_TimePeriod {
+	width: calc(100% - 48px);
+}
+
+#transactionDate {
+	font-size: 16pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+	
+	border: 1px solid #767676;
+    border-radius: 5px;
+    height: 30px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -110,4 +149,23 @@ div.addEditCategories>input[type=text] {
         margin: 30px auto;
         padding: 13px 20px;
     }
+	
+	#transactionName_Select {
+		font-size:12pt;
+		width: calc(100% - 140px);
+}
+	
+	#transactionEvery_Number {
+		width: 35px;
+		text-align: center;
+	}	
+
+	#transactionEvery_TimePeriod {
+		font-size:12pt;
+		width: calc(100% - 45px);
+	}
+	
+	#transactionDate {
+		font-size:12pt;
+	}
 }
