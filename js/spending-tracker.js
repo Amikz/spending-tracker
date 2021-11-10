@@ -21,6 +21,18 @@ $(document).ready(function() {
         }
     });
 
-    $('.addEditCategories').hide();
-    $('.addEditTransactions').show();
+    $('.addEditTransactions').hide();
+    $('.addEditCategories').show();
+
+    $('#addTransactionWithinCategory').click(function() {
+        $('.addEditCategories').hide();
+        $('.addEditTransactions').show();
+    });
+
+    $('#cancelButton').click(function() {
+        if($('div.addEditTransactions').is(':visible')) { //TODO: add to this condition so that it also checks that we came from the Categories page
+            $('.addEditTransactions').hide();
+            $('.addEditCategories').show();
+        }
+    });
 });
