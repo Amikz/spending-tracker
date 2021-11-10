@@ -59,9 +59,13 @@ input[type=text], input[type=date], input[type=color], select {
     width: 100%;
 }
 
+input[type=text] {
+    padding-left: 4px;
+}
 
 input[type=date] {
     height: 32px;
+    padding-left: 4px;
 }
 
 input[type=color], select {

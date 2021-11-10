@@ -54,11 +54,11 @@ div.addEditCategories>input, #categoryBudgetEvery, div.addEditTransactions>input
 }
 
 div.addEditCategories>input[type=text], div.addEditTransactions>input[type=text] {
-    width: calc(100% - 6px);
+    width: calc(100% - 8px);
 }
 
 div.addEditTransactions>input[type=date] {
-    width: calc(100% - 3px);
+    width: calc(100% - 6px);
 }
 
 #categoryBudgetEvery, #transactionRepeatEvery {
