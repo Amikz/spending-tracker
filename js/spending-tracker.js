@@ -2,9 +2,58 @@ $(document).ready(function() {
     addEditPages();
 });
 
+function resetAddEditTransactionsPage() {
+    var $page = $('div.addEditTransactions');
+    
+    $page.find("input[type=text], input[type=date], select").each(function() {
+        $(this).val("");
+        $(this).parsley().reset();
+    });
+
+    if($('#transactionRepeat_Check').is(":checked")) {
+        $("#transactionRepeat_Check").click();
+    }
+}
+
+function resetAddEditCategoriesPage() {
+    var $page = $('div.addEditCategories');
+    
+    $page.find("input[type=text], select").each(function() {
+        $(this).val("");
+        $(this).parsley().reset();
+    });
+
+    $("#categoryColour").val("#000000");
+    $("#categoryColour").parsley().reset();
+
+    if($('#setCategoryBudget').is(":checked")) {
+        $("#setCategoryBudget").click();
+    }
+}
+
 function addEditPages() {
     jQuery("#addEditPages").parsley({ excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" });
+
+    $('#saveButton').click(function() {
+        $('#addEditPages').parsley().validate();
+        if($("#addEditPages").parsley().isValid()) {
+            //Save the data
+        }
+    });
     
+    $('#cancelButton').click(function() {
+        if($('div.addEditTransactions').is(':visible')) { //TODO: add to this condition so that it also checks that we came from the Categories page
+            $('.addEditTransactions').hide();
+            $('.addEditCategories').show();
+        }
+    });
+    
+    $('#addTransactionWithinCategory').click(function() {
+        $('.addEditCategories').hide();
+        $('.addEditTransactions').show();
+        resetAddEditTransactionsPage();
+    });
+
     $('.transactionRepeat').hide();
 	$('#transactionRepeat_Check').click(function() {
         $(".transactionRepeat").toggle();
@@ -28,25 +77,6 @@ function addEditPages() {
     
     $('.addEditTransactions').hide();
     $('.addEditCategories').show(); //TODO: change to hide
-
-    $('#saveButton').click(function() {
-        $('#addEditPages').parsley().validate();
-        if($("#addEditPages").parsley().isValid()) {
-            //Save the data
-        }
-    });
-    
-    $('#cancelButton').click(function() {
-        if($('div.addEditTransactions').is(':visible')) { //TODO: add to this condition so that it also checks that we came from the Categories page
-            $('.addEditTransactions').hide();
-            $('.addEditCategories').show();
-        }
-    });
-    
-    $('#addTransactionWithinCategory').click(function() {
-        $('.addEditCategories').hide();
-        $('.addEditTransactions').show();
-    });
     
     $('.nameFormat').on('input', function() {
         var position = this.selectionStart;
