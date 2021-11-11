@@ -1,14 +1,78 @@
-#categoryBudgetEvery {
-    display: flex;
-    justify-content: space-between;
+#cancelButton, #saveButton {
+    color: white;
+    font-size: 16pt;
+    border: none;
+    background-color: inherit;
+    font-weight: bolder;
 }
 
-#categoryBudgetEvery_Number {
+#saveButton {
+    height: 22pt;
+}
+
+#saveButton svg {
+    height: 22pt;
+    width: 22pt;
+    color: white;
+}
+
+div.addEditCategories, div.addEditTransactions {
+    width: inherit;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: [label] max-content [input] 1fr [end];
+    column-gap: 15px;
+    row-gap: 20px;
+}
+
+div.addEditCategories {
+    grid-template-rows: repeat(3, [requiredInput] max-content) [buttons] auto [end];
+}
+
+div.addEditTransactions {
+    grid-template-rows: repeat(4, [requiredInput] max-content) [buttons] auto [end];
+}
+
+div.addEditCategories label, div.addEditCategories div.requiredInput input, div.addEditCategories #categoryBudgetEvery {
+    grid-row-start: auto;
+}
+
+#editCategory, #editTransaction {
+    grid-row-start: buttons;
+    grid-column-start: label;
+    grid-column-end: end;
+}
+
+div.addEditCategories label, div.addEditTransactions label {
+    grid-column-start: label;
+    align-self: center;
+}
+
+div.addEditCategories div.requiredInput, #categoryBudgetEvery, div.addEditTransactions div.requiredInput, #transactionRepeatEvery {
+    grid-column-start: input;
+    justify-self: left;
+}
+
+div.addEditCategories div.requiredInput input[type=text], div.addEditTransactions div.requiredInput input[type=text] {
+    width: calc(100% - 8px);
+}
+
+div.addEditTransactions div.requiredInput input[type=date] {
+    width: calc(100% - 6px);
+}
+
+#categoryBudgetEvery, #transactionRepeatEvery {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
     width: 30px;
     text-align: center;
 }
 
-#categoryBudgetEvery_TimePeriod {
+#categoryBudgetEvery_TimePeriod, #transactionRepeatEvery_TimePeriod {
     width: calc(100% - 48px);
 }
 
@@ -25,17 +89,30 @@
     color: white;
 }
 
-#deleteCategory {
+#deleteCategory, #deleteTransaction {
     background-color: #b82525;
     color: white;
 }
 
 @media only screen and (min-width: 768px) {
-    #categoryBudgetEvery_Number {
+    #cancelButton, #saveButton {
+        font-size: 20pt;
+    }
+    
+    #saveButton {
+        height: 26pt;
+    }
+        
+    #saveButton svg {
+        height: 26pt;
+        width: 26pt;
+    }
+
+    #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
         width: 35px;
     }
 
-    #categoryBudgetEvery_TimePeriod {
+    #categoryBudgetEvery_TimePeriod, #transactionRepeatEvery_TimePeriod {
         width: calc(100% - 55px);
     }
 

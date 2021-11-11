@@ -6,41 +6,22 @@ body {
     margin: 0px;
 }
 
-#pageContent {
-    overflow: auto;
-    height: 90%;
-    padding: 0px 5%;
-}
-
 .phoneBorder {
     display: none;
 }
 
+#content {
+    display: grid;
+    grid-template-rows: [topBorder] 10% [pageContent] auto [end];
+}
+
 #topBorder {
+    grid-row-start: topBorder;
     background-color: #0F79D0;
-    height: 10%;
-    padding: 0px 5%;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-#cancelButton, #saveButton {
-    color: white;
-    font-size: 16pt;
-    border: none;
-    background-color: inherit;
-    font-weight: bolder;
-}
-
-#saveButton {
-    height: 22pt;
-}
-
-#saveButton svg {
-    height: 22pt;
-    width: 22pt;
-    color: white;
 }
 
 #topBorder h1 {
@@ -51,26 +32,13 @@ body {
     margin: 0px;
 }
 
-:root {
-    --label_width: 110px;
+#pageContent {
+    overflow: auto;
+    padding: 20px;
+    grid-row-start: pageContent;
 }
 
-.inputField {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin: 25px 0px;
-}
-
-.inputField label {
-    width: var(--label_width);
-}
-
-.inputField>input, .inputField>div {
-    width: calc(100% - var(--label_width));
-}
-
-label, input[type=text], select, option, input[type=button] {
+label, input[type=text], input[type=date], select, option, input[type=button] {
     font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
@@ -84,14 +52,30 @@ option {
     font-size: 12pt;
 }
 
-input[type=text], input[type=color], select{
+input[type=text], input[type=date], input[type=color], select {
     border: 1px solid #767676;
     border-radius: 5px;
     height: 30px;
+    width: 100%;
+}
+
+input[type=text] {
+    padding-left: 4px;
+}
+
+input[type=date] {
+    height: 32px;
+    padding-left: 4px;
 }
 
 input[type=color], select {
-    height: 35px;
+    height: 34px;
+}
+
+input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+    margin: 0px;
 }
 
 /* Desktop Formatting */
@@ -107,6 +91,7 @@ input[type=color], select {
         margin: auto;
         margin-top: 2vh;
         max-height: 96vh;
+        min-height: 600px;
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
         resize: horizontal;
@@ -127,24 +112,7 @@ input[type=color], select {
     }
 
     #topBorder h1 {
-        font-size: 24pt;
-    }
-
-    #cancelButton, #saveButton {
-        font-size: 20pt;
-    }
-
-    #saveButton {
-        height: 26pt;
-    }
-    
-    #saveButton svg {
-        height: 26pt;
-        width: 26pt;
-    }
-
-    :root {
-        --label_width: 150px;
+        font-size: 22pt;
     }
 
     label, input[type=text], select, option, input[type=button] {
@@ -154,21 +122,26 @@ input[type=color], select {
     select {
         font-size: 16pt;
     }
-
+    
     option {
         font-size: 14pt;
     }
 
+    input[type=checkbox] {
+        width: 30px;
+        height: 30px;
+    }
+    
     input[type=text] {
         height: 35px;
     }
 
-    input[type=color], select {
-        height: 40px;
+    input[type=date] {
+        height: 37px;
     }
-
-    .inputField {
-        margin: 30px 0px;
+    
+    input[type=color], select {
+        height: 39px;
     }
 
     .phoneBorder {
