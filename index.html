@@ -80,13 +80,20 @@
                                 </div>
                             </div>
                             <div class="addEditTransactions">
-                                <label for="transactionName_Select">Category:</label>
-                                <div class='requiredInput'><select id="transactionName_Select" name="transactionName_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
+                                <label for="transactionType">Type:</label>
+                                <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
                                     <option value="">Select...</option>
-                                    <option value="days">General</option>
-                                    <option value="weeks">Food</option>
-                                    <option value="months">Rent</option>
-                                    <option value="years">Entertainment</option>
+                                    <option value="income">Income</option>
+                                    <option value="expense">Expense</option>
+                                </select></div>
+
+                                <label for="transactionCategory_Select">Category:</label>
+                                <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
+                                    <option value="">Select...</option>
+                                    <option value="general">General</option>
+                                    <option value="food">Food</option>
+                                    <option value="rent">Rent</option>
+                                    <option value="entertainment">Entertainment</option>
                                 </select></div>
 
                                 <label for="transactionAmount">Amount:</label>
