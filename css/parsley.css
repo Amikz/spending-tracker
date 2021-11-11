@@ -2,6 +2,18 @@
     border-color: #b94a48 !important;
 }
 
+.parsley-error:focus-visible {
+    outline: #b94a48 auto 1px !important;
+}
+
 .parsley-errors-list {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
     color: #b94a48;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+li.parsley-required {
+    margin-top: 16px;
 }

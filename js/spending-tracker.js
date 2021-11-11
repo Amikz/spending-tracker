@@ -1,14 +1,18 @@
 $(document).ready(function() {
+    console.log(new Date());
     addEditPages();
 });
 
 function resetAddEditTransactionsPage() {
     var $page = $('div.addEditTransactions');
     
-    $page.find("input[type=text], input[type=date], select").each(function() {
+    $page.find("input[type=text], select").each(function() {
         $(this).val("");
         $(this).parsley().reset();
     });
+
+    var date = new Date();
+    $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
 
     if($('#transactionRepeat_Check').is(":checked")) {
         $("#transactionRepeat_Check").click();
@@ -37,7 +41,7 @@ function addEditPages() {
     resetAddEditTransactionsPage();
     resetAddEditCategoriesPage();
     $('.addEditTransactions').hide();
-    $('.addEditCategories').hide();
+    $('.addEditCategories').show();
 
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
