@@ -34,6 +34,11 @@ function resetAddEditCategoriesPage() {
 function addEditPages() {
     jQuery("#addEditPages").parsley({ excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" });
 
+    resetAddEditTransactionsPage();
+    resetAddEditCategoriesPage();
+    $('.addEditTransactions').hide();
+    $('.addEditCategories').hide();
+
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
         if($("#addEditPages").parsley().isValid()) {
@@ -74,9 +79,6 @@ function addEditPages() {
             $('div.addEditCategories').css('grid-template-rows', 'repeat(3, [inputField] max-content) [buttons] auto [end]');
         }
     });
-    
-    $('.addEditTransactions').hide();
-    $('.addEditCategories').hide();
     
     $('.nameFormat').on('input', function() {
         var position = this.selectionStart;
