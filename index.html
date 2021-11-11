@@ -13,6 +13,7 @@
 
         <link  rel="stylesheet" href="css/format.css">
         <link  rel="stylesheet" href="css/addEditPages.css">
+        <link  rel="stylesheet" href="css/parsley.css">
         <script src="js/spending-tracker.js"></script>
     </head>
     <body>
@@ -32,10 +33,10 @@
                     </div>
                     <div id="pageContent">
 
-                        <form id='addEditPages'>
+                        <form id='addEditPages' data-parsley-validate>
                             <div class="addEditCategories">
                                 <label for="categoryName">Name:</label>
-                                <input type="text" id="categoryName" name="categoryName" class='nameFormat'>
+                                <div class='requiredInput'><input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-required=""></div>
 
                                 <label for="categoryColour">Colour:</label>
                                 <input type="color" id="categoryColour" name="categoryColour">
@@ -44,21 +45,21 @@
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
                                 
                                 <label for='categoryBudget' class='categoryBudget'>Budget:</label>
-                                <input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount'>
+                                <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' data-parsley-required=""></div>
 
                                 <label for="categoryBudgetEvery" class='categoryBudget'>&nbsp;&nbsp;Every:</label>
                                 <div id="categoryBudgetEvery" class='categoryBudget'>
                                     <label for="categoryBudgetEvery_Number" style="display: none">Number:</label>
-                                    <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number" class="wholeNumber" maxlength="3">
+                                    <div class='requiredInput'><input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number" class="wholeNumber" maxlength="3" data-parsley-required=""></div>
 
                                     <label for="categoryBudgetEvery_TimePeriod" style="display: none">Time Period:</label>
-                                    <select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod">
+                                    <div class='requiredInput'><select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod" data-parsley-required="">
                                         <option value="">Select...</option>
                                         <option value="days">Day(s)</option>
                                         <option value="weeks">Week(s)</option>
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
-                                    </select>
+                                    </select></div>
                                 </div>
 
                                 <label for="categoryWarning" class='categoryBudget'>Warning:</label>
@@ -73,19 +74,19 @@
                             </div>
                             <div class="addEditTransactions">
                                 <label for="transactionName_Select">Category:</label>
-                                <select id="transactionName_Select" name="transactionName_Select">
+                                <div class='requiredInput'><select id="transactionName_Select" name="transactionName_Select" data-parsley-required="">
                                     <option value="">Select...</option>
                                     <option value="days">General</option>
                                     <option value="weeks">Food</option>
                                     <option value="months">Rent</option>
                                     <option value="years">Entertainment</option>
-                                </select>
+                                </select></div>
 
                                 <label for="transactionAmount">Amount:</label>
-                                <input type="text" id="transactionAmount" name="transactionAmount" class="monetaryAmount">
+                                <div class='requiredInput'><input type="text" id="transactionAmount" name="transactionAmount" class="monetaryAmount" data-parsley-required=""></div>
 
                                 <label for="transactionDate">Date:</label>
-                                <input type="date" id="transactionDate" name="transactionDate">
+                                <div class='requiredInput'><input type="date" id="transactionDate" name="transactionDate" data-parsley-required=""></div>
 
                                 <label for="transactionRepeat_Check">Repeat:</label>
                                 <input type="checkbox" id="transactionRepeat_Check" name="transactionRepeat_Check">
@@ -93,16 +94,16 @@
                                 <label for="transactionRepeatEvery" class='transactionRepeat'>&nbsp;&nbsp;Every:</label>
                                 <div id="transactionRepeatEvery" class='transactionRepeat'>
                                     <label for="transactionRepeatEvery_Number" style="display: none">Number:</label>
-                                    <input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number" class="wholeNumber" maxlength="3">
+                                    <div class='requiredInput'><input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number" class="wholeNumber" maxlength="3" data-parsley-required=""></div>
 
                                     <label for="transactionRepeatEvery_TimePeriod" style="display: none">Time Period:</label>
-                                    <select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod">
+                                    <div class='requiredInput'><select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod" data-parsley-required="">
                                         <option value="">Select...</option>
                                         <option value="days">Day(s)</option>
                                         <option value="weeks">Week(s)</option>
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
-                                    </select>
+                                    </select></div>
                                 </div>
 
                                 <div id="editTransaction">

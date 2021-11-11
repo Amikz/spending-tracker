@@ -26,14 +26,14 @@ div.addEditCategories, div.addEditTransactions {
 }
 
 div.addEditCategories {
-    grid-template-rows: repeat(3, [inputField] max-content) [buttons] auto [end];
+    grid-template-rows: repeat(3, [requiredInput] max-content) [buttons] auto [end];
 }
 
 div.addEditTransactions {
-    grid-template-rows: repeat(4, [inputField] max-content) [buttons] auto [end];
+    grid-template-rows: repeat(4, [requiredInput] max-content) [buttons] auto [end];
 }
 
-div.addEditCategories label, div.addEditCategories>input, div.addEditCategories #categoryBudgetEvery {
+div.addEditCategories label, div.addEditCategories div.requiredInput input, div.addEditCategories #categoryBudgetEvery {
     grid-row-start: auto;
 }
 
@@ -48,16 +48,16 @@ div.addEditCategories label, div.addEditTransactions label {
     align-self: center;
 }
 
-div.addEditCategories>input, #categoryBudgetEvery, div.addEditTransactions>input, #transactionRepeatEvery {
+div.addEditCategories div.requiredInput, #categoryBudgetEvery, div.addEditTransactions div.requiredInput, #transactionRepeatEvery {
     grid-column-start: input;
     justify-self: left;
 }
 
-div.addEditCategories>input[type=text], div.addEditTransactions>input[type=text] {
+div.addEditCategories div.requiredInput input[type=text], div.addEditTransactions div.requiredInput input[type=text] {
     width: calc(100% - 8px);
 }
 
-div.addEditTransactions>input[type=date] {
+div.addEditTransactions div.requiredInput input[type=date] {
     width: calc(100% - 6px);
 }
 
