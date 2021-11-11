@@ -41,7 +41,7 @@ function addEditPages() {
     resetAddEditTransactionsPage();
     resetAddEditCategoriesPage();
     $('.addEditTransactions').hide();
-    $('.addEditCategories').show();
+    $('.addEditCategories').hide();
 
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
