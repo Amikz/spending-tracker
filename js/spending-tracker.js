@@ -76,7 +76,7 @@ function addEditPages() {
     });
     
     $('.addEditTransactions').hide();
-    $('.addEditCategories').show(); //TODO: change to hide
+    $('.addEditCategories').hide();
     
     $('.nameFormat').on('input', function() {
         var position = this.selectionStart;
