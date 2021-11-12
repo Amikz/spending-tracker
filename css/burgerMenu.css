@@ -1,3 +1,16 @@
+#burgerButton {
+	color: white;
+	background-color: inherit;
+	border: none;
+}
+
+#burgerButton svg {
+    height: 22pt;
+    width: 22pt;
+    color: white;
+}
+
+
 #goBackHome, #goChangeTimePeriod, #goTransactions, #goSettings {
 	background-color: white;
 	text-align: left;
