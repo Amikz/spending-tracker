@@ -17,8 +17,9 @@
 }
 
 div.burgerMenu {
+	background-color: blue;
+	height: 100%;
 	display: grid;
-	
 	row-gap:1.5px;
 }
 

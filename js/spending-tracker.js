@@ -1,13 +1,8 @@
 $(document).ready(function() {
     console.log(new Date());
     addEditPages();
-	
-	$('.burgerMenu').show();
-	$('#timeContainer').hide();
-	
-	$('#goChangeTimePeriod').click(function(){
-		$('#timeContainer').toggle();
-	});
+	showMeTheBurger();
+
 });
 
 function resetAddEditTransactionsPage() {
@@ -135,4 +130,18 @@ function addEditPages() {
         if(setPosition)
             this.selectionEnd = position - 1;
     });
+}
+
+function showMeTheBurger() {
+	$('.burgerMenu').hide();
+	$('#timeContainer').hide();
+	
+	$('#burgerButton').click(function(){
+		$('.burgerMenu').toggle();
+		$('#timeContainer').hide();
+	});
+	
+	$('#goChangeTimePeriod').click(function(){
+		$('#timeContainer').toggle();
+	});
 }
