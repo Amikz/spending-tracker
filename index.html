@@ -14,6 +14,7 @@
         <link  rel="stylesheet" href="css/format.css">
         <link  rel="stylesheet" href="css/addEditPages.css">
         <link  rel="stylesheet" href="css/parsley.css">
+		<link  rel="stylesheet" href="css/burgerMenu.css">
         <script src="js/spending-tracker.js"></script>
     </head>
     <body>
@@ -131,6 +132,28 @@
                                     <input type='button' id="deleteTransaction" value="Delete">
                                 </div>
                             </div>
+							<div class="burgerMenu">
+								<div id="homeButton">
+									<input type="button" id="goBackHome" value="Home">
+								</div>
+								<div id="timePeriodButton">
+									<input type="button" id="goChangeTimePeriod" value="Time Period">
+									<div id="timeContainer">
+										<input type="button" id="daily" value="Daily">
+										<input type="button" id="weekly" value="Weekly">
+										<input type="button" id="biWeekly" value="Bi-Weekly">
+										<input type="button" id="monthly" value="Monthly">
+										<input type="button" id="yearly" value="Yearly">
+										
+									</div>
+								</div>
+								<div id="transactionsButton">
+									<input type="button" id="goTransactions" value="Transactions">
+								</div>
+								<div id="settingsButton">
+									<input type="button" id="goSettings" value="Settings">
+								</div>
+							</div>
                         </form>
                     </div>
                 </div>

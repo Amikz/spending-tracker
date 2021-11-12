@@ -1,0 +1,28 @@
+#goBackHome, #goChangeTimePeriod, #goTransactions, #goSettings {
+	background-color: white;
+	text-align: left;
+	border:none;
+	padding: 15px 32px;
+	font-size: 16px;
+	width: 70%;
+}
+
+#daily, #weekly, #biWeekly, #monthly, #yearly {
+	background-color: white;
+	text-align: left;
+	border:none;
+	padding: 15px 32px;
+	font-size: 16px;
+	width: 70%;
+}
+
+div.burgerMenu {
+	display: grid;
+	
+	row-gap:1.5px;
+}
+
+#timeContainer{
+	display: grid;
+	row-gap:1.5px;
+}

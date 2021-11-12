@@ -1,6 +1,13 @@
 $(document).ready(function() {
     console.log(new Date());
     addEditPages();
+	
+	$('.burgerMenu').show();
+	$('#timeContainer').hide();
+	
+	$('#goChangeTimePeriod').click(function(){
+		$('#timeContainer').toggle();
+	});
 });
 
 function resetAddEditTransactionsPage() {
