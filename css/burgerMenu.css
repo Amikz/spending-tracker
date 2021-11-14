@@ -14,29 +14,69 @@
 #goBackHome, #goChangeTimePeriod, #goTransactions, #goSettings {
 	background-color: white;
 	text-align: left;
-	border:none;
-	padding: 15px 32px;
 	font-size: 16px;
+	border-style:solid;
+	border-width:1px;
+	padding: 15px 32px;
 	width: 70%;
 }
 
-#daily, #weekly, #biWeekly, #monthly, #yearly {
+#dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
+	grid-column-start: second;
+	grid-row-start: rowStart;
 	background-color: white;
 	text-align: left;
+	font-size: 16px;
 	border:none;
 	padding: 15px 32px;
-	font-size: 16px;
 	width: 70%;
+	justify-self:start;
+}
+
+#dailyContainer, #weeklyContainer, #biWeeklyContainer, #monthlyContainer, #yearlyContainer {
+	background-color:white;
+	border-style:solid;
+	border-width:1px;
+	grid: display;
+	grid-template-columns: [first] 40px [second] auto [end];	
+}
+
+#dailyContainer svg, #weeklyContainer svg, #biWeeklyContainer svg, #monthlyContainer svg, #yearlyContainer svg{
+	height:22pt;
+	width:22pt;
+	background-color:white;
+	grid-column-start: first;
+	grid-row-start: rowStart;
+	place-self:center;
 }
 
 div.burgerMenu {
-	background-color: blue;
+	/*background-color: blue;*/
 	height: 100%;
 	display: grid;
-	row-gap:1.5px;
 }
 
-#timeContainer{
-	display: grid;
-	row-gap:1.5px;
+@media only screen and (min-width: 768px) {
+    #goBackHome, #goChangeTimePeriod, #goTransactions, #goSettings, 
+	#daily, #weekly, #biWeekly, #monthly, #yearly {
+        font-size: 20pt;
+    }
+    
+    #burgerButton {
+        height: 26pt;
+    }
+        
+    #burgerButton svg {
+        height: 26pt;
+        width: 26pt;
+    }
+
+    #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
+        width: 35px;
+    }
+
+    #homeButton input[type=button], #timePeriodButton input[type=button],
+	#transactionsButton input[type=button], #settingsButton input[type=button]	{
+        margin: auto auto;
+    }
 }
