@@ -1,8 +1,8 @@
 div.home {
     height: 100%;
     display: grid;
-    grid-template-columns: [graph] 1fr [legend] 1fr [end];
-    grid-template-rows: [income-label] max-content [income-data] auto [expense-label] max-content [expense-data] auto [balance-label] max-content [end];
+    grid-template-columns: [graph] 48.5% [legend] 48.5% [end];
+    grid-template-rows: [income-label] max-content [income-data] calc((88% - 60pt)/2) [expense-label] max-content [expense-data] calc((88% - 60pt)/2) [balance-label] max-content [end];
     column-gap: 3%;
     row-gap: 3%;
 }
@@ -56,8 +56,14 @@ div.home {
     justify-self: end;
 }
 
+.graphContainer {
+    align-self: center;
+}
+
 .legend {
     border: 1px solid #5c5c5c;
+    width: 100%;
+    aspect-ratio: 1/1.1;
 }
 
 .expandPanel {
@@ -71,7 +77,56 @@ div.home {
 
 .legendContent {
     height: 100%;
-    overflow-y: scroll;
+    overflow: scroll;
+}
+
+.legendItem {
+    padding: 6% 5% 0px 5%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: [colour] max-content [name] max-content [spacer] auto [end];
+    column-gap: 5%;
+}
+
+.legendCategoryColour {
+    border: 1px solid #4c4c4c;
+    float: left;
+    height: 15pt;
+    aspect-ratio: 3/2;
+}
+
+.legendCategoryName {
+    margin: 0px;
+    grid-column-start: name;
+    font-size: 14pt;
+}
+
+#incomeLegendColour1 {
+    background-color: skyblue;
+}
+
+#expenseLegendColour1 {
+    background-color: orchid;
+}
+
+#expenseLegendColour2 {
+    background-color: #29a729;
+}
+
+#expenseLegendColour3 {
+    background-color: indianred;
+}
+
+#expenseLegendColour4 {
+    background-color: royalblue;
+}
+
+#expenseLegendColour5 {
+    background-color: turquoise;
+}
+
+#expenseLegendColour6 {
+    background-color: goldenrod;
 }
 
 .graph {
@@ -79,4 +134,15 @@ div.home {
     border-radius: 50%;
     width: 100%;
     aspect-ratio: 1;
+}
+
+/* Desktop Formatting */
+@media only screen and (min-width: 650px) {
+    .legendCategoryColour {
+        height: 18pt;
+    }
+
+    .legendCategoryName {
+        font-size: 16pt;
+    }
 }
