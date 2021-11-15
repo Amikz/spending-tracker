@@ -11,7 +11,7 @@
 }
 
 
-#goBackHome, #goChangeTimePeriod, #goTransactions, #goSettings {
+#goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings {
 	background-color: white;
 	text-align: left;
 	font-size: 16px;
@@ -37,6 +37,7 @@
 	border-width:1px;
 	display: grid;
 	grid-template-columns: [first] 50px [line2] auto [end];	
+	width:70%;
 }
 
 #svgContainer {
@@ -64,7 +65,7 @@ div.burgerMenu {
 }
 
 @media only screen and (min-width: 768px) {
-    #goBackHome, #goChangeTimePeriod, #goTransactions, #goSettings, 
+    #goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings, 
 	#daily, #weekly, #biWeekly, #monthly, #yearly {
         font-size: 20pt;
     }
