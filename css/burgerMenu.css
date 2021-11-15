@@ -10,17 +10,16 @@
     color: white;
 }
 
-
 #goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings {
 	background-color: white;
 	text-align: left;
 	font-size: 16px;
-	border-style:solid;
-	border-width:1px;
+	border: none;
+	/*border-style:solid;
+	border-width:1px;*/
 	padding: 15px 32px;
-	width: 70%;
+	width: 100%;
 }
-
 
 #dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
 	background-color: white;
@@ -28,24 +27,40 @@
 	font-size: 16px;
 	border:none;
 	padding: 15px 32px;
-	width: 70%;
+	width: 100%;
 }
 
 #dailyContainer, #weeklyContainer, #biWeeklyContainer, #monthlyContainer, #yearlyContainer {
 	background-color:white;
-	border-style:solid;
-	border-width:1px;
+	border: none;
+	/*border-style:solid;
+	border-width:1px;*/
 	display: grid;
 	grid-template-columns: [first] 50px [line2] auto [end];	
-	width:70%;
+	width: 100%;
 }
+
+/* Change back when hovering over element*/
+#goBackHome:hover, #goChangeTimePeriod:hover, #goTransactions:hover, #goReminders:hover, #goSettings:hover {
+	background-color: #DCDCDC;
+}
+
+#dailyContainer:hover, #weeklyContainer:hover, #biWeeklyContainer:hover, #monthlyContainer:hover, #yearlyContainer:hover {
+	background-color: #DCDCDC;
+}
+
+
+#dailyButton:hover, #weeklyButton:hover, #biWeeklyButton:hover, #monthlyButton:hover, #yearlyButton:hover {
+	background-color: #DCDCDC;
+}	
+
+
 
 #svgContainer {
 	grid-column-start: first;
 	grid-column-end: line2;
 	place-self:center;
 }
-
 
 #buttonContainer {
 	grid-column-start: line2;
@@ -56,12 +71,6 @@
 	height:22pt;
 	width:22pt;
 	background-color:white;
-}
-
-div.burgerMenu {
-	/*background-color: blue;*/
-	height: 100%;
-	display: grid;
 }
 
 @media only screen and (min-width: 768px) {
