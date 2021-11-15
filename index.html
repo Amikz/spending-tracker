@@ -12,8 +12,9 @@
         <script src="libraries/parsley.min.js"></script>
 
         <link  rel="stylesheet" href="css/format.css">
-        <link  rel="stylesheet" href="css/addEditPages.css">
         <link  rel="stylesheet" href="css/parsley.css">
+        <link  rel="stylesheet" href="css/home.css">
+        <link  rel="stylesheet" href="css/addEditPages.css">
         <script src="js/spending-tracker.js"></script>
     </head>
     <body>
@@ -34,7 +35,29 @@
                     <div id="pageContent">
 
                         <div class='home'>
-                            
+                            <h2 id='incomeLabel'>Income:</h2>
+                            <div id='incomeGraph'></div>
+                            <div id='incomeLegend' class='legend'>
+                                <div class='expandPanel'>
+
+                                </div>
+                                <div id='incomeLegend_Content' class='legendContent'>
+
+                                </div>
+                            </div>
+
+                            <h2 id='expenseLabel'>Expenses:</h2>
+                            <div id='expenseGraph'></div>
+                            <div id='expenseLegend' class='legend'>
+                                <div class='expandPanel'>
+                                    
+                                </div>
+                                <div id='expenseLegend_Content' class='legendContent'>
+                                    
+                                </div>
+                            </div>
+
+                            <h2 id='balanceLabel'>Balance:</h2>
                         </div>
 
                         <form id='addEditPages' data-parsley-validate>

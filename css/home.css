@@ -1,0 +1,60 @@
+div.home {
+    height: 100%;
+    display: grid;
+    grid-template-columns: [graph] 1fr [legend] 1fr [end];
+    grid-template-rows: [income-label] max-content [income-data] auto [expense-label] max-content [expense-data] auto [balance-label] max-content [end];
+    column-gap: 3%;
+    row-gap: 3%;
+}
+
+#incomeLabel {
+    grid-column-start: graph;
+    grid-column-end: end;
+}
+
+#incomeGraph {
+    grid-row-start: income-data;
+}
+
+#incomeLegend {
+    grid-row-start: income-data;
+    grid-column-start: legend;
+}
+
+#expenseLabel {
+    grid-column-start: graph;
+    grid-column-end: end;
+    grid-row-start: expense-label;
+}
+
+#expenseGraph {
+    grid-row-start: expense-data;
+}
+
+#expenseLegend {
+    grid-row-start: expense-data;
+    grid-column-start: legend;
+}
+
+#balanceLabel {
+    grid-column-start: graph;
+    grid-column-end: end;
+    grid-row-start: balance-label;
+}
+
+.legend {
+    border: 1px solid #5c5c5c;
+}
+
+.expandPanel {
+    display: block;
+    background-color: #b3b3b3;
+    float: left;
+    height: 100%;
+    width: 5.5%;
+}
+
+.legendContent {
+    height: 100%;
+    overflow-y: scroll;
+}

@@ -100,7 +100,7 @@ div.addEditTransactions input[type=date] {
     color: white;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 650px) {
     #cancelButton, #saveButton {
         font-size: 20pt;
     }

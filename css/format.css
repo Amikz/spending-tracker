@@ -32,9 +32,17 @@ body {
     margin: 0px;
 }
 
+h2 {
+    font-size: 18pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    width: fit-content;
+    margin: 0px;
+}
+
 #pageContent {
     overflow: auto;
-    padding: 20px;
+    padding: 4.5%;
     grid-row-start: pageContent;
 }
 
@@ -79,7 +87,7 @@ input[type=checkbox] {
 }
 
 /* Desktop Formatting */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 650px) {
     html, body, #wrapper, #container, #content {
         height: auto;
     }
@@ -113,6 +121,10 @@ input[type=checkbox] {
 
     #topBorder h1 {
         font-size: 22pt;
+    }
+
+    h2 {
+        font-size: 20pt;
     }
 
     label, input[type=text], select, option, input[type=button] {
