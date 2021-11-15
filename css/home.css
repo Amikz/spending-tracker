@@ -73,3 +73,10 @@ div.home {
     height: 100%;
     overflow-y: scroll;
 }
+
+.graph {
+    border: 1px solid #5c5c5c;
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+}
