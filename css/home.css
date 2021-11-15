@@ -9,7 +9,11 @@ div.home {
 
 #incomeLabel {
     grid-column-start: graph;
-    grid-column-end: end;
+}
+
+#incomeAmount {
+    grid-column-start: legend;
+    justify-self: end;
 }
 
 #incomeGraph {
@@ -23,8 +27,13 @@ div.home {
 
 #expenseLabel {
     grid-column-start: graph;
-    grid-column-end: end;
     grid-row-start: expense-label;
+}
+
+#expenseAmount {
+    grid-column-start: legend;
+    grid-row-start: expense-label;
+    justify-self: end;
 }
 
 #expenseGraph {
@@ -38,8 +47,13 @@ div.home {
 
 #balanceLabel {
     grid-column-start: graph;
-    grid-column-end: end;
     grid-row-start: balance-label;
+}
+
+#balanceAmount {
+    grid-column-start: legend;
+    grid-row-start: balance-label;
+    justify-self: end;
 }
 
 .legend {
@@ -52,6 +66,7 @@ div.home {
     float: left;
     height: 100%;
     width: 5.5%;
+    border-right: 1px solid #5c5c5c;
 }
 
 .legendContent {
