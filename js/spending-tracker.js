@@ -1,14 +1,15 @@
-var currPage = ".home";
+var currPage = ".transactionsList";
 var prevPage = ".home";
 var isIncome = false;
 
 $(document).ready(function() {
     homePage();
     addEditPages();
-	showMeTheBurger();
+	  showMeTheBurger();
 
     $('.settings').hide();
-    $('.home').show();
+    $('.home').hide();
+    $('.transactionsList').show();
 });
 
 function homePage() {
@@ -243,6 +244,7 @@ function showMeTheBurger() {
             $('.home').show();
             prevPage = currPage;
             currPage = '.home';
+            $('#pageContent').removeAttr('style');
         }
         $('.burgerMenu').hide();
     });
@@ -253,6 +255,7 @@ function showMeTheBurger() {
             $('.transactionsList').show();
             prevPage = currPage;
             currPage = '.transactionsList';
+            $('#pageContent').css('padding', '0px');
         }
         $('.burgerMenu').hide();
     });
