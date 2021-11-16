@@ -242,6 +242,7 @@ function showMeTheBurger() {
 	
 	$('#goChangeTimePeriod').click(function(){
 		$('#timeContainer').toggle();
+        $('#timePeriodButton hr').toggleClass('hide');
 	});
 
     $('#goBackHome').click(function() {

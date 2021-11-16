@@ -6,8 +6,12 @@ body {
     margin: 0px;
 }
 
+.hide {
+    display: none;
+}
+
 #wrapper {
-    min-width: 250px;
+    min-width: 275px;
 }
 
 .phoneBorder {
