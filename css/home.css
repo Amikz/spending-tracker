@@ -69,12 +69,23 @@ div.home {
 }
 
 .expandPanel {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #b3b3b3;
     float: left;
     height: 100%;
-    width: 5.5%;
+    width: 10px;
     border-right: 1px solid #5c5c5c;
+}
+
+.expandPanelArrow {
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 6px solid black;
+    border-bottom: 7px solid transparent;
+    margin-bottom: 3.5px;
 }
 
 .legendContent {
@@ -174,5 +185,16 @@ div.home {
 
     .addCategory {
         line-height: 15pt;
+    }
+
+    .expandPanel {
+        width: 12px;
+    }
+
+    .expandPanelArrow {
+        border-top: 10px solid transparent;
+        border-right: 8px solid black;
+        border-bottom: 10px solid transparent;
+        margin-bottom: 5px;
     }
 }

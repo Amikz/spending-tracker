@@ -17,19 +17,32 @@ function homePage() {
     $('#incomeLegend .expandPanel').click(function() {
         if($('#incomeLegend .legendCategoryAmount').is(':hidden')) {
             $('#incomeGraph').hide();
+
             $('#incomeLegend').css('grid-column-start', 'graph');
-            $('#incomeLegend .expandPanel').css('width', '3%');
             $('#incomeLegend .legendItem').css('padding-top', '2.5%');
             $('#incomeLegend .buttonWrapper').css('padding', '2.5% 0px');
             $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
+            $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
+
+            if($(window).width() >= 650) {
+                $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
+            } else {
+                $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
+            }
+
             $('#incomeLegend .legendCategoryAmount').show();
         } else {
             $('#incomeLegend .legendCategoryAmount').hide();
-            $('#incomeLegend').css('grid-column-start', 'legend');
-            $('#incomeLegend .legendContentWrapper').css('padding', '0px 5%');
-            $('#incomeLegend .buttonWrapper').css('padding', '6% 0px');
-            $('#incomeLegend .legendItem').css('padding-top', '6%');
-            $('#incomeLegend .expandPanel').css('width', '5.5%');
+
+            $('#incomeLegend,' +
+                '#incomeLegend .legendItem,' +
+                '#incomeLegend .buttonWrapper,' +
+                '#incomeLegend .legendContentWrapper,' +
+                '#incomeLegend .expandPanelArrow,' +
+                '#incomeLegend .expandPanelArrow,' +
+                '#incomeLegend .expandPanelArrow'
+            ).removeAttr('style');
+
             $('#incomeGraph').show();
         }
     });
@@ -38,18 +51,30 @@ function homePage() {
         if($('#expenseLegend .legendCategoryAmount').is(':hidden')) {
             $('#expenseGraph').hide();
             $('#expenseLegend').css('grid-column-start', 'graph');
-            $('#expenseLegend .expandPanel').css('width', '3%');
             $('#expenseLegend .legendItem').css('padding-top', '2.5%');
             $('#expenseLegend .buttonWrapper').css('padding', '2.5% 0px');
             $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
+            $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
+
+            if($(window).width() >= 650) {
+                $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
+            } else {
+                $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');
+            }
+
             $('#expenseLegend .legendCategoryAmount').show();
         } else {
             $('#expenseLegend .legendCategoryAmount').hide();
-            $('#expenseLegend').css('grid-column-start', 'legend');
-            $('#expenseLegend .legendContentWrapper').css('padding', '0px 5%');
-            $('#expenseLegend .buttonWrapper').css('padding', '6% 0px');
-            $('#expenseLegend .expandPanel').css('width', '5.5%');
-            $('#expenseLegend .legendItem').css('padding-top', '6%');
+
+            $('#expenseLegend,' +
+                '#expenseLegend .legendItem,' +
+                '#expenseLegend .buttonWrapper,' +
+                '#expenseLegend .legendContentWrapper,' +
+                '#expenseLegend .expandPanelArrow,' +
+                '#expenseLegend .expandPanelArrow,' +
+                '#expenseLegend .expandPanelArrow'
+            ).removeAttr('style');
+
             $('#expenseGraph').show();
         }
     });
