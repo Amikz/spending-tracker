@@ -38,7 +38,7 @@
 #dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
 	background-color: white;
 	text-align: left;
-	font-size: 16px;
+	font-size: 16pt;
 	border:none;
 	padding: 10%;
 	width: 100%;

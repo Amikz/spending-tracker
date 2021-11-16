@@ -15,6 +15,7 @@
         <link  rel="stylesheet" href="css/parsley.css">
         <link  rel="stylesheet" href="css/home.css">
         <link  rel="stylesheet" href="css/burgerMenu.css">
+        <link rel="stylesheet" href="css/TransactionList.css">
         <link  rel="stylesheet" href="css/addEditPages.css">
         <script src="js/spending-tracker.js"></script>
     </head>
@@ -36,10 +37,11 @@
                         <h1 class="settings">Settings</h1>
                         <button class="addEditCategories addEditTransactions" id='saveButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
-                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                             </svg>
                         </button>
                     </div>
+
 					<nav class="burgerMenu">
                         <div id="homeButton" class='menuButton'>
                             <input type="button" id="goBackHome" value="Home">
@@ -205,6 +207,27 @@
                             <h2 id='balanceAmount'>$685.00</h2>
                         </div>
 
+                        <div class='transactionsList'>
+                            <div class="transactionItem">
+                                <p class='category'>Food</p>
+                                <p class="amount expense">$50</p>
+                                <div id='rect1' class="rect"></div>
+                                <p class='date'>November 11,2021</p>
+                            </div>
+                            <div class="transactionItem">
+                                <p class='category'>Rent</p>
+                                <p class="amount expense">$500</p>
+                                <div id="rect2" class="rect"></div>
+                                <p class='date'>November 12,2021</p>
+                            </div>
+                            <div class="transactionItem">
+                                <p class='category'>Salary</p>
+                                <p class="amount income">$500</p>
+                                <div id="rect3" class="rect"></div>
+                                <p class='date'>November 15,2021</p>
+                            </div>
+                        </div>
+
                         <form id='addEditPages' data-parsley-validate>
                             <div class="addEditCategories">
                                 <label for="categoryName">Name:</label>
@@ -217,7 +240,7 @@
 
                                 <label for='setCategoryBudget' class='expenseCategory'>Set Budget:</label>
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
-                                
+
                                 <label for='categoryBudget' class='categoryBudget'>Budget:</label>
                                 <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
                                         data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
@@ -243,7 +266,7 @@
 
                                 <label for="categoryWarning" class='categoryBudget'>Warning:</label>
                                 <input type="text" id="categoryWarning" name="categoryWarning" class='categoryBudget monetaryAmount'>
-                                
+
                                 <div id="editCategory">
                                     <hr>
                                     <input type="button" id="addTransactionWithinCategory" value="Add Transaction">

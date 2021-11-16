@@ -1,6 +1,8 @@
+
 var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
+
 
 $(document).ready(function() {
     homePage();
@@ -8,8 +10,13 @@ $(document).ready(function() {
 	showMeTheBurger();
 
     $('.settings').hide();
+    $('.transactionsList').hide();
     $('.home').show();
 });
+
+function mockData() {
+
+}
 
 function homePage() {
     $('.legendCategoryAmount').hide();
@@ -229,12 +236,13 @@ function showMeTheBurger() {
 	$('#timeContainer').hide();
 	
 	$('#burgerButton').click(function(){
-		$('.burgerMenu').toggle();
+		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
+        $('#timePeriodButton hr:not(.hide)').addClass('hide');
 	});
 	
 	$('#goChangeTimePeriod').click(function(){
-		$('#timeContainer').toggle();
+		$('#timeContainer').slideToggle();
         $('#timePeriodButton hr').toggleClass('hide');
 	});
 
@@ -244,8 +252,9 @@ function showMeTheBurger() {
             $('.home').show();
             prevPage = currPage;
             currPage = '.home';
+            $('#pageContent').removeAttr('style');
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 
     $('#goTransactions').click(function() {
@@ -254,8 +263,9 @@ function showMeTheBurger() {
             $('.transactionsList').show();
             prevPage = currPage;
             currPage = '.transactionsList';
+            $('#pageContent').css('padding', '0px');
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 
     $('#goSettings').click(function() {
@@ -265,7 +275,7 @@ function showMeTheBurger() {
             prevPage = currPage;
             currPage = '.settings';
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 }
 
