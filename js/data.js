@@ -70,7 +70,6 @@ var transaction = [
         category: 'Salary',
         amount: 1050.00,
         date: "2021-11-05",
-        isRepeat: false,
         willRepeat: true,
         repeat_num: 2,
         repeat_timePeriod: 'weeks'
@@ -80,7 +79,6 @@ var transaction = [
         category: 'Sale',
         amount: 30.00,
         date: '2021-11-06',
-        isRepeat: false,
         willRepeat: false
     },
     {
@@ -88,7 +86,6 @@ var transaction = [
         category: 'Food',
         amount: 100.00,
         date: '2021-11-06',
-        isRepeat: false,
         willRepeat: true,
         repeat_num: 2,
         repeat_timePeriod: 'weeks'
@@ -98,7 +95,6 @@ var transaction = [
         category: 'Movies',
         amount: 25.00,
         date: '2021-11-12',
-        isRepeat: false,
         willRepeat: false
     },
     {
@@ -106,7 +102,6 @@ var transaction = [
         category: 'Phone',
         amount: 60.00,
         date: '2021-11-15',
-        isRepeat: false,
         willRepeat: true,
         repeat_num: 1,
         repeat_timePeriod: 'months'
@@ -116,7 +111,6 @@ var transaction = [
         category: 'Video Games',
         amount: 30.00,
         date: '2021-11-19',
-        isRepeat: false,
         willRepeat: false
     },
     {
@@ -124,7 +118,6 @@ var transaction = [
         category: 'Clothes',
         amount: 80.00,
         date: '2021-11-20',
-        isRepeat: false,
         willRepeat: false
     },
     {
@@ -132,7 +125,6 @@ var transaction = [
         category: 'Food',
         amount: 50.00,
         date: '2021-11-20',
-        isRepeat: false,
         willRepeat: false
     },
     {
@@ -140,7 +132,6 @@ var transaction = [
         category: 'Rent',
         amount: 1000.00,
         date: '2021-11-26',
-        isRepeat: false,
         willRepeat: true,
         repeat_num: 1,
         repeat_timePeriod: 'months'
