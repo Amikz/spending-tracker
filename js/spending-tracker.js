@@ -1,7 +1,8 @@
-$('#pageContent').css('padding', '0px');
+
 
 $(document).ready(function() {
     addEditPages();
+    $('#pageContent').css('padding', '0px');
 });
 
 function resetAddEditTransactionsPage() {
