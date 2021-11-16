@@ -1,5 +1,5 @@
 
-var currPage = ".transactionsList";
+var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
 
@@ -7,13 +7,16 @@ var isIncome = false;
 $(document).ready(function() {
     homePage();
     addEditPages();
-	  showMeTheBurger();
+	showMeTheBurger();
 
     $('.settings').hide();
-    $('.home').hide();
-    $('.transactionsList').show();
-    $('#pageContent').css('padding', '0px');
+    $('.transactionsList').hide();
+    $('.home').show();
 });
+
+function mockData() {
+
+}
 
 function homePage() {
     $('.legendCategoryAmount').hide();
