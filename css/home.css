@@ -139,7 +139,6 @@ div.home {
     border-radius: 50%;
     width: 100%;
     aspect-ratio: 1;
-    clip-path: rect(0px, 75px, 150px, 0px);
 }
 
 .graphSlice {
@@ -149,7 +148,7 @@ div.home {
 }
 
 #incomeGraph {
-    background-image: conic-gradient(skyblue 0deg 360deg);
+    background-image: conic-gradient(skyblue 0deg 354.92957748deg, lightsalmon 354.92957748deg);
 }
 
 #expenseGraph {
@@ -158,6 +157,10 @@ div.home {
 
 #incomeLegendColour1 {
     background-color: skyblue;
+}
+
+#incomeLegendColour2 {
+    background-color: lightsalmon;
 }
 
 #expenseLegendColour1 {
