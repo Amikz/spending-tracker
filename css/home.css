@@ -148,7 +148,7 @@ div.home {
 }
 
 #incomeGraph {
-    background-image: conic-gradient(skyblue 0deg 354.92957748deg, lightsalmon 354.92957748deg);
+    background-image: conic-gradient(skyblue 0deg 354.92957748deg, #ed9b21 354.92957748deg);
 }
 
 #expenseGraph {
@@ -160,7 +160,7 @@ div.home {
 }
 
 #incomeLegendColour2 {
-    background-color: lightsalmon;
+    background-color: #ed9b21;
 }
 
 #expenseLegendColour1 {
