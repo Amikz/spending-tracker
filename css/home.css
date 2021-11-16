@@ -23,6 +23,7 @@ div.home {
 #incomeLegend {
     grid-row-start: income-data;
     grid-column-start: legend;
+    grid-column-end: end;
 }
 
 #expenseLabel {
@@ -43,6 +44,7 @@ div.home {
 #expenseLegend {
     grid-row-start: expense-data;
     grid-column-start: legend;
+    grid-column-end: end;
 }
 
 #balanceLabel {
@@ -63,7 +65,7 @@ div.home {
 .legend {
     border: 1px solid #5c5c5c;
     width: 100%;
-    aspect-ratio: 1/1.1;
+    height: 100%;
 }
 
 .expandPanel {
@@ -88,7 +90,7 @@ div.home {
     padding-top: 6%;
     height: max-content;
     display: grid;
-    grid-template-columns: [colour] max-content [name] max-content [spacer] auto [end];
+    grid-template-columns: [colour] max-content [name] max-content [spacer] auto [amount] max-content [end];
     column-gap: 5%;
 }
 
@@ -99,9 +101,15 @@ div.home {
     aspect-ratio: 3/2;
 }
 
-.addCategory {
-    line-height: 13pt;
-    background-color: lightgrey;
+.legendCategoryName, .legendCategoryAmount {
+    margin: 0px;
+    grid-column-start: name;
+    font-size: 14pt;
+}
+
+.legendCategoryAmount {
+    grid-column-start: amount;
+    justify-self: right;
 }
 
 .buttonWrapper {
@@ -109,10 +117,10 @@ div.home {
     display: inline-block;
 }
 
-.legendCategoryName {
-    margin: 0px;
-    grid-column-start: name;
-    font-size: 14pt;
+.addCategory {
+    height: 16pt;
+    line-height: 13pt;
+    background-color: lightgrey;
 }
 
 #incomeLegendColour1 {
@@ -152,11 +160,15 @@ div.home {
 
 /* Desktop Formatting */
 @media only screen and (min-width: 650px) {
-    .legendCategoryColour, .addCategory {
+    .legendCategoryColour {
         height: 18pt;
     }
 
-    .legendCategoryName {
+    .addCategory {
+        height: 19pt;
+    }
+
+    .legendCategoryName, .legendCategoryAmount {
         font-size: 16pt;
     }
 
