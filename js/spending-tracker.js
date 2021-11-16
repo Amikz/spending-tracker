@@ -4,6 +4,8 @@ var isIncome = false;
 $(document).ready(function() {
     homePage();
     addEditPages();
+	showMeTheBurger();
+
 });
 
 function homePage() {
@@ -99,6 +101,7 @@ function addEditPages() {
     resetAddEditCategoriesPage();
     $('.addEditTransactions').hide();
     $('.addEditCategories').hide();
+	$('#burgerButton').show();
 
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
@@ -212,6 +215,20 @@ function addEditPages() {
         if(setPosition)
             this.selectionEnd = position - 1;
     });
+}
+
+function showMeTheBurger() {
+	$('.burgerMenu').hide();
+	$('#timeContainer').hide();
+	
+	$('#burgerButton').click(function(){
+		$('.burgerMenu').toggle();
+		$('#timeContainer').hide();
+	});
+	
+	$('#goChangeTimePeriod').click(function(){
+		$('#timeContainer').toggle();
+	});
 }
 
 function resetAddEditTransactionsPage() {

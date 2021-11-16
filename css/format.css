@@ -17,6 +17,8 @@ body {
 #content {
     display: grid;
     grid-template-rows: [topBar] 10% [pageContent] auto [end];
+	/*added*/
+	position: relative;
 }
 
 #topBar {
@@ -47,6 +49,15 @@ h2 {
     grid-row-start: pageContent;
 }
 
+.burgerMenu {
+	grid-row-start: pageContent;
+	width: 100%;
+	display: grid;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+	
 label, input[type=text], input[type=date], select, option, input[type=button], p {
     font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
