@@ -32,86 +32,87 @@
                                 <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                             </svg>
                         </button>
-						<button class="showBurgerMenu" id='burgerButton'>
+						<button id='burgerButton' class='home transactionList settings'>
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
 								<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 							</svg>
 						</button>
                     </div>
 					<div class="burgerMenu">
-								<div id="homeButton">
-									<input type="button" id="goBackHome" value="Home">
-								</div>
-								<div id="timePeriodButton">
-									<input type="button" id="goChangeTimePeriod" value="Time Period">
-									<div id="timeContainer">
-										<div id="dailyContainer">
-											<div id="svgContainer">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
-													<path d="M3 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-													<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-												</svg>
-											</div>
-											<div id="buttonContainer">
-												<input type="button" id="dailyButton" value="Daily">
-											</div>
-										</div>
-										<div id="weeklyContainer">
-											<div id="svgContainer">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
-													<path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
-													<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-												</svg>
-											</div>
-											<div id="buttonContainer">
-												<input type="button" id="weeklyButton" value="Weekly">
-											</div>
-										</div>
-										<div id="biWeeklyContainer">
-											<div id="svgContainer">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
-													<path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1zM11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
-													<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-												</svg>
-											</div>
-											<div id="buttonContainer">
-												<input type="button" id="biWeeklyButton" value="Bi-Weekly">
-											</div>
-										</div>
-										<div id="monthlyContainer">
-											<div id="svgContainer">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
-													<text x="2.1" y="10.5" font-family="Helvetica Neue, Arial, sans-serif"  font-size="3pt">Month</text>
-													<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-												</svg>
-											</div>
-											<div id="buttonContainer">
-												<input type="button" id="monthlyButton" value="Monthly">
-											</div>
-										</div>
-										<div id="yearlyContainer">
-											<div id="svgContainer">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
-													<text x="3.7" y="10.5" font-family="Helvetica Neue, Arial, sans-serif" font-size="3pt">Year</text>
-													<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-												</svg>
-											</div>
-											<div id="buttonContainer">
-												<input type="button" id="yearlyButton" value="Yearly">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="remindersButton">
-									<input type="button" id="goReminders" value="Reminders">
-								</div>
-								<div id="transactionsButton">
-									<input type="button" id="goTransactions" value="Transactions">
-								</div>
-								<div id="settingsButton">
-									<input type="button" id="goSettings" value="Settings">
-								</div>
-							</div>
+                        <div id="homeButton">
+                            <input type="button" id="goBackHome" value="Home">
+                        </div>
+                        <div id="timePeriodButton">
+                            <input type="button" id="goChangeTimePeriod" value="Time Period">
+                            <div id="timeContainer">
+                                <div id="dailyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="dailyButton" value="Daily">
+                                    </div>
+                                </div>
+                                <div id="weeklyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="weeklyButton" value="Weekly">
+                                    </div>
+                                </div>
+                                <div id="biWeeklyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1zM11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="biWeeklyButton" value="Bi-Weekly">
+                                    </div>
+                                </div>
+                                <div id="monthlyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <text x="2.1" y="10.5" font-family="Helvetica Neue, Arial, sans-serif"  font-size="3pt">Month</text>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="monthlyButton" value="Monthly">
+                                    </div>
+                                </div>
+                                <div id="yearlyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <text x="3.7" y="10.5" font-family="Helvetica Neue, Arial, sans-serif" font-size="3pt">Year</text>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="yearlyButton" value="Yearly">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="remindersButton">
+                            <input type="button" id="goReminders" value="Reminders">
+                        </div>
+                        <div id="transactionsButton">
+                            <input type="button" id="goTransactions" value="Transactions">
+                        </div>
+                        <div id="settingsButton">
+                            <input type="button" id="goSettings" value="Settings">
+                        </div>
+                    </div>
+
                     <div id="pageContent">
 
                         <div class='home'>
