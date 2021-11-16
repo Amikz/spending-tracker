@@ -1,5 +1,5 @@
 
-var currPage = ".transactionsList";
+var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
 
@@ -7,13 +7,16 @@ var isIncome = false;
 $(document).ready(function() {
     homePage();
     addEditPages();
-	  showMeTheBurger();
+	showMeTheBurger();
 
     $('.settings').hide();
-    $('.home').hide();
-    $('.transactionsList').show();
-    $('#pageContent').css('padding', '0px');
+    $('.transactionsList').hide();
+    $('.home').show();
 });
+
+function mockData() {
+
+}
 
 function homePage() {
     $('.legendCategoryAmount').hide();
@@ -233,12 +236,14 @@ function showMeTheBurger() {
 	$('#timeContainer').hide();
 	
 	$('#burgerButton').click(function(){
-		$('.burgerMenu').toggle('slow');
+		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
+        $('#timePeriodButton hr:not(.hide)').addClass('hide');
 	});
 	
 	$('#goChangeTimePeriod').click(function(){
-		$('#timeContainer').toggle();
+		$('#timeContainer').slideToggle();
+        $('#timePeriodButton hr').toggleClass('hide');
 	});
 
     $('#goBackHome').click(function() {
@@ -249,7 +254,7 @@ function showMeTheBurger() {
             currPage = '.home';
             $('#pageContent').removeAttr('style');
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 
     $('#goTransactions').click(function() {
@@ -260,7 +265,7 @@ function showMeTheBurger() {
             currPage = '.transactionsList';
             $('#pageContent').css('padding', '0px');
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 
     $('#goSettings').click(function() {
@@ -270,7 +275,7 @@ function showMeTheBurger() {
             prevPage = currPage;
             currPage = '.settings';
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 }
 

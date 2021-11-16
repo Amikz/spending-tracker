@@ -1,3 +1,19 @@
+.burgerMenu {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: white;
+}
+
+.menuButton {
+    background-color: white;
+}
+
+.burgerMenu hr {
+    margin: 0px 6%;
+    background-color: #acacac;
+    border: none;
+    height: 1px;
+}
+
 #burgerButton {
 	color: white;
 	background-color: inherit;
@@ -14,19 +30,17 @@
 	background-color: white;
 	text-align: left;
 	font-size: 16px;
-	border: none;
-	/*border-style:solid;
-	border-width:1px;*/
-	padding: 15px 32px;
+	padding: 5% 10%;
 	width: 100%;
+	border: none;
 }
 
 #dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
 	background-color: white;
 	text-align: left;
-	font-size: 16px;
+	font-size: 16pt;
 	border:none;
-	padding: 15px 32px;
+	padding: 10%;
 	width: 100%;
 }
 
