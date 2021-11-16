@@ -1,6 +1,8 @@
+
 var currPage = ".transactionsList";
 var prevPage = ".home";
 var isIncome = false;
+
 
 $(document).ready(function() {
     homePage();
