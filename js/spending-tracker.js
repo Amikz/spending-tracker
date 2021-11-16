@@ -1,4 +1,5 @@
 var prevPageClass = ".home";
+var isIncome = false;
 
 $(document).ready(function() {
     homePage();
@@ -12,6 +13,7 @@ function homePage() {
         $('.home').hide();
         $('.addEditCategories').show();
         prevPageClass = '.home';
+        isIncome = $(this).is('#addIncomeCategory');
     });
 
     $('#incomeGraph').mousemove(function(event) {
@@ -102,6 +104,27 @@ function addEditPages() {
         $('#addEditPages').parsley().validate();
         if($("#addEditPages").parsley().isValid()) {
             //Save the data
+            if($('div.addEditCategories').is(':visible')) {
+                if(isIncome) {
+                    //Save category within income section
+
+                } else {
+                    //Save category within expense section
+
+                }
+            } else if($('div.addEditTransactions').is(':visible')) {
+                if($('#transactionType').val() != '') {
+                    isIncome = $('#transactionType').val() == 'income';
+                }
+
+                if(isIncome) {
+                    //Save transaction within income section
+
+                } else {
+                    //Save transaction within expense section
+
+                }
+            }
         }
     });
     
