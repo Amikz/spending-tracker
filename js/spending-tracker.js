@@ -233,7 +233,7 @@ function showMeTheBurger() {
 	$('#timeContainer').hide();
 	
 	$('#burgerButton').click(function(){
-		$('.burgerMenu').toggle();
+		$('.burgerMenu').toggle('slow');
 		$('#timeContainer').hide();
 	});
 	
