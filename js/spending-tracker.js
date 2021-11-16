@@ -1,6 +1,5 @@
-$('#pageContent').css('padding', '0px');
-
 $(document).ready(function() {
+    $('#pageContent').css('padding', '0px');
     addEditPages();
 });
 
