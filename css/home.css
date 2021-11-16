@@ -152,7 +152,7 @@ div.home {
 }
 
 #expenseGraph {
-    background-image: conic-gradient(orchid 0deg 249.1349481deg, #29a729 249.1349481deg 311.418685116deg, indianred 311.418685116deg 331.349480964deg, royalblue 331.349480964deg 346.297577832deg, turquoise 346.297577832deg 353.771626284deg, goldenrod 353.771626284deg);
+    background-image: conic-gradient(#895293 0deg 249.1349481deg, #38af38 249.1349481deg 311.418685116deg, indianred 311.418685116deg 331.349480964deg, royalblue 331.349480964deg 346.297577832deg, turquoise 346.297577832deg 353.771626284deg, goldenrod 353.771626284deg);
 }
 
 #incomeLegendColour1 {
@@ -164,11 +164,11 @@ div.home {
 }
 
 #expenseLegendColour1 {
-    background-color: orchid;
+    background-color: #895293;
 }
 
 #expenseLegendColour2 {
-    background-color: #29a729;
+    background-color: #38af38;
 }
 
 #expenseLegendColour3 {
