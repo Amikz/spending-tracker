@@ -1,38 +1,13 @@
 $(document).ready(function() {
-    console.log(new Date());
+    homePage();
     addEditPages();
 });
 
-function resetAddEditTransactionsPage() {
-    var $page = $('div.addEditTransactions');
-    
-    $page.find("input[type=text], select").each(function() {
-        $(this).val("");
-        $(this).parsley().reset();
+function homePage() {
+    $('.addCategory').click(function() {
+        $('.home').hide();
+        $('.addEditCategories').show();
     });
-
-    var date = new Date();
-    $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
-
-    if($('#transactionRepeat_Check').is(":checked")) {
-        $("#transactionRepeat_Check").click();
-    }
-}
-
-function resetAddEditCategoriesPage() {
-    var $page = $('div.addEditCategories');
-    
-    $page.find("input[type=text], select").each(function() {
-        $(this).val("");
-        $(this).parsley().reset();
-    });
-
-    $("#categoryColour").val("#000000");
-    $("#categoryColour").parsley().reset();
-
-    if($('#setCategoryBudget').is(":checked")) {
-        $("#setCategoryBudget").click();
-    }
 }
 
 function addEditPages() {
@@ -128,4 +103,36 @@ function addEditPages() {
         if(setPosition)
             this.selectionEnd = position - 1;
     });
+}
+
+function resetAddEditTransactionsPage() {
+    var $page = $('div.addEditTransactions');
+    
+    $page.find("input[type=text], select").each(function() {
+        $(this).val("");
+        $(this).parsley().reset();
+    });
+
+    var date = new Date();
+    $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
+
+    if($('#transactionRepeat_Check').is(":checked")) {
+        $("#transactionRepeat_Check").click();
+    }
+}
+
+function resetAddEditCategoriesPage() {
+    var $page = $('div.addEditCategories');
+    
+    $page.find("input[type=text], select").each(function() {
+        $(this).val("");
+        $(this).parsley().reset();
+    });
+
+    $("#categoryColour").val("#000000");
+    $("#categoryColour").parsley().reset();
+
+    if($('#setCategoryBudget').is(":checked")) {
+        $("#setCategoryBudget").click();
+    }
 }

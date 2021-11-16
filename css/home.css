@@ -80,19 +80,33 @@ div.home {
     overflow: scroll;
 }
 
+.legendContentWrapper {
+    padding: 0px 5%;
+}
+
 .legendItem {
-    padding: 6% 5% 0px 5%;
+    padding-top: 6%;
     height: max-content;
     display: grid;
     grid-template-columns: [colour] max-content [name] max-content [spacer] auto [end];
     column-gap: 5%;
 }
 
-.legendCategoryColour {
+.legendCategoryColour, .addCategory {
     border: 1px solid #4c4c4c;
     float: left;
     height: 15pt;
     aspect-ratio: 3/2;
+}
+
+.addCategory {
+    line-height: 13pt;
+    background-color: lightgrey;
+}
+
+.buttonWrapper {
+    padding: 6% 0px;
+    display: inline-block;
 }
 
 .legendCategoryName {
@@ -138,11 +152,15 @@ div.home {
 
 /* Desktop Formatting */
 @media only screen and (min-width: 650px) {
-    .legendCategoryColour {
+    .legendCategoryColour, .addCategory {
         height: 18pt;
     }
 
     .legendCategoryName {
         font-size: 16pt;
+    }
+
+    .addCategory {
+        line-height: 15pt;
     }
 }
