@@ -12,6 +12,7 @@ $(document).ready(function() {
     $('.settings').hide();
     $('.home').hide();
     $('.transactionsList').show();
+    $('#pageContent').css('padding', '0px');
 });
 
 function homePage() {
