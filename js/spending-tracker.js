@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> TransactionList
 $(document).ready(function() {
+    $('#pageContent').css('padding', '0px');
     addEditPages();
     $('#pageContent').css('padding', '0px');
 });
