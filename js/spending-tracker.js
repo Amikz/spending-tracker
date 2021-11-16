@@ -14,10 +14,6 @@ $(document).ready(function() {
     $('.home').show();
 });
 
-function mockData() {
-
-}
-
 function homePage() {
     $('.legendCategoryAmount').hide();
 
