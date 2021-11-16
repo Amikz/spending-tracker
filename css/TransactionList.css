@@ -1,7 +1,50 @@
-﻿.transactionPage{
-    display:grid;
-    grid-template-columns: 70% 30%;
-    background:black;
+﻿.transactionPage {
+    display: grid;
+    grid-template-columns: 52% 58%;
+    grid-row-gap:4px;
+}
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+.bigBox{
+    width: 100%;
+    height: 12%;
+    border: 1px solid #000;
+    
+}
+
+.rect {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000;
+    background:red;
+}
+.rect2 {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000;
+    background:silver;
+}
+.rect3 {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000;
+    background: grey;
+}
+
+.amount {
+    color: red;
+}
+
+.salary {
+    color: green;
 }
 
 /* Desktop Formatting */
