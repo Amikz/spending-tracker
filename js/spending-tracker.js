@@ -14,9 +14,19 @@ function homePage() {
         prevPageClass = '.home';
     });
 
+    $('#incomeGraph').mousemove(function(event) {
+        var angle = calculateAngle(event);
+        //Display percentage and number of section the angle is in
+    });
+
+    $('#expenseGraph').mousemove(function(event) {
+        var angle = calculateAngle(event);
+        //Display percentage and number of section the angle is in
+    });
+
     $('#incomeLegend .expandPanel').click(function() {
         if($('#incomeLegend .legendCategoryAmount').is(':hidden')) {
-            $('#incomeGraph').hide();
+            $('#incomeGraphContainer').hide();
 
             $('#incomeLegend').css('grid-column-start', 'graph');
             $('#incomeLegend .legendItem').css('padding-top', '2.5%');
@@ -43,13 +53,13 @@ function homePage() {
                 '#incomeLegend .expandPanelArrow'
             ).removeAttr('style');
 
-            $('#incomeGraph').show();
+            $('#incomeGraphContainer').show();
         }
     });
 
     $('#expenseLegend .expandPanel').click(function() {
         if($('#expenseLegend .legendCategoryAmount').is(':hidden')) {
-            $('#expenseGraph').hide();
+            $('#expenseGraphContainer').hide();
             $('#expenseLegend').css('grid-column-start', 'graph');
             $('#expenseLegend .legendItem').css('padding-top', '2.5%');
             $('#expenseLegend .buttonWrapper').css('padding', '2.5% 0px');
@@ -75,7 +85,7 @@ function homePage() {
                 '#expenseLegend .expandPanelArrow'
             ).removeAttr('style');
 
-            $('#expenseGraph').show();
+            $('#expenseGraphContainer').show();
         }
     });
 }
@@ -211,4 +221,14 @@ function resetAddEditCategoriesPage() {
     if($('#setCategoryBudget').is(":checked")) {
         $("#setCategoryBudget").click();
     }
+}
+
+function calculateAngle(event) {
+    var boxBounds = event.target.getBoundingClientRect();
+    var boxCenterX = boxBounds.left + (boxBounds.width/2);
+    var boxCenterY = boxBounds.top + (boxBounds.height/2);
+    var mouseX = event.pageX - boxCenterX;
+    var mouseY = event.pageY - boxCenterY;
+
+    return Math.abs((Math.atan2(mouseX, mouseY) * (180/Math.PI)) - 180);
 }

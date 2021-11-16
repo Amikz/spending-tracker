@@ -16,7 +16,7 @@ div.home {
     justify-self: end;
 }
 
-#incomeGraph {
+#incomeGraphContainer {
     grid-row-start: income-data;
 }
 
@@ -37,7 +37,7 @@ div.home {
     justify-self: end;
 }
 
-#expenseGraph {
+#expenseGraphContainer {
     grid-row-start: expense-data;
 }
 
@@ -134,6 +134,28 @@ div.home {
     background-color: lightgrey;
 }
 
+.graph {
+    border: 1px solid #5c5c5c;
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    clip-path: rect(0px, 75px, 150px, 0px);
+}
+
+.graphSlice {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+#incomeGraph {
+    background-image: conic-gradient(skyblue 0deg 360deg);
+}
+
+#expenseGraph {
+    background-image: conic-gradient(orchid 0deg 249.1349481deg, #29a729 249.1349481deg 311.418685116deg, indianred 311.418685116deg 331.349480964deg, royalblue 331.349480964deg 346.297577832deg, turquoise 346.297577832deg 353.771626284deg, goldenrod 353.771626284deg);
+}
+
 #incomeLegendColour1 {
     background-color: skyblue;
 }
@@ -160,13 +182,6 @@ div.home {
 
 #expenseLegendColour6 {
     background-color: goldenrod;
-}
-
-.graph {
-    border: 1px solid #5c5c5c;
-    border-radius: 50%;
-    width: 100%;
-    aspect-ratio: 1;
 }
 
 /* Desktop Formatting */
