@@ -236,12 +236,13 @@ function showMeTheBurger() {
 	$('#timeContainer').hide();
 	
 	$('#burgerButton').click(function(){
-		$('.burgerMenu').toggle('slow');
+		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
+        $('#timePeriodButton hr:not(.hide)').addClass('hide');
 	});
 	
 	$('#goChangeTimePeriod').click(function(){
-		$('#timeContainer').toggle();
+		$('#timeContainer').slideToggle();
         $('#timePeriodButton hr').toggleClass('hide');
 	});
 
@@ -253,7 +254,7 @@ function showMeTheBurger() {
             currPage = '.home';
             $('#pageContent').removeAttr('style');
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 
     $('#goTransactions').click(function() {
@@ -264,7 +265,7 @@ function showMeTheBurger() {
             currPage = '.transactionsList';
             $('#pageContent').css('padding', '0px');
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 
     $('#goSettings').click(function() {
@@ -274,7 +275,7 @@ function showMeTheBurger() {
             prevPage = currPage;
             currPage = '.settings';
         }
-        $('.burgerMenu').hide();
+        $('.burgerMenu').slideUp();
     });
 }
 
