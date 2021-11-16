@@ -6,6 +6,9 @@ $(document).ready(function() {
     homePage();
     addEditPages();
 	showMeTheBurger();
+
+    $('.settings').hide();
+    $('.home').show();
 });
 
 function homePage() {

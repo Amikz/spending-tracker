@@ -61,7 +61,7 @@ h2 {
 
 .burgerMenu {
 	grid-row-start: pageContent;
-	width: 100%;
+	width: 50%;
 	display: grid;
 	position: absolute;
 	top: 0;
