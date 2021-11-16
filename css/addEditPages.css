@@ -30,7 +30,7 @@ div.addEditCategories {
 }
 
 div.addEditTransactions {
-    grid-template-rows: repeat(4, [requiredInput] max-content) [buttons] auto [end];
+    grid-template-rows: repeat(5, [requiredInput] max-content) [buttons] auto [end];
 }
 
 div.addEditCategories label, div.addEditCategories div.requiredInput input, div.addEditCategories #categoryBudgetEvery {
@@ -58,23 +58,28 @@ div.addEditCategories div.requiredInput input[type=text], div.addEditCategories>
     width: calc(100% - 8px);
 }
 
-div.addEditTransactions div.requiredInput input[type=date] {
+div.addEditTransactions input[type=date] {
     width: calc(100% - 6px);
 }
 
 #categoryBudgetEvery, #transactionRepeatEvery {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: [number] max-content [timePeriod] auto [end];
+    column-gap: 4%;
+    grid-template-rows: [fields] max-content [errorContainer] auto [end];
     width: 100%;
+}
+
+#categoryBudgetEvery_ErrorContainer, #transactionRepeatEvery_ErrorContainer {
+    grid-column-end: end;
 }
 
 #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
     width: 30px;
-    text-align: center;
 }
 
 #categoryBudgetEvery_TimePeriod, #transactionRepeatEvery_TimePeriod {
-    width: calc(100% - 48px);
+    width: -webkit-fill-available;
 }
 
 #editCategory input[type=button], #editTransaction input[type=button] {
@@ -95,7 +100,7 @@ div.addEditTransactions div.requiredInput input[type=date] {
     color: white;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 650px) {
     #cancelButton, #saveButton {
         font-size: 20pt;
     }
@@ -111,10 +116,6 @@ div.addEditTransactions div.requiredInput input[type=date] {
 
     #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
         width: 35px;
-    }
-
-    #categoryBudgetEvery_TimePeriod, #transactionRepeatEvery_TimePeriod {
-        width: calc(100% - 55px);
     }
 
     #editCategory input[type=button], #editTransaction input[type=button] {

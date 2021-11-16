@@ -1,76 +1,239 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
 
-    <title>Spending Tracker</title>
+	    <title>Spending Tracker</title>
 
-    <script src="libraries/jquery/jquery.js"></script>
-    <script src="libraries/jquery/jquery-ui.js"></script>
-    <link href="libraries/jquery/jquery-ui.css" rel="stylesheet">
-    <script src="libraries/parsley.min.js"></script>
+        <script src="libraries/jquery/jquery.js"></script>
+        <script src="libraries/jquery/jquery-ui.js"></script>
+        <link href="libraries/jquery/jquery-ui.css" rel="stylesheet">
+        <script src="libraries/parsley.min.js"></script>
 
-    <link rel="stylesheet" href="css/format.css">
-    <link rel="stylesheet" href="css/addEditPages.css">
-    <link rel="stylesheet" href="css/parsley.css">
-    <link rel="stylesheet" href="css/TransactionList.css">
-    <script src="js/spending-tracker.js"></script>
-</head>
+        <link  rel="stylesheet" href="css/format.css">
+        <link  rel="stylesheet" href="css/parsley.css">
+        <link  rel="stylesheet" href="css/home.css">
+        <link  rel="stylesheet" href="css/burgerMenu.css">
+        <link rel="stylesheet" href="css/TransactionList.css">
+        <link  rel="stylesheet" href="css/addEditPages.css">
+        <script src="js/spending-tracker.js"></script>
+    </head>
     <body>
         <div id="wrapper">
             <div id="container">
                 <div id="phoneBorderTop" class="phoneBorder"></div>
                 <div id="content">
-                    <div id="topBorder">
+                    <div id="topBar">
+						<button id='burgerButton' class='home transactionsList settings'>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+							</svg>
+						</button>
                         <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
                         <h1 class="addEditCategories">Category</h1>
                         <h1 class="addEditTransactions">Transaction</h1>
-                        <h1 class="transactionList">November</h1>
+                        <h1 class="home transactionsList">November</h1>
+                        <h1 class="settings">Settings</h1>
                         <button class="addEditCategories addEditTransactions" id='saveButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                 <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                             </svg>
                         </button>
                     </div>
+
+					<nav class="burgerMenu">
+                        <div id="homeButton">
+                            <input type="button" id="goBackHome" value="Home">
+                        </div>
+                        <div id="transactionsButton">
+                            <input type="button" id="goTransactions" value="Transactions">
+                        </div>
+                        <div id="timePeriodButton">
+                            <input type="button" id="goChangeTimePeriod" value="Time Period">
+                            <div id="timeContainer">
+                                <div id="dailyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="dailyButton" value="Daily">
+                                    </div>
+                                </div>
+                                <div id="weeklyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="weeklyButton" value="Weekly">
+                                    </div>
+                                </div>
+                                <div id="biWeeklyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1zM11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="biWeeklyButton" value="Bi-Weekly">
+                                    </div>
+                                </div>
+                                <div id="monthlyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <text x="2.1" y="10.5" font-family="Helvetica Neue, Arial, sans-serif"  font-size="3pt">Month</text>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="monthlyButton" value="Monthly">
+                                    </div>
+                                </div>
+                                <div id="yearlyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <text x="3.7" y="10.5" font-family="Helvetica Neue, Arial, sans-serif" font-size="3pt">Year</text>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="yearlyButton" value="Yearly">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="remindersButton">
+                            <input type="button" id="goReminders" value="Reminders">
+                        </div>
+                        <div id="settingsButton">
+                            <input type="button" id="goSettings" value="Settings">
+                        </div>
+                    </nav>
+
                     <div id="pageContent">
 
-                        <div class="bigBox">
-                            <div class="transactionPage">
-                                <div class="category">Food</div>
-                                <div class="amount">$50</div>
-                                <div class="rect"></div>
-                                <div>November 11,2021</div>
+                        <div class='home'>
+                            <h2 id='incomeLabel'>Income:</h2>
+                            <h2 id='incomeAmount'>$2130.00</h2>
+                            <div id='incomeGraphContainer' class='graphContainer'>
+                                <div id='incomeGraph' class='graph'></div>
                             </div>
-                        </div>
-                        <div class="bigBox">
-                            <div class="transactionPage">
-                                <div class="category">Rent</div>
-                                <div class="amount">$500</div>
-                                <div class="rect2"></div>
-                                <div>November 12,2021</div>
+                            <div id='incomeLegend' class='legend'>
+                                <div class='expandPanel'>
+                                    <div class='expandPanelArrow'></div>
+                                </div>
+                                <div class='legendContent'>
+                                    <div class='legendContentWrapper'>
+                                        <div id="legendIncomeItem1" class='legendItem'>
+                                            <div id="incomeLegendColour1" class='legendCategoryColour'></div>
+                                            <p id="incomeLegendName1" class="legendCategoryName">Salary</p>
+                                            <p id="incomeLegendAmount1" class="legendCategoryAmount">$2100.00</p>
+                                        </div>
+                                        <div id="legendIncomeItem2" class='legendItem'>
+                                            <div id="incomeLegendColour2" class='legendCategoryColour'></div>
+                                            <p id="incomeLegendName2" class="legendCategoryName">Sale</p>
+                                            <p id="incomeLegendAmount2" class="legendCategoryAmount">$30.00</p>
+                                        </div>
+                                        
+                                        <div class='buttonWrapper'>
+                                            <input type='button' id="addIncomeCategory" class="addCategory" value="&plus;">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="bigBox">
-                            <div class="transactionPage">
-                                <div class="category">Salary</div>
-                                <div class="salary">$500</div>
-                                <div class="rect3"></div>
-                                <div>November 15,2021</div>
+
+                            <h2 id='expenseLabel'>Expenses:</h2>
+                            <h2 id='expenseAmount'>$1445.00</h2>
+                            <div id='expenseGraphContainer' class='graphContainer'>
+                                <div id='expenseGraph' class='graph'></div>
                             </div>
+                            <div id='expenseLegend' class='legend'>
+                                <div class='expandPanel'>
+                                    <div class='expandPanelArrow'></div>
+                                </div>
+                                <div class='legendContent'>
+                                    <div class='legendContentWrapper'>
+                                        <div id="legendExpenseItem1" class='legendItem'>
+                                            <div id="expenseLegendColour1" class='legendCategoryColour'></div>
+                                            <p id="expenseLegendName1" class="legendCategoryName">Rent</p>
+                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$1000.00</p>
+                                        </div>
+                                        <div id="legendExpenseItem2" class='legendItem'>
+                                            <div id="expenseLegendColour2" class='legendCategoryColour'></div>
+                                            <p id="expenseLegendName2" class="legendCategoryName">Food</p>
+                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$250.00</p>
+                                        </div>
+                                        <div id="legendExpenseItem3" class='legendItem'>
+                                            <div id="expenseLegendColour3" class='legendCategoryColour'></div>
+                                            <p id="expenseLegendName3" class="legendCategoryName">Clothes</p>
+                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$80.00</p>
+                                        </div>
+                                        <div id="legendExpenseItem4" class='legendItem'>
+                                            <div id="expenseLegendColour4" class='legendCategoryColour'></div>
+                                            <p id="expenseLegendName4" class="legendCategoryName">Phone</p>
+                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$60.00</p>
+                                        </div>
+                                        <div id="legendExpenseItem5" class='legendItem'>
+                                            <div id="expenseLegendColour5" class='legendCategoryColour'></div>
+                                            <p id="expenseLegendName5" class="legendCategoryName">Video Games</p>
+                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$30.00</p>
+                                        </div>
+                                        <div id="legendExpenseItem6" class='legendItem'>
+                                            <div id="expenseLegendColour6" class='legendCategoryColour'></div>
+                                            <p id="expenseLegendName6" class="legendCategoryName">Movies</p>
+                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$25.00</p>
+                                        </div>
+
+                                        <div class='buttonWrapper'>
+                                            <input type="button" id="addExpenseCategory" class="addCategory" value="&plus;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 id='balanceLabel'>Balance:</h2>
+                            <h2 id='balanceAmount'>$685.00</h2>
                         </div>
-
-
-
-
-
-
-
+                        <div class='transactionsPage'>
+                          <div class="bigBox">
+                              <div class="transactionPage">
+                                  <div>Food</div>
+                                  <div class="amount">$50</div>
+                                  <div class="rect"></div>
+                                  <div>November 11,2021</div>
+                              </div>
+                          </div>
+                          <div class="bigBox">
+                              <div class="transactionPage">
+                                  <div>Rent</div>
+                                  <div class="amount">$500</div>
+                                  <div class="rect2"></div>
+                                  <div>November 12,2021</div>
+                              </div>
+                          </div>
+                          <div class="bigBox">
+                              <div class="transactionPage">
+                                  <div>Salary</div>
+                                  <div class="salary">$500</div>
+                                  <div class="rect3"></div>
+                                  <div>November 15,2021</div>
+                              </div>
+                          </div>
+                        </div>
 
                         <form id='addEditPages' data-parsley-validate>
                             <div class="addEditCategories">
                                 <label for="categoryName">Name:</label>
-                                <div class='requiredInput'><input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-required=""></div>
+                                <div class='requiredInput'>
+                                    <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
+                                </div>
 
                                 <label for="categoryColour">Colour:</label>
                                 <input type="color" id="categoryColour" name="categoryColour">
@@ -79,21 +242,26 @@
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
 
                                 <label for='categoryBudget' class='categoryBudget'>Budget:</label>
-                                <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' data-parsley-required=""></div>
+                                <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
+                                        data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
 
                                 <label for="categoryBudgetEvery" class='categoryBudget'>&nbsp;&nbsp;Every:</label>
                                 <div id="categoryBudgetEvery" class='categoryBudget'>
                                     <label for="categoryBudgetEvery_Number" style="display: none">Number:</label>
-                                    <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number" class="wholeNumber" maxlength="3" data-parsley-required="">
+                                    <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number" class="wholeNumber" maxlength="3" 
+                                        data-parsley-required="" data-parsley-required-message="Enter a number for the time period." data-parsley-errors-container="#categoryBudgetEvery_ErrorContainer">
 
                                     <label for="categoryBudgetEvery_TimePeriod" style="display: none">Time Period:</label>
-                                    <select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod" data-parsley-required="">
+                                    <select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod" data-parsley-required="" data-parsley-required-message="Select the time period."
+                                        data-parsley-errors-container="#categoryBudgetEvery_ErrorContainer">
                                         <option value="">Select...</option>
                                         <option value="days">Day(s)</option>
                                         <option value="weeks">Week(s)</option>
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
                                     </select>
+
+                                    <div id="categoryBudgetEvery_ErrorContainer"></div>
                                 </div>
 
                                 <label for="categoryWarning" class='categoryBudget'>Warning:</label>
@@ -107,22 +275,29 @@
                                 </div>
                             </div>
                             <div class="addEditTransactions">
-                                <label for="transactionName_Select">Category:</label>
-                                <div class='requiredInput'>
-                                    <select id="transactionName_Select" name="transactionName_Select" data-parsley-required="">
-                                        <option value="">Select...</option>
-                                        <option value="days">General</option>
-                                        <option value="weeks">Food</option>
-                                        <option value="months">Rent</option>
-                                        <option value="years">Entertainment</option>
-                                    </select>
-                                </div>
+                                <label for="transactionType">Type:</label>
+                                <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
+                                    <option value="">Select...</option>
+                                    <option value="income">Income</option>
+                                    <option value="expense">Expense</option>
+                                </select></div>
+
+                                <label for="transactionCategory_Select">Category:</label>
+                                <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
+                                    <option value="">Select...</option>
+                                    <option value="general">General</option>
+                                    <option value="food">Food</option>
+                                    <option value="rent">Rent</option>
+                                    <option value="entertainment">Entertainment</option>
+                                </select></div>
 
                                 <label for="transactionAmount">Amount:</label>
-                                <div class='requiredInput'><input type="text" id="transactionAmount" name="transactionAmount" class="monetaryAmount" data-parsley-required=""></div>
+                                <div class='requiredInput'>
+                                    <input type="text" id="transactionAmount" name="transactionAmount" class="monetaryAmount" data-parsley-required="" data-parsley-required-message="Enter the transaction amount.">
+                                </div>
 
                                 <label for="transactionDate">Date:</label>
-                                <div class='requiredInput'><input type="date" id="transactionDate" name="transactionDate" data-parsley-required=""></div>
+                                <input type="date" id="transactionDate" name="transactionDate">
 
                                 <label for="transactionRepeat_Check">Repeat:</label>
                                 <input type="checkbox" id="transactionRepeat_Check" name="transactionRepeat_Check">
@@ -130,16 +305,20 @@
                                 <label for="transactionRepeatEvery" class='transactionRepeat'>&nbsp;&nbsp;Every:</label>
                                 <div id="transactionRepeatEvery" class='transactionRepeat'>
                                     <label for="transactionRepeatEvery_Number" style="display: none">Number:</label>
-                                    <input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number" class="wholeNumber" maxlength="3" data-parsley-required="">
+                                    <input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number" class="wholeNumber" maxlength="3" 
+                                        data-parsley-required="" data-parsley-required-message="Enter a number for the time period." data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
 
                                     <label for="transactionRepeatEvery_TimePeriod" style="display: none">Time Period:</label>
-                                    <select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod" data-parsley-required="">
+                                    <select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod" data-parsley-required="" data-parsley-required-message="Select the time period."
+                                        data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
                                         <option value="">Select...</option>
                                         <option value="days">Day(s)</option>
                                         <option value="weeks">Week(s)</option>
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
                                     </select>
+
+                                    <div id="transactionRepeatEvery_ErrorContainer"></div>
                                 </div>
 
                                 <div id="editTransaction">

@@ -6,39 +6,69 @@ body {
     margin: 0px;
 }
 
+#wrapper {
+    min-width: 250px;
+}
+
 .phoneBorder {
     display: none;
 }
 
 #content {
     display: grid;
-    grid-template-rows: [topBorder] 10% [pageContent] auto [end];
+    grid-template-rows: [topBar] 10% [pageContent] auto [end];
+	/*added*/
+	position: relative;
 }
 
-#topBorder {
-    grid-row-start: topBorder;
+#topBar {
+    grid-row-start: topBar;
     background-color: #0F79D0;
     padding: 10px;
-    display: flex;
+    display: grid;
+    grid-template-columns: [left-button] 10% [spacer1] 1fr [left-arrow] max-content [title] max-content [right-arrow] max-content [spacer2] 1fr [right-button] 10% [end];
+    column-gap: 2%;
     align-items: center;
-    justify-content: space-between;
+    justify-items: center;
 }
 
-#topBorder h1 {
+#topBar h1 {
     color: white;
     font-size: 20pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     margin: 0px;
+    grid-column-start: title;
+}
+
+h2 {
+    font-size: 18pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    width: fit-content;
+    margin: 0px;
+}
+
+#saveButton {
+    grid-column-start: right-button;
 }
 
 #pageContent {
     overflow: auto;
-    padding: 20px;
+    padding: 4.5%;
     grid-row-start: pageContent;
 }
 
-label, input[type=text], input[type=date], select, option, p,input[type=button] {
+.burgerMenu {
+	grid-row-start: pageContent;
+	width: 50%;
+	display: grid;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+	
+label, input[type=text], input[type=date], select, option, input[type=button], p {
     font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
@@ -79,7 +109,7 @@ input[type=checkbox] {
 }
 
 /* Desktop Formatting */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 650px) {
     html, body, #wrapper, #container, #content {
         height: auto;
     }
@@ -111,11 +141,15 @@ input[type=checkbox] {
         height: 84%;
     }
 
-    #topBorder h1 {
+    #topBar h1 {
         font-size: 22pt;
     }
 
-    label, input[type=text], select, option, input[type=button] {
+    h2 {
+        font-size: 20pt;
+    }
+
+    label, input[type=text], select, option, input[type=button], p {
         font-size: 18pt;
     }
     
