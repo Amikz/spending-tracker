@@ -1,40 +1,97 @@
+var prevPageClass = ".home";
+var isIncome = false;
+
 $(document).ready(function() {
-    console.log(new Date());
+    homePage();
     addEditPages();
 	showMeTheBurger();
 
 });
 
-function resetAddEditTransactionsPage() {
-    var $page = $('div.addEditTransactions');
-    
-    $page.find("input[type=text], select").each(function() {
-        $(this).val("");
-        $(this).parsley().reset();
+function homePage() {
+    $('.legendCategoryAmount').hide();
+
+    $('.addCategory').click(function() {
+        $('.home').hide();
+        $('.addEditCategories').show();
+        prevPageClass = '.home';
+        isIncome = $(this).is('#addIncomeCategory');
     });
 
-    var date = new Date();
-    $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
-
-    if($('#transactionRepeat_Check').is(":checked")) {
-        $("#transactionRepeat_Check").click();
-    }
-}
-
-function resetAddEditCategoriesPage() {
-    var $page = $('div.addEditCategories');
-    
-    $page.find("input[type=text], select").each(function() {
-        $(this).val("");
-        $(this).parsley().reset();
+    $('#incomeGraph').mousemove(function(event) {
+        var angle = calculateAngle(event);
+        //Display percentage and number of section the angle is in
     });
 
-    $("#categoryColour").val("#000000");
-    $("#categoryColour").parsley().reset();
+    $('#expenseGraph').mousemove(function(event) {
+        var angle = calculateAngle(event);
+        //Display percentage and number of section the angle is in
+    });
 
-    if($('#setCategoryBudget').is(":checked")) {
-        $("#setCategoryBudget").click();
-    }
+    $('#incomeLegend .expandPanel').click(function() {
+        if($('#incomeLegend .legendCategoryAmount').is(':hidden')) {
+            $('#incomeGraphContainer').hide();
+
+            $('#incomeLegend').css('grid-column-start', 'graph');
+            $('#incomeLegend .legendItem').css('padding-top', '2.5%');
+            $('#incomeLegend .buttonWrapper').css('padding', '2.5% 0px');
+            $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
+            $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
+
+            if($(window).width() >= 650) {
+                $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
+            } else {
+                $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
+            }
+
+            $('#incomeLegend .legendCategoryAmount').show();
+        } else {
+            $('#incomeLegend .legendCategoryAmount').hide();
+
+            $('#incomeLegend,' +
+                '#incomeLegend .legendItem,' +
+                '#incomeLegend .buttonWrapper,' +
+                '#incomeLegend .legendContentWrapper,' +
+                '#incomeLegend .expandPanelArrow,' +
+                '#incomeLegend .expandPanelArrow,' +
+                '#incomeLegend .expandPanelArrow'
+            ).removeAttr('style');
+
+            $('#incomeGraphContainer').show();
+        }
+    });
+
+    $('#expenseLegend .expandPanel').click(function() {
+        if($('#expenseLegend .legendCategoryAmount').is(':hidden')) {
+            $('#expenseGraphContainer').hide();
+            $('#expenseLegend').css('grid-column-start', 'graph');
+            $('#expenseLegend .legendItem').css('padding-top', '2.5%');
+            $('#expenseLegend .buttonWrapper').css('padding', '2.5% 0px');
+            $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
+            $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
+
+            if($(window).width() >= 650) {
+                $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
+            } else {
+                $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');
+            }
+
+            $('#expenseLegend .legendCategoryAmount').show();
+        } else {
+            $('#expenseLegend .legendCategoryAmount').hide();
+
+            $('#expenseLegend,' +
+                '#expenseLegend .legendItem,' +
+                '#expenseLegend .buttonWrapper,' +
+                '#expenseLegend .legendContentWrapper,' +
+                '#expenseLegend .expandPanelArrow,' +
+                '#expenseLegend .expandPanelArrow,' +
+                '#expenseLegend .expandPanelArrow'
+            ).removeAttr('style');
+
+            $('#expenseGraphContainer').show();
+        }
+    });
 }
 
 function addEditPages() {
@@ -50,19 +107,46 @@ function addEditPages() {
         $('#addEditPages').parsley().validate();
         if($("#addEditPages").parsley().isValid()) {
             //Save the data
+            if($('div.addEditCategories').is(':visible')) {
+                if(isIncome) {
+                    //Save category within income section
+
+                } else {
+                    //Save category within expense section
+
+                }
+            } else if($('div.addEditTransactions').is(':visible')) {
+                if($('#transactionType').val() != '') {
+                    isIncome = $('#transactionType').val() == 'income';
+                }
+
+                if(isIncome) {
+                    //Save transaction within income section
+
+                } else {
+                    //Save transaction within expense section
+
+                }
+            }
         }
     });
     
     $('#cancelButton').click(function() {
-        if($('div.addEditTransactions').is(':visible')) { //TODO: add to this condition so that it also checks that we came from the Categories page
+        if($('div.addEditCategories').is(':visible')) {
+            $('.addEditCategories').hide();
+            $('.home').show();
+            prevPageClass = '.addEditCategories';
+        } else if($('div.addEditTransactions').is(':visible')) {
             $('.addEditTransactions').hide();
-            $('.addEditCategories').show();
+            $(prevPageClass).show();
+            prevPageClass = '.addEditTransactions';
         }
     });
     
     $('#addTransactionWithinCategory').click(function() {
         $('.addEditCategories').hide();
         $('.addEditTransactions').show();
+        prevPageClass = '.addEditCategories';
         resetAddEditTransactionsPage();
     });
 
@@ -145,4 +229,46 @@ function showMeTheBurger() {
 	$('#goChangeTimePeriod').click(function(){
 		$('#timeContainer').toggle();
 	});
+}
+
+function resetAddEditTransactionsPage() {
+    var $page = $('div.addEditTransactions');
+    
+    $page.find("input[type=text], select").each(function() {
+        $(this).val("");
+        $(this).parsley().reset();
+    });
+
+    var date = new Date();
+    $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
+
+    if($('#transactionRepeat_Check').is(":checked")) {
+        $("#transactionRepeat_Check").click();
+    }
+}
+
+function resetAddEditCategoriesPage() {
+    var $page = $('div.addEditCategories');
+    
+    $page.find("input[type=text], select").each(function() {
+        $(this).val("");
+        $(this).parsley().reset();
+    });
+
+    $("#categoryColour").val("#000000");
+    $("#categoryColour").parsley().reset();
+
+    if($('#setCategoryBudget').is(":checked")) {
+        $("#setCategoryBudget").click();
+    }
+}
+
+function calculateAngle(event) {
+    var boxBounds = event.target.getBoundingClientRect();
+    var boxCenterX = boxBounds.left + (boxBounds.width/2);
+    var boxCenterY = boxBounds.top + (boxBounds.height/2);
+    var mouseX = event.pageX - boxCenterX;
+    var mouseY = event.pageY - boxCenterY;
+
+    return Math.abs((Math.atan2(mouseX, mouseY) * (180/Math.PI)) - 180);
 }

@@ -1,0 +1,218 @@
+div.home {
+    height: 100%;
+    display: grid;
+    grid-template-columns: [graph] 48.5% [legend] 48.5% [end];
+    grid-template-rows: [income-label] max-content [income-data] calc((88% - 60pt)/2) [expense-label] max-content [expense-data] calc((88% - 60pt)/2) [balance-label] max-content [end];
+    column-gap: 3%;
+    row-gap: 3%;
+}
+
+#incomeLabel {
+    grid-column-start: graph;
+}
+
+#incomeAmount {
+    grid-column-start: legend;
+    justify-self: end;
+}
+
+#incomeGraphContainer {
+    grid-row-start: income-data;
+}
+
+#incomeLegend {
+    grid-row-start: income-data;
+    grid-column-start: legend;
+    grid-column-end: end;
+}
+
+#expenseLabel {
+    grid-column-start: graph;
+    grid-row-start: expense-label;
+}
+
+#expenseAmount {
+    grid-column-start: legend;
+    grid-row-start: expense-label;
+    justify-self: end;
+}
+
+#expenseGraphContainer {
+    grid-row-start: expense-data;
+}
+
+#expenseLegend {
+    grid-row-start: expense-data;
+    grid-column-start: legend;
+    grid-column-end: end;
+}
+
+#balanceLabel {
+    grid-column-start: graph;
+    grid-row-start: balance-label;
+}
+
+#balanceAmount {
+    grid-column-start: legend;
+    grid-row-start: balance-label;
+    justify-self: end;
+}
+
+.graphContainer {
+    align-self: center;
+}
+
+.legend {
+    border: 1px solid #5c5c5c;
+    width: 100%;
+    height: 100%;
+}
+
+.expandPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #b3b3b3;
+    float: left;
+    height: 100%;
+    width: 10px;
+    border-right: 1px solid #5c5c5c;
+}
+
+.expandPanelArrow {
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 6px solid black;
+    border-bottom: 7px solid transparent;
+    margin-bottom: 3.5px;
+}
+
+.legendContent {
+    height: 100%;
+    overflow: scroll;
+}
+
+.legendContentWrapper {
+    padding: 0px 5%;
+}
+
+.legendItem {
+    padding-top: 6%;
+    height: max-content;
+    display: grid;
+    grid-template-columns: [colour] max-content [name] max-content [spacer] auto [amount] max-content [end];
+    column-gap: 5%;
+}
+
+.legendCategoryColour, .addCategory {
+    border: 1px solid #4c4c4c;
+    float: left;
+    height: 15pt;
+    aspect-ratio: 3/2;
+}
+
+.legendCategoryName, .legendCategoryAmount {
+    margin: 0px;
+    grid-column-start: name;
+    font-size: 14pt;
+}
+
+.legendCategoryAmount {
+    grid-column-start: amount;
+    justify-self: right;
+}
+
+.buttonWrapper {
+    padding: 6% 0px;
+    display: inline-block;
+}
+
+.addCategory {
+    height: 16pt;
+    line-height: 13pt;
+    background-color: lightgrey;
+}
+
+.graph {
+    border: 1px solid #5c5c5c;
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.graphSlice {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+#incomeGraph {
+    background-image: conic-gradient(skyblue 0deg 354.92957748deg, #ed9b21 354.92957748deg);
+}
+
+#expenseGraph {
+    background-image: conic-gradient(#895293 0deg 249.1349481deg, #38af38 249.1349481deg 311.418685116deg, indianred 311.418685116deg 331.349480964deg, royalblue 331.349480964deg 346.297577832deg, turquoise 346.297577832deg 353.771626284deg, goldenrod 353.771626284deg);
+}
+
+#incomeLegendColour1 {
+    background-color: skyblue;
+}
+
+#incomeLegendColour2 {
+    background-color: #ed9b21;
+}
+
+#expenseLegendColour1 {
+    background-color: #895293;
+}
+
+#expenseLegendColour2 {
+    background-color: #38af38;
+}
+
+#expenseLegendColour3 {
+    background-color: indianred;
+}
+
+#expenseLegendColour4 {
+    background-color: royalblue;
+}
+
+#expenseLegendColour5 {
+    background-color: turquoise;
+}
+
+#expenseLegendColour6 {
+    background-color: goldenrod;
+}
+
+/* Desktop Formatting */
+@media only screen and (min-width: 650px) {
+    .legendCategoryColour {
+        height: 18pt;
+    }
+
+    .addCategory {
+        height: 19pt;
+    }
+
+    .legendCategoryName, .legendCategoryAmount {
+        font-size: 16pt;
+    }
+
+    .addCategory {
+        line-height: 15pt;
+    }
+
+    .expandPanel {
+        width: 12px;
+    }
+
+    .expandPanelArrow {
+        border-top: 10px solid transparent;
+        border-right: 8px solid black;
+        border-bottom: 10px solid transparent;
+        margin-bottom: 4px;
+    }
+}
