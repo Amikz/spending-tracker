@@ -1,81 +1,7 @@
-html, body, #wrapper, #container, #content {
-    height: 100%;
-}
-
-body {
-    margin: 0px;
-}
-
-.phoneBorder {
-    display: none;
-}
-
-#content {
-    display: grid;
-    grid-template-rows: [topBorder] 10% [pageContent] auto [end];
-}
-
-#topBorder {
-    grid-row-start: topBorder;
-    background-color: #0F79D0;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#topBorder h1 {
-    color: white;
-    font-size: 20pt;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    margin: 0px;
-}
-
-#pageContent {
-    overflow: auto;
-    padding: 20px;
-    grid-row-start: pageContent;
-}
-
-label, input[type=text], input[type=date], select, option, p,input[type=button] {
-    font-size: 16pt;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-}
-
-select {
-    font-size: 14pt;
-}
-
-option {
-    font-size: 12pt;
-}
-
-input[type=text], input[type=date], input[type=color], select {
-    border: 1px solid #767676;
-    border-radius: 5px;
-    height: 30px;
-    width: 100%;
-}
-
-input[type=text] {
-    padding-left: 4px;
-}
-
-input[type=date] {
-    height: 32px;
-    padding-left: 4px;
-}
-
-input[type=color], select {
-    height: 34px;
-}
-
-input[type=checkbox] {
-    width: 25px;
-    height: 25px;
-    margin: 0px;
+﻿.transactionPage{
+    display:grid;
+    grid-template-columns: 70% 30%;
+    background:black;
 }
 
 /* Desktop Formatting */
@@ -93,7 +19,10 @@ input[type=checkbox] {
         max-height: 96vh;
         min-height: 600px;
         position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         resize: horizontal;
         border-radius: 35px;
     }
@@ -104,7 +33,10 @@ input[type=checkbox] {
         padding: 0px;
         background-color: #F3F3F3;
         position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
 
     #content {
@@ -118,11 +50,11 @@ input[type=checkbox] {
     label, input[type=text], select, option, input[type=button] {
         font-size: 18pt;
     }
-    
+
     select {
         font-size: 16pt;
     }
-    
+
     option {
         font-size: 14pt;
     }
@@ -131,7 +63,7 @@ input[type=checkbox] {
         width: 30px;
         height: 30px;
     }
-    
+
     input[type=text] {
         height: 35px;
     }
@@ -139,7 +71,7 @@ input[type=checkbox] {
     input[type=date] {
         height: 37px;
     }
-    
+
     input[type=color], select {
         height: 39px;
     }
