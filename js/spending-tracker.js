@@ -1,4 +1,5 @@
-var prevPageClass = ".home";
+var currPage = ".home";
+var prevPage = ".home";
 var isIncome = false;
 
 $(document).ready(function() {
@@ -6,6 +7,8 @@ $(document).ready(function() {
     addEditPages();
 	showMeTheBurger();
 
+    $('.settings').hide();
+    $('.home').show();
 });
 
 function homePage() {
@@ -14,7 +17,8 @@ function homePage() {
     $('.addCategory').click(function() {
         $('.home').hide();
         $('.addEditCategories').show();
-        prevPageClass = '.home';
+        prevPage = '.home';
+        currPage = '.addEditCategories';
         isIncome = $(this).is('#addIncomeCategory');
     });
 
@@ -132,21 +136,24 @@ function addEditPages() {
     });
     
     $('#cancelButton').click(function() {
-        if($('div.addEditCategories').is(':visible')) {
+        if(currPage == '.addEditCategories') {
             $('.addEditCategories').hide();
             $('.home').show();
-            prevPageClass = '.addEditCategories';
-        } else if($('div.addEditTransactions').is(':visible')) {
+            prevPage = '.addEditCategories';
+            currPage = '.home';
+        } else if(currPage == '.addEditTransactions') {
             $('.addEditTransactions').hide();
-            $(prevPageClass).show();
-            prevPageClass = '.addEditTransactions';
+            $(prevPage).show();
+            currPage = prevPage;
+            prevPage = '.addEditTransactions';
         }
     });
     
     $('#addTransactionWithinCategory').click(function() {
         $('.addEditCategories').hide();
         $('.addEditTransactions').show();
-        prevPageClass = '.addEditCategories';
+        prevPage = '.addEditCategories';
+        currPage = '.addEditTransactions';
         resetAddEditTransactionsPage();
     });
 
@@ -229,6 +236,36 @@ function showMeTheBurger() {
 	$('#goChangeTimePeriod').click(function(){
 		$('#timeContainer').toggle();
 	});
+
+    $('#goBackHome').click(function() {
+        if(currPage != '.home') {
+            $(currPage).hide();
+            $('.home').show();
+            prevPage = currPage;
+            currPage = '.home';
+        }
+        $('.burgerMenu').hide();
+    });
+
+    $('#goTransactions').click(function() {
+        if(currPage != '.transactionsList') {
+            $(currPage).hide();
+            $('.transactionsList').show();
+            prevPage = currPage;
+            currPage = '.transactionsList';
+        }
+        $('.burgerMenu').hide();
+    });
+
+    $('#goSettings').click(function() {
+        if(currPage != '.settings') {
+            $(currPage).hide();
+            $('.settings').show();
+            prevPage = currPage;
+            currPage = '.settings';
+        }
+        $('.burgerMenu').hide();
+    });
 }
 
 function resetAddEditTransactionsPage() {

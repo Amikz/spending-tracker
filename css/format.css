@@ -25,6 +25,11 @@ body {
     grid-row-start: topBar;
     background-color: #0F79D0;
     padding: 10px;
+    display: grid;
+    grid-template-columns: [left-button] 10% [spacer1] 1fr [left-arrow] max-content [title] max-content [right-arrow] max-content [spacer2] 1fr [right-button] 10% [end];
+    column-gap: 2%;
+    align-items: center;
+    justify-items: center;
 }
 
 #topBar h1 {
@@ -33,6 +38,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     margin: 0px;
+    grid-column-start: title;
 }
 
 h2 {
@@ -43,6 +49,10 @@ h2 {
     margin: 0px;
 }
 
+#saveButton {
+    grid-column-start: right-button;
+}
+
 #pageContent {
     overflow: auto;
     padding: 4.5%;
@@ -51,7 +61,7 @@ h2 {
 
 .burgerMenu {
 	grid-row-start: pageContent;
-	width: 100%;
+	width: 50%;
 	display: grid;
 	position: absolute;
 	top: 0;

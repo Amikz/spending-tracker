@@ -37,7 +37,8 @@
 	border-width:1px;*/
 	display: grid;
 	grid-template-columns: [first] 50px [line2] auto [end];	
-	width: 100%;
+	width: 90%;
+    padding-left: 10%;
 }
 
 /* Change back when hovering over element*/
