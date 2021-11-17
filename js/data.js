@@ -1,12 +1,10 @@
 /* Categories */
 var incomeCategory = [
     {
-        isIncome: true,
         name: "Salary",
         colour: "#72a2ff"
     },
     {
-        isIncome: true,
         name: "Sale",
         colour: "#FF9900"
     }
@@ -14,19 +12,16 @@ var incomeCategory = [
 
 var expenseCategory = [
     {
-        isIncome: false,
         name: "Rent",
         colour: "#895293",
         setBudget: false
     },
     {
-        isIncome: false,
         name: "Food",
         colour: "#38af38",
         setBudget: false
     },
     {
-        isIncome: false,
         name: "Clothes",
         colour: "#cd5c5c",
         setBudget: true,
@@ -36,13 +31,11 @@ var expenseCategory = [
         warning: 400
     },
     {
-        isIncome: false,
         name: "Phone",
         colour: "#4169e1",
         setBudget: false
     },
     {
-        isIncome: false,
         name: "Video Games",
         colour: "#40e0d0",
         setBudget: true,
@@ -52,7 +45,6 @@ var expenseCategory = [
         warning: 150
     },
     {
-        isIncome: false,
         name: "Movies",
         colour: "#daa520",
         setBudget: true,

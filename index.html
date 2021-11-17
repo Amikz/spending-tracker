@@ -139,16 +139,6 @@
                                 <div class='legendContent'>
                                     <div class='legendContentWrapper'>
                                         <div id='incomeCategories'>
-                                            <div id="legendIncomeItem1" class='legendItem'>
-                                                <div id="incomeLegendColour1" class='legendCategoryColour'></div>
-                                                <p id="incomeLegendName1" class="legendCategoryName">Salary</p>
-                                                <p id="incomeLegendAmount1" class="legendCategoryAmount">$2100.00</p>
-                                            </div>
-                                            <div id="legendIncomeItem2" class='legendItem'>
-                                                <div id="incomeLegendColour2" class='legendCategoryColour'></div>
-                                                <p id="incomeLegendName2" class="legendCategoryName">Sale</p>
-                                                <p id="incomeLegendAmount2" class="legendCategoryAmount">$30.00</p>
-                                            </div>
                                         </div>
                                         
                                         <div class='buttonWrapper'>
@@ -235,7 +225,7 @@
                             <div class="addEditTransactions">
                                 <label for="transactionType">Type:</label>
                                 <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
-                                    <option value="">Select...</option>
+                                    <option value="" selected disabled>Select...</option>
                                     <option value="income">Income</option>
                                     <option value="expense">Expense</option>
                                 </select></div>
@@ -243,10 +233,6 @@
                                 <label for="transactionCategory_Select">Category:</label>
                                 <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
                                     <option value="">Select...</option>
-                                    <option value="general">General</option>
-                                    <option value="food">Food</option>
-                                    <option value="rent">Rent</option>
-                                    <option value="entertainment">Entertainment</option>
                                 </select></div>
 
                                 <label for="transactionAmount">Amount:</label>

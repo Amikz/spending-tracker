@@ -6,11 +6,12 @@ var timePeriod = 'monthly';
 
 
 $(document).ready(function() {
-    homePage();
-    addEditPages();
-	showMeTheBurger();
     addHomeData();
     addTransactionListData();
+    homePage();
+    addEditPages();
+    transactionList();
+	showMeTheBurger();
 
     $('.settings').hide();
     $('.transactionsList').hide();
@@ -75,13 +76,28 @@ function addTransactionListData() {
 
         if(category != undefined)
             colour = category.colour;
+        $transactionItem.children('.rect').css('background-color', colour).attr('category', category.name);
 
-        $transactionItem.children('.rect').css('background-color', colour);
         var date = new Date(filteredTransaction[i].date);
         $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + date.getDate() + ', ' + date.getFullYear());
+        $transactionItem.children('.date').attr('date', filteredTransaction[i].date);
         $('#transactionsListContent').append($transactionItem);
     }
 
+}
+
+function populateCategorySelect(isIncomeCategory) {
+    var categoryList = expenseCategory;
+    if(isIncomeCategory)
+        categoryList = incomeCategory;
+
+    var options = "<option value='' selected=''>Select...</option>";
+    for (var i = 0; i < categoryList.length; i++) {
+        options += "<option value='" + categoryList[i].name + "'>" + categoryList[i].name + "</option>";
+    }
+
+    $('#transactionCategory_Select').empty();
+    $('#transactionCategory_Select').html(options);
 }
 
 function homePage() {
@@ -90,9 +106,45 @@ function homePage() {
     $('.addCategory').click(function() {
         $('.home').hide();
         $('.addEditCategories').show();
+        resetAddEditCategoriesPage();
         prevPage = '.home';
         currPage = '.addEditCategories';
         isIncome = $(this).is('#addIncomeCategory');
+        $('#editCategory').hide();
+    });
+
+    $('.legendItem').click(function() {
+        $('.home').hide();
+        $('.addEditCategories').show();
+        prevPage = '.home';
+        currPage = '.addEditCategories';
+        isIncome = $(this).parents('#incomeLegend').length;
+        $('#editCategory').show();
+
+        //Populate data
+        var category = undefined;
+        if(isIncome) {
+            category = incomeCategory.find(e => {
+                return e.name == $(this).find('.legendCategoryName:first').text();
+            });
+        } else {
+            category = expenseCategory.find(e => {
+                return e.name == $(this).find('.legendCategoryName:first').text();
+            });
+        }
+
+        $('#categoryName').val(category.name);
+        $('#categoryColour').val(category.colour);
+        if(category.setBudget) {
+            $('#setCategoryBudget').click();
+            $('#categoryBudget').val((category.budget).toFixed(2));
+            $('#categoryBudgetEvery_Number').val(category.every_num);
+            $('#categoryBudgetEvery_TimePeriod').val(category.every_timePeriod);
+
+            if(category.warning >= 0)
+                $('#categoryWarning').val(category.warning);
+        }
+        
     });
 
     $('#incomeGraph').mousemove(function(event) {
@@ -171,6 +223,42 @@ function homePage() {
     });
 }
 
+function transactionList() {
+    $('.transactionItem').click(function() {
+        $('.transactionsList').hide();
+        $('.addEditTransactions').show();
+        $('#pageContent').removeAttr('style');
+        prevPage = '.transactionsList';
+        currPage = '.addEditTransactions';
+        isIncome = $(this).find('.income').length > 0;
+
+        //Populate data
+        if(isIncome)
+            $('#transactionType').val('income');
+        else
+            $('#transactionType').val('expense');
+        $('#transactionType').trigger('change');
+
+        var category = $(this).find('.rect').attr('category');
+        var amount = (parseFloat(($(this).find('.amount').text()).replace(/\$/g, ''))).toFixed(2);
+        var date = $(this).find('.date').attr('date');
+
+        $('#transactionCategory_Select').val(category);
+        $('#transactionAmount').val(amount);
+        $('#transactionDate').val(date);
+
+        var transactionItem = transaction.find(e => {
+            return (e.category == category) && (e.date == date) && ((e.amount).toFixed(2) == amount);
+        });
+
+        if(transactionItem != undefined && transactionItem.willRepeat) {
+            $('#transactionRepeat_Check').click();
+            $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
+            $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
+        }
+    });
+}
+
 function addEditPages() {
     jQuery("#addEditPages").parsley({ excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" });
 
@@ -217,17 +305,33 @@ function addEditPages() {
         } else if(currPage == '.addEditTransactions') {
             $('.addEditTransactions').hide();
             $(prevPage).show();
+            if(prevPage == '.transactionsList')
+                $('#pageContent').css('padding', '0px');
             currPage = prevPage;
             prevPage = '.addEditTransactions';
         }
     });
     
     $('#addTransactionWithinCategory').click(function() {
+        var category = $('#categoryName').val();
         $('.addEditCategories').hide();
         $('.addEditTransactions').show();
         prevPage = '.addEditCategories';
         currPage = '.addEditTransactions';
         resetAddEditTransactionsPage();
+        if(isIncome)
+            $('#transactionType').val('income');
+        else
+            $('#transactionType').val('expense');
+        $('#transactionType').trigger('change');
+        $('#transactionType').attr('disabled', true);
+
+        $('#transactionCategory_Select').val(category);
+        $('#transactionCategory_Select').attr('disabled', true);
+    });
+
+    $('#transactionType').change(function() {
+        populateCategorySelect($(this).val() == 'income');
     });
 
     $('.transactionRepeat').hide();
@@ -352,6 +456,8 @@ function resetAddEditTransactionsPage() {
         $(this).val("");
         $(this).parsley().reset();
     });
+
+    $('#transactionType').removeAttr('disabled');
 
     var date = new Date();
     $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
