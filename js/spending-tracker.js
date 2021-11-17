@@ -116,6 +116,7 @@ function homePage() {
     $('.legendItem').click(function() {
         $('.home').hide();
         $('.addEditCategories').show();
+        resetAddEditCategoriesPage();
         prevPage = '.home';
         currPage = '.addEditCategories';
         isIncome = $(this).parents('#incomeLegend').length;
@@ -228,6 +229,7 @@ function transactionList() {
         $('.transactionsList').hide();
         $('.addEditTransactions').show();
         $('#pageContent').removeAttr('style');
+        resetAddEditTransactionsPage();
         prevPage = '.transactionsList';
         currPage = '.addEditTransactions';
         isIncome = $(this).find('.income').length > 0;
@@ -458,6 +460,7 @@ function resetAddEditTransactionsPage() {
     });
 
     $('#transactionType').removeAttr('disabled');
+    $('#transactionCategory_Select').removeAttr('disabled');
 
     var date = new Date();
     $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
