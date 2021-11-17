@@ -79,7 +79,7 @@ function addTransactionListData() {
         $transactionItem.children('.rect').css('background-color', category.colour).attr('category', category.name);
 
         var date = new Date(filteredTransaction[i].date);
-        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + date.getDate() + ', ' + date.getFullYear());
+        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + (date.getDate() + 1) + ', ' + date.getFullYear());
         $transactionItem.children('.date').attr('date', filteredTransaction[i].date);
         $('#transactionsListContent').append($transactionItem);
     }
@@ -415,7 +415,20 @@ function addEditPages() {
                 }
 
                 if(isNew) {
-                    orderedInsert(transaction, newTransaction, function(x) {return new Date(x.date)});
+                    //orderedInsert(transaction, newTransaction, function(x) {return new Date(x.date)});
+                    var lo = 0;
+                    var hi = transaction.length;
+                    
+                    while(lo < hi) {
+                        var mid = Math.floor((lo + hi) / 2);
+                        if(new Date(newTransaction.date) >= new Date(transaction[mid].date)) {
+                            hi = mid;
+                        } else {
+                            lo = mid + 1;
+                        }
+                    }
+
+                    transaction.splice(lo, 0, newTransaction);
                 } else {
                     transaction[currTransaction].isIncome = newTransaction.isIncome;
                     transaction[currTransaction].category = newTransaction.category;
@@ -458,6 +471,7 @@ function addEditPages() {
         $('.addEditTransactions').show();
         prevPage = '.addEditCategories';
         currPage = '.addEditTransactions';
+        isNew = true;
         resetAddEditTransactionsPage();
         if(isIncome)
             $('#transactionType').val('income');

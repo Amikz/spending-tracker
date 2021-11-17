@@ -131,7 +131,7 @@ input[type=checkbox] {
         margin: auto;
         margin-top: 2vh;
         max-height: 96vh;
-        min-height: 600px;
+        min-height: 675px;
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
         resize: horizontal;
