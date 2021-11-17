@@ -2,17 +2,87 @@
 var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
+var timePeriod = 'monthly';
 
 
 $(document).ready(function() {
     homePage();
     addEditPages();
 	showMeTheBurger();
+    addHomeData();
+    addTransactionListData();
 
     $('.settings').hide();
     $('.transactionsList').hide();
     $('.home').show();
 });
+
+function addHomeData() {
+    var legendCategoryFormat = 
+        '<div class="legendItem">' +
+            '<div class="legendCategoryColour"></div>' +
+            '<p class="legendCategoryName"></p>' +
+            '<p class="legendCategoryAmount"></p>' +
+        '</div>';
+
+    $('#incomeCategories').empty();
+    for(var i = 0; i < incomeCategory.length; i++) {
+        var $legendIncomeCategory = $($.parseHTML(legendCategoryFormat));
+        $legendIncomeCategory.children('.legendCategoryColour').css('background-color', incomeCategory[i].colour);
+        $legendIncomeCategory.children('.legendCategoryName').text(incomeCategory[i].name);
+        $('#incomeCategories').append($legendIncomeCategory);
+    }
+
+    $('#expenseCategories').empty();
+    for(var i = 0; i < expenseCategory.length; i++) {
+        var $legendExpenseCategory = $($.parseHTML(legendCategoryFormat));
+        $legendExpenseCategory.children('.legendCategoryColour').css('background-color', expenseCategory[i].colour);
+        $legendExpenseCategory.children('.legendCategoryName').text(expenseCategory[i].name);
+        $('#expenseCategories').append($legendExpenseCategory);
+    }
+}
+
+function addTransactionListData() {
+    var transactionItemFormat = 
+    '<div class="transactionItem">' +
+        '<p class="category"></p>' +
+        '<p class="amount"></p>' +
+        '<div class="rect"></div>' +
+        '<p class="date"></p>' +
+    '</div>';
+
+    var filteredTransaction = transaction;
+
+    $('#transactionsListContent').empty();
+    for(var i = 0; i < filteredTransaction.length; i++) {
+        var $transactionItem = $($.parseHTML(transactionItemFormat));
+        $transactionItem.children('.category').text(filteredTransaction[i].category);
+        $transactionItem.children('.amount').text('$' + (filteredTransaction[i].amount).toFixed(2));
+
+        var colour = '#000'; //default
+        var category = undefined;
+        if(filteredTransaction[i].isIncome) {
+            $transactionItem.children('.amount').addClass('income');
+            category = incomeCategory.find(e => {
+                return e.name == filteredTransaction[i].category
+            });
+        } else {
+            $transactionItem.children('.amount').addClass('expense');
+            category = expenseCategory.find(e => {
+                return e.name == filteredTransaction[i].category
+            });
+        }
+
+        if(category != undefined)
+            colour = category.colour;
+
+        $transactionItem.children('.rect').css('background-color', colour);
+        var date = new Date(filteredTransaction[i].date);
+        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + date.getDate() + ', ' + date.getFullYear());
+        $('#transactionsListContent').append($transactionItem);
+    }
+
+}
 
 function homePage() {
     $('.legendCategoryAmount').hide();
