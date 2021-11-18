@@ -1,0 +1,62 @@
+﻿
+
+.transactionItem {
+    height: 12%;
+    border-bottom: 1px solid #000;
+    padding:3%;
+    display: grid;
+    grid-template-columns: [name-colour] max-content [spacer] auto [amount-date] max-content [end];
+    grid-template-rows: [name-amount] max-content [colour-date] max-content [end];
+    grid-row-gap: 4px;
+}
+
+.category {
+    margin: 0px;
+}
+
+.amount {
+    grid-column-start: amount-date;
+    margin: 0px;
+    justify-self: end;
+}
+
+.rect {
+    border: 1px solid #4c4c4c;
+    height: 15pt;
+    aspect-ratio: 3/2;
+    grid-row-start: colour-date;
+}
+
+.date {
+    grid-column-start: amount-date;
+    grid-row-start: colour-date;
+    margin: 0px;
+    justify-self: end;
+}
+
+#rect1 {
+    background-color: red;
+}
+
+#rect2 {
+    background-color: silver;
+}
+
+#rect3 {
+    background-color: grey;
+}
+
+.expense {
+    color: #b94a48;
+}
+
+.income {
+    color: green;
+}
+
+/* Desktop Formatting */
+@media only screen and (min-width: 650px) {
+    .rect {
+        height: 18pt;
+    }
+}
