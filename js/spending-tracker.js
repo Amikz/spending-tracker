@@ -96,8 +96,8 @@ function homePage() {
         prevPage = '.home';
         currPage = '.addEditCategories';
         isIncome = $(this).is('#addIncomeCategory');
-        $('#editCategory').hide();
         isNew = true;
+        $('#editCategory').hide();
     });
 
     $(document).on('click', '.legendItem', function() {
@@ -302,6 +302,7 @@ function transactionList() {
     $(document).on('click', '.transactionItem', function() {
         $('.transactionsList').hide();
         $('.addEditTransactions').show();
+        $('#editTransaction').show();
         $('#pageContent').removeAttr('style');
         resetAddEditTransactionsPage();
         prevPage = '.transactionsList';
@@ -475,7 +476,10 @@ function addEditPages() {
 
             addTransactionListData();
             addHomeData();
-            $('#cancelButton').trigger('click');
+            $(currPage).hide();
+            $('.home').show();
+            prevPage = currPage;
+            currPage = '.home';
         }
     });
     
@@ -502,6 +506,7 @@ function addEditPages() {
         prevPage = '.addEditCategories';
         currPage = '.addEditTransactions';
         isNew = true;
+        $('#editTransaction').hide();
         resetAddEditTransactionsPage();
         if(isIncome)
             $('#transactionType').val('income');
