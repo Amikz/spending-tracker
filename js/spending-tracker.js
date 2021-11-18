@@ -223,7 +223,7 @@ function homePage() {
 function showMeTheBurger() {
 	$('.burgerMenu').hide();
 	$('#timeContainer').hide();
-	
+	disableButton();
 	$('#burgerButton').click(function(){
 		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
@@ -244,6 +244,7 @@ function showMeTheBurger() {
             $('#pageContent').removeAttr('style');
         }
         $('.burgerMenu').slideUp();
+		disableButton();
     });
 
     $('#goTransactions').click(function() {
@@ -252,9 +253,11 @@ function showMeTheBurger() {
             $('.transactionsList').show();
             prevPage = currPage;
             currPage = '.transactionsList';
+			
             $('#pageContent').css('padding', '0px');
         }
         $('.burgerMenu').slideUp();
+		disableButton();
     });
 
     $('#goSettings').click(function() {
@@ -265,7 +268,34 @@ function showMeTheBurger() {
             currPage = '.settings';
         }
         $('.burgerMenu').slideUp();
+		disableButton();
     });
+	
+}
+
+function disableButton() {
+	if (currPage == '.home') {
+		console.log(currPage);
+		// Disable button
+		$('#goBackHome').attr('disabled',true);
+		// Enable everything else
+		$('#goTransactions').removeAttr('disabled');
+		$('#goSettings').removeAttr('disabled');
+	}
+	if (currPage == '.transactionsList') {
+		console.log(currPage);
+		$('#goTransactions').attr('disabled',true);
+		$('#goBackHome').removeAttr('disabled');
+		$('#goSettings').removeAttr('disabled');
+
+	}
+	if (currPage == '.settings') {
+		console.log(currPage);
+		$('#goSettings').attr('disabled',true);
+		$('#goBackHome').removeAttr('disabled');
+		$('#goTransactions').removeAttr('disabled');
+	}		
+	
 }
 
 function transactionList() {

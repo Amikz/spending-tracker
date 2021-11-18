@@ -55,7 +55,7 @@
     padding-left: 10%;
 }
 
-/* Change back when hovering over element*/
+/* Change background-color when hovering over element*/
 #goBackHome:hover, #goChangeTimePeriod:hover, #goTransactions:hover, #goReminders:hover, #goSettings:hover {
 	background-color: #DCDCDC;
 }
@@ -66,6 +66,16 @@
 
 
 #dailyButton:hover, #weeklyButton:hover, #biWeeklyButton:hover, #monthlyButton:hover, #yearlyButton:hover {
+	background-color: #DCDCDC;
+}	
+
+
+/* Change background-color when disabled */
+/*#goBackHome:disabled, #goChangeTimePeriod:disabled, #goTransactions:disabled, #goReminders:disabled, #goSettings:disabled {
+	background-color: #DCDCDC;
+}*/
+
+.burgerMenu input[type=button][disabled] {
 	background-color: #DCDCDC;
 }	
 
