@@ -70,13 +70,8 @@
 }	
 
 
-/* Change background-color when disabled */
-/*#goBackHome:disabled, #goChangeTimePeriod:disabled, #goTransactions:disabled, #goReminders:disabled, #goSettings:disabled {
-	background-color: #DCDCDC;
-}*/
-
 .burgerMenu input[type=button][disabled] {
-	background-color: #DCDCDC;
+	background-color: #DCDCDC !important;
 }	
 
 
