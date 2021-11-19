@@ -1,4 +1,4 @@
-
+// 
 var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
@@ -233,6 +233,7 @@ function showMeTheBurger() {
 	$('#goChangeTimePeriod').click(function(){
 		$('#timeContainer').slideToggle();
         $('#timePeriodButton hr').toggleClass('hide');
+        setTimePeriod();
 	});
 
     $('#goBackHome').click(function() {
@@ -259,6 +260,18 @@ function showMeTheBurger() {
         $('.burgerMenu').slideUp();
 		disableButton();
     });
+	
+	// Uncomment when we get the reminders page
+	//$('#goReminders').click(function() {
+    //    if(currPage != '.reminders') {
+    //        //$(currPage).hide();
+    //        //$('.reminders').show();
+    //        prevPage = currPage;
+    //        currPage = '.reminders';
+    //    }
+    //    $('.burgerMenu').slideUp();
+	//	disableButton();
+    //});
 
     $('#goSettings').click(function() {
         if(currPage != '.settings') {
@@ -274,28 +287,80 @@ function showMeTheBurger() {
 }
 
 function disableButton() {
-	if (currPage == '.home') {
-		console.log(currPage);
-		// Disable button
-		$('#goBackHome').attr('disabled',true);
-		// Enable everything else
-		$('#goTransactions').removeAttr('disabled');
-		$('#goSettings').removeAttr('disabled');
-	}
-	if (currPage == '.transactionsList') {
-		console.log(currPage);
-		$('#goTransactions').attr('disabled',true);
-		$('#goBackHome').removeAttr('disabled');
-		$('#goSettings').removeAttr('disabled');
-
-	}
+    if (currPage == '.home') {
+        $(':button').prop('disabled', false); 
+        $('#goBackHome').attr('disabled',true);
+    }
+	if (currPage =='.transactionsList') {
+        $(':button').prop('disabled', false); 
+        $('#goTransactions').attr('disabled',true);
+    }
 	if (currPage == '.settings') {
-		console.log(currPage);
-		$('#goSettings').attr('disabled',true);
-		$('#goBackHome').removeAttr('disabled');
-		$('#goTransactions').removeAttr('disabled');
-	}		
-	
+        $(':button').prop('disabled', false); 
+        $('#goSettings').attr('disabled',true);
+    }	
+}
+
+function setTimePeriod() {
+	$('#dailyButton').click(function() {
+        if(timePeriod != 'daily') {
+            timePeriod = 'daily';
+            console.log("Daily");
+        }
+		disableTime();
+    });
+
+    $('#weeklyButton').click(function() {
+        if(timePeriod != 'weekly') {
+            timePeriod = 'weekly';
+        }
+		disableTime();
+    });
+
+    $('#biWeeklyButton').click(function() {
+        if(timePeriod != 'biWeekly') {
+            timePeriod = 'biWeekly';
+        }
+		disableTime();
+    });
+
+    $('#monthlyButton').click(function() {
+        if(timePeriod != 'monthly') {
+            timePeriod = 'monthly';
+        }
+		disableTime();
+    });
+
+    $('#yearlyButton').click(function() {
+        if(timePeriod != 'yearly') {
+            timePeriod = 'yearly';
+        }
+		disableTime();
+    });
+}
+
+function disableTime() {
+    if (timePeriod == 'daily') {
+        $(':button').prop('disabled', false); 
+        $('#dailyButton').attr('disabled',true);
+
+    }
+    if (timePeriod == 'weekly') {
+        $(':button').prop('disabled', false); 
+        $('#weeklyButton').attr('disabled',true);
+    }	
+    if (timePeriod == 'biWeekly') {
+        $(':button').prop('disabled', false); 
+        $('#biWeeklyButton').attr('disabled',true);
+    }	
+    if (timePeriod == 'monthly') {
+        $(':button').prop('disabled', false); 
+        $('#monthlyButton').attr('disabled',true);
+    }	
+    if (timePeriod == 'yearly') {
+        $(':button').prop('disabled', false); 
+        $('#yearlyButton').attr('disabled',true);
+    }	
 }
 
 function transactionList() {
