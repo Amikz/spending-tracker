@@ -96,8 +96,9 @@ function homePage() {
         prevPage = '.home';
         currPage = '.addEditCategories';
         isIncome = $(this).is('#addIncomeCategory');
-        $('#editCategory').hide();
         isNew = true;
+        $('#editCategory').hide();
+        hideExpenseFields(isIncome);
     });
 
     $(document).on('click', '.legendItem', function() {
@@ -108,11 +109,11 @@ function homePage() {
         currPage = '.addEditCategories';
         isIncome = $(this).parents('#incomeLegend').length;
         isNew = false;
-        $('#editCategory').show();
 
         //Populate data
         var category = undefined;
         if(isIncome) {
+            hideExpenseFields(true);
             category = incomeCategory.find(e => {
                 return e.name == $(this).find('.legendCategoryName:first').text();
             });
@@ -340,25 +341,24 @@ function setTimePeriod() {
 }
 
 function disableTime() {
-    if (timePeriod == 'daily') {
-        $(':button').prop('disabled', false); 
+    $(':button').prop('disabled', false); 
+    if (timePeriod == 'daily') {       
         $('#dailyButton').attr('disabled',true);
-
     }
     if (timePeriod == 'weekly') {
-        $(':button').prop('disabled', false); 
+        // $(':button').prop('disabled', false); 
         $('#weeklyButton').attr('disabled',true);
     }	
     if (timePeriod == 'biWeekly') {
-        $(':button').prop('disabled', false); 
+        // $(':button').prop('disabled', false); 
         $('#biWeeklyButton').attr('disabled',true);
     }	
     if (timePeriod == 'monthly') {
-        $(':button').prop('disabled', false); 
+        // $(':button').prop('disabled', false); 
         $('#monthlyButton').attr('disabled',true);
     }	
     if (timePeriod == 'yearly') {
-        $(':button').prop('disabled', false); 
+        // $(':button').prop('disabled', false); 
         $('#yearlyButton').attr('disabled',true);
     }	
 }
@@ -510,7 +510,6 @@ function addEditPages() {
                 }
 
                 if(isNew) {
-                    //orderedInsert(transaction, newTransaction, function(x) {return new Date(x.date)});
                     var lo = 0;
                     var hi = transaction.length;
                     
@@ -540,7 +539,10 @@ function addEditPages() {
 
             addTransactionListData();
             addHomeData();
-            $('#cancelButton').trigger('click');
+            $(currPage).hide();
+            $('.home').show();
+            prevPage = currPage;
+            currPage = '.home';
         }
     });
     
@@ -564,14 +566,17 @@ function addEditPages() {
         var category = $('#categoryName').val();
         $('.addEditCategories').hide();
         $('.addEditTransactions').show();
+        resetAddEditTransactionsPage();
+        $('#editTransaction').hide();
         prevPage = '.addEditCategories';
         currPage = '.addEditTransactions';
         isNew = true;
-        resetAddEditTransactionsPage();
+
         if(isIncome)
             $('#transactionType').val('income');
         else
             $('#transactionType').val('expense');
+        
         $('#transactionType').trigger('change');
         $('#transactionType').attr('disabled', true);
 
@@ -589,7 +594,7 @@ function addEditPages() {
 		if ($("#transactionRepeat_Check").is(':checked')) {
             $('div.addEditTransactions').css('grid-template-rows', 'repeat(6, [inputField] max-content) [buttons] auto [end]');
 		} else {
-            $('div.addEditTransactions').css('grid-template-rows', 'repeat(5, [inputField] max-content) [buttons] auto [end]');
+            $('div.addEditTransactions').removeAttr('style');
 		}
 	});
     
@@ -600,7 +605,7 @@ function addEditPages() {
         if($(this).is(":checked")) {
             $('div.addEditCategories').css('grid-template-rows', 'repeat(6, [inputField] max-content) [buttons] auto [end]');
         } else {
-            $('div.addEditCategories').css('grid-template-rows', 'repeat(3, [inputField] max-content) [buttons] auto [end]');
+            $('div.addEditCategories').removeAttr('style');
         }
     });
     
@@ -650,22 +655,6 @@ function addEditPages() {
     });
 }
 
-function orderedInsert(list, item, getValue) {
-    var lo = 0;
-    var hi = list.length;
-    
-    while(lo < hi) {
-        var mid = (lo + hi) / 2;
-        if(getValue(item) < getValue(list[mid])) {
-            hi = mid;
-        } else {
-            lo = mid + 1;
-        }
-    }
-
-    list.splice(lo, 0, item);
-}
-
 function resetAddEditTransactionsPage() {
     var $page = $('div.addEditTransactions');
     
@@ -683,6 +672,8 @@ function resetAddEditTransactionsPage() {
     if($('#transactionRepeat_Check').is(":checked")) {
         $("#transactionRepeat_Check").click();
     }
+    
+    $('#editTransaction').show();
 }
 
 function resetAddEditCategoriesPage() {
@@ -699,6 +690,9 @@ function resetAddEditCategoriesPage() {
     if($('#setCategoryBudget').is(":checked")) {
         $("#setCategoryBudget").click();
     }
+
+    hideExpenseFields(false);
+    $('#editCategory').show();
 }
 
 function populateCategorySelect(isIncomeCategory) {
@@ -713,6 +707,16 @@ function populateCategorySelect(isIncomeCategory) {
 
     $('#transactionCategory_Select').empty();
     $('#transactionCategory_Select').html(options);
+}
+
+function hideExpenseFields(isHide) {
+    if(isHide) {
+        $('.expenseCategory').hide();
+        $('div.addEditCategories').css('grid-template-rows', 'repeat(2, [requiredInput] max-content) [buttons] auto [end]');
+    } else {
+        $('.expenseCategory').show();
+        $('div.addEditCategories').removeAttr('style');
+    }
 }
 
 function calculateAngle(event) {
