@@ -288,18 +288,19 @@ function showMeTheBurger() {
 }
 
 function disableButton() {
+    $(':button').prop('disabled', false); 
     if (currPage == '.home') {
-        $(':button').prop('disabled', false); 
         $('#goBackHome').attr('disabled',true);
     }
 	if (currPage =='.transactionsList') {
-        $(':button').prop('disabled', false); 
+        // $(':button').prop('disabled', false); 
         $('#goTransactions').attr('disabled',true);
     }
 	if (currPage == '.settings') {
-        $(':button').prop('disabled', false); 
+        // $(':button').prop('disabled', false); 
         $('#goSettings').attr('disabled',true);
-    }	
+    }
+    disableTime();	
 }
 
 function setTimePeriod() {
@@ -308,57 +309,52 @@ function setTimePeriod() {
             timePeriod = 'daily';
             console.log("Daily");
         }
-		disableTime();
+		disableButton();
     });
 
     $('#weeklyButton').click(function() {
         if(timePeriod != 'weekly') {
             timePeriod = 'weekly';
         }
-		disableTime();
+		disableButton();
     });
 
     $('#biWeeklyButton').click(function() {
         if(timePeriod != 'biWeekly') {
             timePeriod = 'biWeekly';
         }
-		disableTime();
+		disableButton();
     });
 
     $('#monthlyButton').click(function() {
         if(timePeriod != 'monthly') {
             timePeriod = 'monthly';
         }
-		disableTime();
+		disableButton();
     });
 
     $('#yearlyButton').click(function() {
         if(timePeriod != 'yearly') {
             timePeriod = 'yearly';
         }
-		disableTime();
+		disableButton();
     });
 }
 
 function disableTime() {
-    $(':button').prop('disabled', false); 
     if (timePeriod == 'daily') {       
         $('#dailyButton').attr('disabled',true);
     }
-    if (timePeriod == 'weekly') {
-        // $(':button').prop('disabled', false); 
+    if (timePeriod == 'weekly') { 
         $('#weeklyButton').attr('disabled',true);
     }	
     if (timePeriod == 'biWeekly') {
-        // $(':button').prop('disabled', false); 
         $('#biWeeklyButton').attr('disabled',true);
     }	
     if (timePeriod == 'monthly') {
-        // $(':button').prop('disabled', false); 
         $('#monthlyButton').attr('disabled',true);
     }	
-    if (timePeriod == 'yearly') {
-        // $(':button').prop('disabled', false); 
+    if (timePeriod == 'yearly') { 
         $('#yearlyButton').attr('disabled',true);
     }	
 }
