@@ -69,6 +69,8 @@
 	background-color: #DCDCDC;
 }	
 
+
+<<<<<<< HEAD
 /* Change background-color when disabled */
 #goBackHome:disabled, #goChangeTimePeriod:disabled, #goTransactions:disabled, #goReminders:disabled, #goSettings:disabled {
 	background-color: #DCDCDC;
@@ -78,6 +80,17 @@
 	background-color: #DCDCDC;
 }
 
+/*
+=======
+>>>>>>> 6eaf6c4b3d7e3f03d1967f5378a3b8a0c79659e4
+.burgerMenu input[type=button][disabled] {
+	background-color: #DCDCDC !important;
+}	
+<<<<<<< HEAD
+*/
+
+=======
+>>>>>>> 6eaf6c4b3d7e3f03d1967f5378a3b8a0c79659e4
 
 #svgContainer {
 	grid-column-start: first;

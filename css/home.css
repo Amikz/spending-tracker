@@ -90,7 +90,7 @@ div.home {
 
 .legendContent {
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .legendContentWrapper {

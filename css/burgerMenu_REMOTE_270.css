@@ -69,15 +69,10 @@
 	background-color: #DCDCDC;
 }	
 
-/* Change background-color when disabled */
-#goBackHome:disabled, #goChangeTimePeriod:disabled, #goTransactions:disabled, #goReminders:disabled, #goSettings:disabled {
-	background-color: #DCDCDC;
-}
 
-#dailyButton:disabled, #weeklyButton:disabled, #biWeeklyButton:disabled, #monthlyButton:disabled, #yearlyButton:disabled {
-	background-color: #DCDCDC;
-}
-
+.burgerMenu input[type=button][disabled] {
+	background-color: #DCDCDC !important;
+}	
 
 #svgContainer {
 	grid-column-start: first;

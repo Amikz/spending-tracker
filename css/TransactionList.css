@@ -47,7 +47,7 @@
 }
 
 .expense {
-    color: red;
+    color: #b94a48;
 }
 
 .income {
@@ -55,7 +55,7 @@
 }
 
 /* Desktop Formatting */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 650px) {
     .rect {
         height: 18pt;
     }
