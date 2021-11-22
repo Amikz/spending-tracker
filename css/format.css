@@ -53,7 +53,7 @@ h2 {
     margin: 0px;
 }
 
-#saveButton {
+#saveButton, #addTransaction {
     grid-column-start: right-button;
 }
 

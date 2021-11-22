@@ -1,4 +1,4 @@
-#cancelButton, #saveButton {
+#cancelButton, #saveButton, #addTransaction {
     color: white;
     font-size: 16pt;
     border: none;
@@ -6,11 +6,11 @@
     font-weight: bolder;
 }
 
-#saveButton {
+#saveButton, #addTransaction {
     height: 22pt;
 }
 
-#saveButton svg {
+#saveButton svg, #addTransaction svg {
     height: 22pt;
     width: 22pt;
     color: white;
@@ -101,15 +101,15 @@ div.addEditTransactions input[type=date] {
 }
 
 @media only screen and (min-width: 650px) {
-    #cancelButton, #saveButton {
+    #cancelButton, #saveButton, #addTransaction {
         font-size: 20pt;
     }
     
-    #saveButton {
+    #saveButton, #addTransaction {
         height: 26pt;
     }
         
-    #saveButton svg {
+    #saveButton svg, #addTransaction svg {
         height: 26pt;
         width: 26pt;
     }
