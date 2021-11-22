@@ -63,6 +63,10 @@ h2 {
     grid-row-start: pageContent;
 }
 
+#addTransaction{
+   grid-column-start: right-button;
+}
+
 .burgerMenu {
 	grid-row-start: pageContent;
 	width: 50%;
