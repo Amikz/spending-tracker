@@ -70,6 +70,13 @@ var transaction = [
         isIncome: false,
         category: 'Food',
         amount: 50.00,
+        date: '2021-11-21',
+        willRepeat: false
+    },
+    {
+        isIncome: false,
+        category: 'Food',
+        amount: 100.00,
         date: '2021-11-20',
         willRepeat: false
     },
@@ -78,6 +85,13 @@ var transaction = [
         category: 'Clothes',
         amount: 80.00,
         date: '2021-11-20',
+        willRepeat: false
+    },
+    {
+        isIncome: true,
+        category: 'Salary',
+        amount: 1050.00,
+        date: "2021-11-19",
         willRepeat: false
     },
     {

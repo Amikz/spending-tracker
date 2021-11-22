@@ -29,11 +29,29 @@ function addHomeData() {
             '<p class="legendCategoryAmount"></p>' +
         '</div>';
 
+    var filteredTransaction = transaction;
+    /*var filteredTransaction = transaction.filter(e => {
+        var date = new Date(e.date);
+        return startDate < date && date < currDate;
+    });*/
+
     $('#incomeCategories').empty();
     for(var i = 0; i < incomeCategory.length; i++) {
         var $legendIncomeCategory = $($.parseHTML(legendCategoryFormat));
         $legendIncomeCategory.children('.legendCategoryColour').css('background-color', incomeCategory[i].colour);
         $legendIncomeCategory.children('.legendCategoryName').text(incomeCategory[i].name);
+
+        var transactionsInCategory = filteredTransaction.filter(e => {
+            return e.category == incomeCategory[i].name;
+        });
+
+        var amount = 0;
+        for(var t = 0; t < transactionsInCategory.length; t++) {
+            amount += transactionsInCategory[t].amount;
+        }
+
+        $legendIncomeCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
+
         $('#incomeCategories').append($legendIncomeCategory);
     }
 
@@ -42,8 +60,21 @@ function addHomeData() {
         var $legendExpenseCategory = $($.parseHTML(legendCategoryFormat));
         $legendExpenseCategory.children('.legendCategoryColour').css('background-color', expenseCategory[i].colour);
         $legendExpenseCategory.children('.legendCategoryName').text(expenseCategory[i].name);
+
+        var transactionsInCategory = filteredTransaction.filter(e => {
+            return e.category == expenseCategory[i].name;
+        });
+
+        var amount = 0;
+        for(var t = 0; t < transactionsInCategory.length; t++) {
+            amount += transactionsInCategory[t].amount;
+        }
+
+        $legendExpenseCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
+
         $('#expenseCategories').append($legendExpenseCategory);
     }
+
 }
 
 function addTransactionListData() {
@@ -56,6 +87,11 @@ function addTransactionListData() {
     '</div>';
 
     var filteredTransaction = transaction;
+    /*var filteredTransaction = transaction.filter(e => {
+        var date = new Date(e.date);
+        return startDate < date && date < currDate;
+    });*/
+
 
     $('#transactionsListContent').empty();
     for(var i = 0; i < filteredTransaction.length; i++) {
