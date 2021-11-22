@@ -584,6 +584,14 @@ function addEditPages() {
         populateCategorySelect($(this).val() == 'income');
     });
 
+    $('#addTransaction').click(function() {
+        $('.transactionsList').hide();
+        $('.addEditTransactions').show();
+        prevPage = '.transactionsList';
+        currPage = '.addEditTransactions';
+        resetAddEditTransactionsPage();
+    });
+
     $('.transactionRepeat').hide();
 	$('#transactionRepeat_Check').click(function() {
         $(".transactionRepeat").toggle();
