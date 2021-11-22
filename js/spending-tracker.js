@@ -36,6 +36,7 @@ function addHomeData() {
     });*/
 
     $('#incomeCategories').empty();
+    var totalIncome = 0;
     for(var i = 0; i < incomeCategory.length; i++) {
         var $legendIncomeCategory = $($.parseHTML(legendCategoryFormat));
         $legendIncomeCategory.children('.legendCategoryColour').css('background-color', incomeCategory[i].colour);
@@ -50,12 +51,14 @@ function addHomeData() {
             amount += transactionsInCategory[t].amount;
         }
 
+        totalIncome += amount;
         $legendIncomeCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
 
         $('#incomeCategories').append($legendIncomeCategory);
     }
 
     $('#expenseCategories').empty();
+    var totalExpenses = 0;
     for(var i = 0; i < expenseCategory.length; i++) {
         var $legendExpenseCategory = $($.parseHTML(legendCategoryFormat));
         $legendExpenseCategory.children('.legendCategoryColour').css('background-color', expenseCategory[i].colour);
@@ -70,9 +73,20 @@ function addHomeData() {
             amount += transactionsInCategory[t].amount;
         }
 
+        totalExpenses += amount;
         $legendExpenseCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
 
         $('#expenseCategories').append($legendExpenseCategory);
+    }
+
+    $('#incomeAmount').text('$' + totalIncome.toFixed(2));
+    $('#expenseAmount').text('$' + totalExpenses.toFixed(2));
+
+    var balance = totalIncome - totalExpenses;
+    if(balance >= 0) {
+        $('#balanceAmount').text('$' + balance.toFixed(2));
+    } else {
+        $('#balanceAmount').text('- $' + Math.abs(balance).toFixed(2));
     }
 
 }
@@ -283,6 +297,7 @@ function showMeTheBurger() {
         }
         $('.burgerMenu').slideUp();
 		disableButton();
+        resetHome();
     });
 
     $('#goTransactions').click(function() {
@@ -575,6 +590,7 @@ function addEditPages() {
             $('.home').show();
             prevPage = currPage;
             currPage = '.home';
+            resetHome();
         }
     });
     
@@ -591,6 +607,10 @@ function addEditPages() {
                 $('#pageContent').css('padding', '0px');
             currPage = prevPage;
             prevPage = '.addEditTransactions';
+        }
+
+        if(currPage = '.home') {
+            resetHome();
         }
     });
     
@@ -693,6 +713,34 @@ function addEditPages() {
         if(setPosition)
             this.selectionEnd = position - 1;
     });
+}
+
+function resetHome() {
+    $('#incomeLegend .legendCategoryAmount').hide();
+    
+    $('#incomeLegend,' +
+        '#incomeLegend .legendItem,' +
+        '#incomeLegend .buttonWrapper,' +
+        '#incomeLegend .legendContentWrapper,' +
+        '#incomeLegend .expandPanelArrow,' +
+        '#incomeLegend .expandPanelArrow,' +
+        '#incomeLegend .expandPanelArrow'
+    ).removeAttr('style');
+
+    $('#incomeGraphContainer').show();
+
+    $('#expenseLegend .legendCategoryAmount').hide();
+    
+    $('#expenseLegend,' +
+        '#expenseLegend .legendItem,' +
+        '#expenseLegend .buttonWrapper,' +
+        '#expenseLegend .legendContentWrapper,' +
+        '#expenseLegend .expandPanelArrow,' +
+        '#expenseLegend .expandPanelArrow,' +
+        '#expenseLegend .expandPanelArrow'
+    ).removeAttr('style');
+        
+    $('#expenseGraphContainer').show();
 }
 
 function resetAddEditTransactionsPage() {
