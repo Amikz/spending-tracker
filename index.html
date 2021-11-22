@@ -11,13 +11,15 @@
         <link href="libraries/jquery/jquery-ui.css" rel="stylesheet">
         <script src="libraries/parsley.min.js"></script>
 
-        <link  rel="stylesheet" href="css/format.css">
-        <link  rel="stylesheet" href="css/parsley.css">
-        <link  rel="stylesheet" href="css/home.css">
-        <link  rel="stylesheet" href="css/burgerMenu.css">
+        <link rel="stylesheet" href="css/format.css">
+        <link rel="stylesheet" href="css/parsley.css">
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/burgerMenu.css">
         <link rel="stylesheet" href="css/TransactionList.css">
-        <link  rel="stylesheet" href="css/addEditPages.css">
+        <link rel="stylesheet" href="css/addEditPages.css">
+
         <script src="js/spending-tracker.js"></script>
+        <script src="js/data.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -119,10 +121,10 @@
                             </div>
                         </div>
                         <hr>
-                        <div id="remindersButton" class='menuButton'>
+                        <!--<div id="remindersButton" class='menuButton'>
                             <input type="button" id="goReminders" value="Reminders">
                         </div>
-                        <hr>
+                        <hr>--> <!--Put inside settings page?-->
                         <div id="settingsButton" class='menuButton'>
                             <input type="button" id="goSettings" value="Settings">
                         </div>
@@ -142,15 +144,7 @@
                                 </div>
                                 <div class='legendContent'>
                                     <div class='legendContentWrapper'>
-                                        <div id="legendIncomeItem1" class='legendItem'>
-                                            <div id="incomeLegendColour1" class='legendCategoryColour'></div>
-                                            <p id="incomeLegendName1" class="legendCategoryName">Salary</p>
-                                            <p id="incomeLegendAmount1" class="legendCategoryAmount">$2100.00</p>
-                                        </div>
-                                        <div id="legendIncomeItem2" class='legendItem'>
-                                            <div id="incomeLegendColour2" class='legendCategoryColour'></div>
-                                            <p id="incomeLegendName2" class="legendCategoryName">Sale</p>
-                                            <p id="incomeLegendAmount2" class="legendCategoryAmount">$30.00</p>
+                                        <div id='incomeCategories'>
                                         </div>
                                         
                                         <div class='buttonWrapper'>
@@ -171,35 +165,7 @@
                                 </div>
                                 <div class='legendContent'>
                                     <div class='legendContentWrapper'>
-                                        <div id="legendExpenseItem1" class='legendItem'>
-                                            <div id="expenseLegendColour1" class='legendCategoryColour'></div>
-                                            <p id="expenseLegendName1" class="legendCategoryName">Rent</p>
-                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$1000.00</p>
-                                        </div>
-                                        <div id="legendExpenseItem2" class='legendItem'>
-                                            <div id="expenseLegendColour2" class='legendCategoryColour'></div>
-                                            <p id="expenseLegendName2" class="legendCategoryName">Food</p>
-                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$250.00</p>
-                                        </div>
-                                        <div id="legendExpenseItem3" class='legendItem'>
-                                            <div id="expenseLegendColour3" class='legendCategoryColour'></div>
-                                            <p id="expenseLegendName3" class="legendCategoryName">Clothes</p>
-                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$80.00</p>
-                                        </div>
-                                        <div id="legendExpenseItem4" class='legendItem'>
-                                            <div id="expenseLegendColour4" class='legendCategoryColour'></div>
-                                            <p id="expenseLegendName4" class="legendCategoryName">Phone</p>
-                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$60.00</p>
-                                        </div>
-                                        <div id="legendExpenseItem5" class='legendItem'>
-                                            <div id="expenseLegendColour5" class='legendCategoryColour'></div>
-                                            <p id="expenseLegendName5" class="legendCategoryName">Video Games</p>
-                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$30.00</p>
-                                        </div>
-                                        <div id="legendExpenseItem6" class='legendItem'>
-                                            <div id="expenseLegendColour6" class='legendCategoryColour'></div>
-                                            <p id="expenseLegendName6" class="legendCategoryName">Movies</p>
-                                            <p id="expenseLegendAmount1" class="legendCategoryAmount">$25.00</p>
+                                        <div id='expenseCategories'>
                                         </div>
 
                                         <div class='buttonWrapper'>
@@ -213,26 +179,7 @@
                             <h2 id='balanceAmount'>$685.00</h2>
                         </div>
 
-                        <div class='transactionsList'>
-
-                            <div class="transactionItem">
-                                <p class='category'>Food</p>
-                                <p class="amount expense">$50</p>
-                                <div id='rect1' class="rect"></div>
-                                <p class='date'>November 11,2021</p>
-                            </div>
-                            <div class="transactionItem">
-                                <p class='category'>Rent</p>
-                                <p class="amount expense">$500</p>
-                                <div id="rect2" class="rect"></div>
-                                <p class='date'>November 12,2021</p>
-                            </div>
-                            <div class="transactionItem">
-                                <p class='category'>Salary</p>
-                                <p class="amount income">$500</p>
-                                <div id="rect3" class="rect"></div>
-                                <p class='date'>November 15,2021</p>
-                            </div>
+                        <div id="transactionsListContent" class='transactionsList'>
                         </div>
 
                         <form id='addEditPages' data-parsley-validate>
@@ -284,7 +231,7 @@
                             <div class="addEditTransactions">
                                 <label for="transactionType">Type:</label>
                                 <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
-                                    <option value="">Select...</option>
+                                    <option value="" selected disabled>Select...</option>
                                     <option value="income">Income</option>
                                     <option value="expense">Expense</option>
                                 </select></div>
@@ -292,10 +239,6 @@
                                 <label for="transactionCategory_Select">Category:</label>
                                 <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
                                     <option value="">Select...</option>
-                                    <option value="general">General</option>
-                                    <option value="food">Food</option>
-                                    <option value="rent">Rent</option>
-                                    <option value="entertainment">Entertainment</option>
                                 </select></div>
 
                                 <label for="transactionAmount">Amount:</label>
