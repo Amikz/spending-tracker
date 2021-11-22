@@ -225,6 +225,7 @@ function showMeTheBurger() {
 	$('.burgerMenu').hide();
 	$('#timeContainer').hide();
 	disableButton();
+    onHover();
 	$('#burgerButton').click(function(){
 		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
@@ -293,11 +294,9 @@ function disableButton() {
         $('#goBackHome').attr('disabled',true);
     }
 	if (currPage =='.transactionsList') {
-        // $(':button').prop('disabled', false); 
         $('#goTransactions').attr('disabled',true);
     }
 	if (currPage == '.settings') {
-        // $(':button').prop('disabled', false); 
         $('#goSettings').attr('disabled',true);
     }
     disableTime();	
@@ -343,20 +342,97 @@ function setTimePeriod() {
 
 function disableTime() {
     if (timePeriod == 'daily') {       
-        $('#dailyButton').attr('disabled',true);
+        $('#dailyButton').attr('disabled',true);    // Disable time period
+        $('#dailyContainer').css("background-color","#DCDCDC");
+        $('#dailyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#dailyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#dailyButton')).css("background-color","white");
     }
     if (timePeriod == 'weekly') { 
         $('#weeklyButton').attr('disabled',true);
+        $('#weeklyContainer').css("background-color","#DCDCDC");
+        $('#weeklyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#weeklyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#weeklyButton')).css("background-color","white");
     }	
     if (timePeriod == 'biWeekly') {
         $('#biWeeklyButton').attr('disabled',true);
+        $('#biWeeklyContainer').css("background-color","#DCDCDC");
+        $('#biWeeklyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#biWeeklyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#biWeeklyButton')).css("background-color","white");
     }	
     if (timePeriod == 'monthly') {
         $('#monthlyButton').attr('disabled',true);
+        $('#monthlyContainer').css("background-color","#DCDCDC");
+        $('#monthlyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#monthlyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#monthlyButton')).css("background-color","white");
     }	
     if (timePeriod == 'yearly') { 
         $('#yearlyButton').attr('disabled',true);
+        $('#yearlyContainer').css("background-color","#DCDCDC");
+        $('#yearlyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#yearlyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#yearlyButton')).css("background-color","white");
     }	
+}
+
+function onHover() {
+    $("#dailyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#dailyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#dailyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#dailyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#weeklyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#weeklyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#weeklyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#weeklyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#biWeeklyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#biWeeklyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#biWeeklyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#biWeeklyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#monthlyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#monthlyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#monthlyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#monthlyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#yearlyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#yearlyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#yearlyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#yearlyButton").css("background-color", "white");
+            } 
+    });
 }
 
 function transactionList() {
