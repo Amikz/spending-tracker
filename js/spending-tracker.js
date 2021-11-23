@@ -526,16 +526,44 @@ function addEditPages() {
 
     $('.transactionRepeat').hide();
     $('.transactionDuration').hide();
+    $('.transactionEndDate').hide();
+    $('.numOfPayments').hide();
 	$('#transactionRepeat_Check').click(function() {
         $(".transactionRepeat").toggle();
         $(".transactionDuration").toggle();
 		if ($("#transactionRepeat_Check").is(':checked')) {
             $('div.addEditTransactions').css('grid-template-rows', 'repeat(7, [inputField] max-content) [buttons] auto [end]');
+
+            $('#transactionDuration_Select').on('change', function() {
+                if (this.value == "endDate") {
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+                    $('.transactionEndDate').toggle();
+                    $('.numOfPayments').hide();
+                }
+                else if (this.value == "numPayments") {
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+                    $('.transactionEndDate').hide();
+                    $('.numOfPayments').toggle();
+                }
+                else if (this.value == "forever") {
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(7, [inputField] max-content) [buttons] auto [end]');
+                    $('.transactionEndDate').hide();
+                    $('.numOfPayments').hide();
+                }
+                else {
+                    $('.transactionEndDate').hide();
+                    $('.numOfPayments').hide();
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(7, [inputField] max-content) [buttons] auto [end]');
+                }
+              });
 		} else {
             $('div.addEditTransactions').removeAttr('style');
 		}
 	});
     
+
+
+
     $('.categoryBudget').hide();
     $('#setCategoryBudget').click(function() {
         $('.categoryBudget').toggle();

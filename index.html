@@ -269,10 +269,17 @@
                                     <select id="transactionDuration_Select" name="transactionDuration_Select" data-parsley-required="" data-parsley-required-message="Select a duration."
                                         data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
                                         <option value="">Select...</option>
-                                        <option value="date">Ends on a specific date</option>
+                                        <option value="endDate">Ends on a specific date</option>
                                         <option value="numPayments">After a number of payments</option>
                                         <option value="forever">Forever</option>
                                     </select>
+                                </div>
+                                <label for="transactionEndDate" class="transactionEndDate">End Date:</label>
+                                <input type="date" id="transactionEndDate" class="transactionEndDate" name="transactionEndDate">
+
+                                <label for="numOfPayments" class='numOfPayments'>Payments:</label>
+                                <div class='numOfPayments' id ='numOfPayments'>
+                                    <input type="text" id='numOfPayments' name='numOfPayments' data-parsley-required="" data-parsley-required-message="Enter the number of payments.">
                                 </div>
                                 <div id="editTransaction">
                                     <hr>
