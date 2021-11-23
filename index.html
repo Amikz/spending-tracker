@@ -261,10 +261,19 @@
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
                                     </select>
-
                                     <div id="transactionRepeatEvery_ErrorContainer"></div>
                                 </div>
-
+                                <label for="transactionDuration" class='transactionDuration'>Duration:</label>
+                                <div id="transactionDuration" class ='transactionDuration'>   
+                                    <label for="transactionDuration_Select" style="display: none">Select duration:</label>
+                                    <select id="transactionDuration_Select" name="transactionDuration_Select" data-parsley-required="" data-parsley-required-message="Select a duration."
+                                        data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
+                                        <option value="">Select...</option>
+                                        <option value="date">Ends on a specific date</option>
+                                        <option value="numPayments">After a number of payments</option>
+                                        <option value="forever">Forever</option>
+                                    </select>
+                                </div>
                                 <div id="editTransaction">
                                     <hr>
                                     <input type='button' id="deleteTransaction" value="Delete">

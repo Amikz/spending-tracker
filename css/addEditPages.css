@@ -48,7 +48,7 @@ div.addEditCategories label, div.addEditTransactions label {
     align-self: center;
 }
 
-div.addEditCategories div.requiredInput, div.addEditCategories>input[type=text], #categoryBudgetEvery, div.addEditTransactions div.requiredInput, div.addEditTransactions>input[type=text], #transactionRepeatEvery {
+div.addEditCategories div.requiredInput, div.addEditCategories>input[type=text], #categoryBudgetEvery, div.addEditTransactions div.requiredInput, div.addEditTransactions>input[type=text], #transactionRepeatEvery, #transactionDuration {
     grid-column-start: input;
     justify-self: left;
     width: 100%;

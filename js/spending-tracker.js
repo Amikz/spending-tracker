@@ -525,10 +525,12 @@ function addEditPages() {
     });
 
     $('.transactionRepeat').hide();
+    $('.transactionDuration').hide();
 	$('#transactionRepeat_Check').click(function() {
         $(".transactionRepeat").toggle();
+        $(".transactionDuration").toggle();
 		if ($("#transactionRepeat_Check").is(':checked')) {
-            $('div.addEditTransactions').css('grid-template-rows', 'repeat(6, [inputField] max-content) [buttons] auto [end]');
+            $('div.addEditTransactions').css('grid-template-rows', 'repeat(7, [inputField] max-content) [buttons] auto [end]');
 		} else {
             $('div.addEditTransactions').removeAttr('style');
 		}
