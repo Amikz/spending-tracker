@@ -1,4 +1,3 @@
-// 
 var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
@@ -6,9 +5,66 @@ var isNew = false;
 var currTransaction = 0;
 var currCategory = 0;
 var timePeriod = 'monthly';
-
+var incomeCategoryLabel = [];
+var incomeCategoryAmount = [];
+var incomeCategoryColour = [];
+var expenseCategoryLabel = [];
+var expenseCategoryAmount = [];
+var expenseCategoryColour = [];
+var incomeGraph;
+var expenseGraph;
 
 $(document).ready(function() {
+    incomeGraph = new Chart($('#incomeGraph'), {
+        type: 'pie',
+        data: {
+            labels: incomeCategoryLabel,
+            datasets: [{
+                label: "Income Graph",
+                data: incomeCategoryAmount,
+                backgroundColor: incomeCategoryColour,
+                borderColor: '#F3F3F3'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            legend: {
+                display: false
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    expenseGraph = new Chart($('#expenseGraph'), {
+        type: 'pie',
+        data: {
+            labels: expenseCategoryLabel,
+            datasets: [{
+                label: "Expense Graph",
+                data: expenseCategoryAmount,
+                backgroundColor: expenseCategoryColour,
+                borderColor: '#F3F3F3'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            legend: {
+                display: false
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
     addHomeData();
     addTransactionListData();
     homePage();
@@ -35,7 +91,11 @@ function addHomeData() {
         return startDate < date && date < currDate;
     });*/
 
+    //Display income legend
     $('#incomeCategories').empty();
+    incomeCategoryLabel = [];
+    incomeCategoryAmount = [];
+    incomeCategoryColour = [];
     var totalIncome = 0;
     for(var i = 0; i < incomeCategory.length; i++) {
         var $legendIncomeCategory = $($.parseHTML(legendCategoryFormat));
@@ -51,13 +111,21 @@ function addHomeData() {
             amount += transactionsInCategory[t].amount;
         }
 
-        totalIncome += amount;
         $legendIncomeCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
+
+        totalIncome += amount;
+        incomeCategoryAmount.push(amount);
+        incomeCategoryLabel.push(incomeCategory[i].name);
+        incomeCategoryColour.push(incomeCategory[i].colour);
 
         $('#incomeCategories').append($legendIncomeCategory);
     }
 
+    //Display expense legend
     $('#expenseCategories').empty();
+    expenseCategoryLabel = [];
+    expenseCategoryAmount = [];
+    expenseCategoryColour = [];
     var totalExpenses = 0;
     for(var i = 0; i < expenseCategory.length; i++) {
         var $legendExpenseCategory = $($.parseHTML(legendCategoryFormat));
@@ -73,20 +141,45 @@ function addHomeData() {
             amount += transactionsInCategory[t].amount;
         }
 
-        totalExpenses += amount;
         $legendExpenseCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
+
+        totalExpenses += amount;
+        expenseCategoryAmount.push(amount);
+        expenseCategoryLabel.push(expenseCategory[i].name);
+        expenseCategoryColour.push(expenseCategory[i].colour);
 
         $('#expenseCategories').append($legendExpenseCategory);
     }
 
-    $('#incomeAmount').text('$' + totalIncome.toFixed(2));
-    $('#expenseAmount').text('$' + totalExpenses.toFixed(2));
+    //Update Income, Expense, and Balance 
+    var oldIncome = $('#incomeAmount').text();
+    var newIncome = '$' + totalIncome.toFixed(2);
+    var oldExpense = $('#expenseAmount').text();
+    var newExpense = '$' + totalExpenses.toFixed(2);
+    $('#incomeAmount').text(newIncome);
+    $('#expenseAmount').text(newExpense);
 
     var balance = totalIncome - totalExpenses;
     if(balance >= 0) {
         $('#balanceAmount').text('$' + balance.toFixed(2));
     } else {
         $('#balanceAmount').text('- $' + Math.abs(balance).toFixed(2));
+    }
+
+    //Update income graph
+    if(oldIncome != newIncome) {
+        incomeGraph.data.labels = incomeCategoryLabel;
+        incomeGraph.data.datasets[0].data = incomeCategoryAmount;
+        incomeGraph.data.datasets[0].backgroundColor = incomeCategoryColour;
+        incomeGraph.update();
+    }
+
+    //Update expense graph
+    if(oldExpense != newExpense) {
+        expenseGraph.data.labels = expenseCategoryLabel;
+        expenseGraph.data.datasets[0].data = expenseCategoryAmount;
+        expenseGraph.data.datasets[0].backgroundColor = expenseCategoryColour;
+        expenseGraph.update();
     }
 
 }
@@ -195,10 +288,10 @@ function homePage() {
         
     });
 
-    $('#incomeGraph').mousemove(function(event) {
+    /*$('#incomeGraph').mousemove(function(event) {
         var angle = calculateAngle(event);
         //Display percentage and number of section the angle is in
-    });
+    });*/
 
     $('#expenseGraph').mousemove(function(event) {
         var angle = calculateAngle(event);
@@ -358,7 +451,6 @@ function setTimePeriod() {
 	$('#dailyButton').click(function() {
         if(timePeriod != 'daily') {
             timePeriod = 'daily';
-            console.log("Daily");
         }
 		disableButton();
     });
