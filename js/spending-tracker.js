@@ -53,13 +53,13 @@ function addEditPages() {
     $('#cancelButton').click(function() {
         if($('div.addEditTransactions').is(':visible')) { //TODO: add to this condition so that it also checks that we came from the Categories page
             $('.addEditTransactions').hide();
-            $('.addEditCategories').show();
+            $('.addEditCategories').hide();
         }
     });
     
     $('#addTransactionWithinCategory').click(function() {
         $('.addEditCategories').hide();
-        $('.addEditTransactions').show();
+        $('.addEditTransactions').hide();
         resetAddEditTransactionsPage();
     });
 
@@ -128,4 +128,5 @@ function addEditPages() {
         if(setPosition)
             this.selectionEnd = position - 1;
     });
+    
 }

@@ -22,10 +22,11 @@
                 <div id="phoneBorderTop" class="phoneBorder"></div>
                 <div id="content">
                     <div id="topBorder">
-                        <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
+                        <input class="addEditCategories addEditTransactions settings" type='button' id="cancelButton" value="&#x2715">
                         <h1 class="addEditCategories">Category</h1>
                         <h1 class="addEditTransactions">Transaction</h1>
-                        <button class="addEditCategories addEditTransactions" id='saveButton'>
+                        <h1 class="settings">Settings</h1>
+                        <button class="addEditCategories addEditTransactions settings" id='saveButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                 <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                             </svg>
@@ -129,11 +130,16 @@
                                 <div id="editTransaction">
                                     <hr>
                                     <input type='button' id="deleteTransaction" value="Delete">
+
                                 </div>
                             </div>
                         </form>
                         <div class="settings">
-                            
+                            <div>Dark Mode&nbsp;&nbsp;</div>
+                            <label class="switch">
+                                <input type="checkbox" name="data[SplashPage][firstname]">
+                                <span class="slider"></span>
+                            </label>
                         </div>
                     </div>
                 </div>
