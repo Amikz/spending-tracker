@@ -10,29 +10,179 @@
         <script src="libraries/jquery/jquery-ui.js"></script>
         <link href="libraries/jquery/jquery-ui.css" rel="stylesheet">
         <script src="libraries/parsley.min.js"></script>
+        <script src="libraries/Chart.min.js"></script>
 
-        <link  rel="stylesheet" href="css/format.css">
-        <link  rel="stylesheet" href="css/addEditPages.css">
-        <link  rel="stylesheet" href="css/parsley.css">
+        <link rel="stylesheet" href="css/format.css">
+        <link rel="stylesheet" href="css/parsley.css">
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/burgerMenu.css">
+        <link rel="stylesheet" href="css/TransactionList.css">
+        <link rel="stylesheet" href="css/settings.css">
+        <link rel="stylesheet" href="css/addEditPages.css">
+
         <script src="js/spending-tracker.js"></script>
+        <script src="js/data.js"></script>
     </head>
     <body>
         <div id="wrapper">
             <div id="container">
                 <div id="phoneBorderTop" class="phoneBorder"></div>
                 <div id="content">
-                    <div id="topBorder">
-                        <input class="addEditCategories addEditTransactions settings" type='button' id="cancelButton" value="&#x2715">
+                    <div id="topBar">
+                        <button id='burgerButton' class='home transactionsList settings'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                        </button>
+                        <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
                         <h1 class="addEditCategories">Category</h1>
                         <h1 class="addEditTransactions">Transaction</h1>
+                        <h1 class="home transactionsList">November</h1>
                         <h1 class="settings">Settings</h1>
-                        <button class="addEditCategories addEditTransactions settings" id='saveButton'>
+                        <button class="addEditCategories addEditTransactions" id='saveButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
-                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                            </svg>
+                        </button>
+                        <button id="addTransaction" class='transactionsList'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                             </svg>
                         </button>
                     </div>
+
+					<nav class="burgerMenu">
+                        <div id="homeButton" class='menuButton'>
+                            <input type="button" id="goBackHome" value="Home">
+                        </div>
+                        <hr>
+                        <div id="transactionsButton" class='menuButton'>
+                            <input type="button" id="goTransactions" value="Transactions">
+                        </div>
+                        <hr>
+                        <div id="timePeriodButton" class='menuButton'>
+                            <input type="button" id="goChangeTimePeriod" value="Time Period">
+                            <hr class='hide'>
+                            <div id="timeContainer">
+                                <div id="dailyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="dailyButton" value="Daily">
+                                    </div>
+                                </div>
+                                <div id="weeklyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="weeklyButton" value="Weekly">
+                                    </div>
+                                </div>
+                                <div id="biWeeklyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <path d="M3 6.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1zM11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="biWeeklyButton" value="Bi-Weekly">
+                                    </div>
+                                </div>
+                                <div id="monthlyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <text x="2.1" y="10.5" font-family="Helvetica Neue, Arial, sans-serif"  font-size="3pt">Month</text>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="monthlyButton" value="Monthly">
+                                    </div>
+                                </div>
+                                <div id="yearlyContainer">
+                                    <div id="svgContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                            <text x="3.7" y="10.5" font-family="Helvetica Neue, Arial, sans-serif" font-size="3pt">Year</text>
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                    </div>
+                                    <div id="buttonContainer">
+                                        <input type="button" id="yearlyButton" value="Yearly">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!--<div id="remindersButton" class='menuButton'>
+                            <input type="button" id="goReminders" value="Reminders">
+                        </div>
+                        <hr>--> <!--Put inside settings page?-->
+                        <div id="settingsButton" class='menuButton'>
+                            <input type="button" id="goSettings" value="Settings">
+                        </div>
+                    </nav>
+
                     <div id="pageContent">
+
+                        <div class='home'>
+                            <h2 id='incomeLabel'>Income:</h2>
+                            <h2 id='incomeAmount'></h2>
+                            <div id='incomeGraphContainer' class='graphContainer'>
+                                <!--<div id='incomeGraph' class='graph'></div>-->
+                                <canvas id="incomeGraph"></canvas>
+                            </div>
+                            <div id='incomeLegend' class='legend'>
+                                <div class='expandPanel'>
+                                    <div class='expandPanelArrow'></div>
+                                </div>
+                                <div class='legendContent'>
+                                    <div class='legendContentWrapper'>
+                                        <div id='incomeCategories'>
+                                        </div>
+                                        
+                                        <div class='buttonWrapper'>
+                                            <input type='button' id="addIncomeCategory" class="addCategory" value="&plus;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 id='expenseLabel'>Expenses:</h2>
+                            <h2 id='expenseAmount'></h2>
+                            <div id='expenseGraphContainer' class='graphContainer'>
+                                <canvas id='expenseGraph'></canvas>
+                            </div>
+                            <div id='expenseLegend' class='legend'>
+                                <div class='expandPanel'>
+                                    <div class='expandPanelArrow'></div>
+                                </div>
+                                <div class='legendContent'>
+                                    <div class='legendContentWrapper'>
+                                        <div id='expenseCategories'>
+                                        </div>
+
+                                        <div class='buttonWrapper'>
+                                            <input type="button" id="addExpenseCategory" class="addCategory" value="&plus;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 id='balanceLabel'>Balance:</h2>
+                            <h2 id='balanceAmount'></h2>
+                        </div>
+
+                        <div id="transactionsListContent" class='transactionsList'>
+                        </div>
 
                         <form id='addEditPages' data-parsley-validate>
                             <div class="addEditCategories">
@@ -46,7 +196,7 @@
 
                                 <label for='setCategoryBudget' class='expenseCategory'>Set Budget:</label>
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
-                                
+
                                 <label for='categoryBudget' class='categoryBudget'>Budget:</label>
                                 <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
                                         data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
@@ -72,7 +222,7 @@
 
                                 <label for="categoryWarning" class='categoryBudget'>Warning:</label>
                                 <input type="text" id="categoryWarning" name="categoryWarning" class='categoryBudget monetaryAmount'>
-                                
+
                                 <div id="editCategory">
                                     <hr>
                                     <input type="button" id="addTransactionWithinCategory" value="Add Transaction">
@@ -83,7 +233,7 @@
                             <div class="addEditTransactions">
                                 <label for="transactionType">Type:</label>
                                 <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
-                                    <option value="">Select...</option>
+                                    <option value="" selected disabled>Select...</option>
                                     <option value="income">Income</option>
                                     <option value="expense">Expense</option>
                                 </select></div>
@@ -91,10 +241,6 @@
                                 <label for="transactionCategory_Select">Category:</label>
                                 <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
                                     <option value="">Select...</option>
-                                    <option value="general">General</option>
-                                    <option value="food">Food</option>
-                                    <option value="rent">Rent</option>
-                                    <option value="entertainment">Entertainment</option>
                                 </select></div>
 
                                 <label for="transactionAmount">Amount:</label>
