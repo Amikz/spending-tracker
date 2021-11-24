@@ -638,6 +638,8 @@ function transactionList() {
                 $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
                 $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
             }
+
+            $('div.addEditTransactions').attr('transactionID', $(this).attr('transactionID'));
         }
     });
 }
@@ -819,6 +821,15 @@ function addEditPages() {
         if(currPage == '.home') {
             resetHome();
         }
+    });
+
+    $('#deleteTransaction').click(function() {
+        //CRAIG
+        var ID = $('div.addEditTransactions').attr('transactionID');
+    });
+
+    $('#deletCategory').click(function() {
+        //CRAIG
     });
     
     $('#addTransactionWithinCategory').click(function() {
