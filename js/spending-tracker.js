@@ -4,6 +4,7 @@ var isIncome = false;
 var isNew = false;
 var currTransaction = 0;
 var currCategory = 0;
+var transactionID = 12;
 var timePeriod = 'monthly';
 var incomeCategoryLabel = [];
 var incomeCategoryAmount = [];
@@ -203,6 +204,7 @@ function addTransactionListData() {
     $('#transactionsListContent').empty();
     for(var i = 0; i < filteredTransaction.length; i++) {
         var $transactionItem = $($.parseHTML(transactionItemFormat));
+        $transactionItem.attr('transactionID', filteredTransaction[i].transactionID);
         $transactionItem.children('.category').text(filteredTransaction[i].category);
         $transactionItem.children('.amount').text('$' + (filteredTransaction[i].amount).toFixed(2));
 
@@ -289,16 +291,6 @@ function homePage() {
                     $('#categoryWarning').val(category.warning);
             }
         }
-    });
-
-    /*$('#incomeGraph').mousemove(function(event) {
-        var angle = calculateAngle(event);
-        //Display percentage and number of section the angle is in
-    });*/
-
-    $('#expenseGraph').mousemove(function(event) {
-        var angle = calculateAngle(event);
-        //Display percentage and number of section the angle is in
     });
 
     $('#incomeLegend .expandPanel').click(function() {
@@ -598,10 +590,12 @@ function transactionList() {
         if($('.burgerMenu').is(':hidden')) {
             $('.transactionsList').hide();
             $('.addEditTransactions').show();
-            prevPage = '.transactionsList';
-            currPage = '.addEditTransactions';
             resetAddEditTransactionsPage();
             $('#pageContent').removeAttr('style');
+            $('#editTransaction').hide();
+            prevPage = '.transactionsList';
+            currPage = '.addEditTransactions';
+            isNew = true;
         }
     });
 
@@ -632,7 +626,7 @@ function transactionList() {
             $('#transactionDate').val(date);
 
             var transactionItem = transaction.find(e => {
-                return (e.category == category) && (e.date == date) && ((e.amount).toFixed(2) == amount);
+                return e.transactionID == $(this).attr('transactionID');
             });
 
             currTransaction = transaction.findIndex(e => {
@@ -644,6 +638,8 @@ function transactionList() {
                 $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
                 $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
             }
+
+            $('div.addEditTransactions').attr('transactionID', $(this).attr('transactionID'));
         }
     });
 }
@@ -656,6 +652,10 @@ function addEditPages() {
     $('.addEditTransactions').hide();
     $('.addEditCategories').hide();
 	$('#burgerButton').show();
+
+   $('label').click(function(event) {
+       event.preventDefault();
+   });
 
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
@@ -733,6 +733,7 @@ function addEditPages() {
             } else if($('div.addEditTransactions').is(':visible')) {
                 var repeat = $('#transactionRepeat_Check').is(':checked');
                 var newTransaction = {
+                    transactionID: transactionID,
                     isIncome: $('#transactionType').val() == 'income',
                     category: $('#transactionCategory_Select').val(),
                     amount: parseFloat($('#transactionAmount').val()),
@@ -742,6 +743,7 @@ function addEditPages() {
 
                 if(repeat) {
                     newTransaction = {
+                        transactionID: transactionID,
                         isIncome: $('#transactionType').val() == 'income',
                         category: $('#transactionCategory_Select').val(),
                         amount: parseFloat($('#transactionAmount').val()),
@@ -778,6 +780,8 @@ function addEditPages() {
                         transaction[currTransaction].repeat_timePeriod = newTransaction.repeat_timePeriod;
                     }
                 }
+
+                transactionID++;
             }
 
             addTransactionListData();
@@ -817,6 +821,15 @@ function addEditPages() {
         if(currPage == '.home') {
             resetHome();
         }
+    });
+
+    $('#deleteTransaction').click(function() {
+        //CRAIG
+        var ID = $('div.addEditTransactions').attr('transactionID');
+    });
+
+    $('#deletCategory').click(function() {
+        //CRAIG
     });
     
     $('#addTransactionWithinCategory').click(function() {

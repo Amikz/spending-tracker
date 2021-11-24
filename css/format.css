@@ -96,6 +96,11 @@ option {
     font-size: 12pt;
 }
 
+#tooltip svg {
+    width: 16pt;
+    height: 16pt;
+}
+
 input[type=text], input[type=date], input[type=color], select {
     border: 1px solid #767676;
     border-radius: 5px;
@@ -173,6 +178,11 @@ input[type=checkbox] {
     
     option {
         font-size: 14pt;
+    }
+
+    #tooltip svg {
+        width: 18pt;
+        height: 18pt;
     }
 
     input[type=checkbox] {
