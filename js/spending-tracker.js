@@ -1,4 +1,4 @@
-
+// 
 var currPage = ".home";
 var prevPage = ".home";
 var isIncome = false;
@@ -225,6 +225,7 @@ function showMeTheBurger() {
 	$('.burgerMenu').hide();
 	$('#timeContainer').hide();
 	disableButton();
+    onHover();
 	$('#burgerButton').click(function(){
 		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
@@ -234,6 +235,7 @@ function showMeTheBurger() {
 	$('#goChangeTimePeriod').click(function(){
 		$('#timeContainer').slideToggle();
         $('#timePeriodButton hr').toggleClass('hide');
+        setTimePeriod();
 	});
 
     $('#goBackHome').click(function() {
@@ -260,6 +262,18 @@ function showMeTheBurger() {
         $('.burgerMenu').slideUp();
 		disableButton();
     });
+	
+	// Uncomment when we get the reminders page
+	//$('#goReminders').click(function() {
+    //    if(currPage != '.reminders') {
+    //        //$(currPage).hide();
+    //        //$('.reminders').show();
+    //        prevPage = currPage;
+    //        currPage = '.reminders';
+    //    }
+    //    $('.burgerMenu').slideUp();
+	//	disableButton();
+    //});
 
     $('#goSettings').click(function() {
         if(currPage != '.settings') {
@@ -275,28 +289,150 @@ function showMeTheBurger() {
 }
 
 function disableButton() {
-	if (currPage == '.home') {
-		console.log(currPage);
-		// Disable button
-		$('#goBackHome').attr('disabled',true);
-		// Enable everything else
-		$('#goTransactions').removeAttr('disabled');
-		$('#goSettings').removeAttr('disabled');
-	}
-	if (currPage == '.transactionsList') {
-		console.log(currPage);
-		$('#goTransactions').attr('disabled',true);
-		$('#goBackHome').removeAttr('disabled');
-		$('#goSettings').removeAttr('disabled');
-
-	}
+    $(':button').prop('disabled', false); 
+    if (currPage == '.home') {
+        $('#goBackHome').attr('disabled',true);
+    }
+	if (currPage =='.transactionsList') {
+        $('#goTransactions').attr('disabled',true);
+    }
 	if (currPage == '.settings') {
-		console.log(currPage);
-		$('#goSettings').attr('disabled',true);
-		$('#goBackHome').removeAttr('disabled');
-		$('#goTransactions').removeAttr('disabled');
-	}		
-	
+        $('#goSettings').attr('disabled',true);
+    }
+    disableTime();	
+}
+
+function setTimePeriod() {
+	$('#dailyButton').click(function() {
+        if(timePeriod != 'daily') {
+            timePeriod = 'daily';
+            console.log("Daily");
+        }
+		disableButton();
+    });
+
+    $('#weeklyButton').click(function() {
+        if(timePeriod != 'weekly') {
+            timePeriod = 'weekly';
+        }
+		disableButton();
+    });
+
+    $('#biWeeklyButton').click(function() {
+        if(timePeriod != 'biWeekly') {
+            timePeriod = 'biWeekly';
+        }
+		disableButton();
+    });
+
+    $('#monthlyButton').click(function() {
+        if(timePeriod != 'monthly') {
+            timePeriod = 'monthly';
+        }
+		disableButton();
+    });
+
+    $('#yearlyButton').click(function() {
+        if(timePeriod != 'yearly') {
+            timePeriod = 'yearly';
+        }
+		disableButton();
+    });
+}
+
+function disableTime() {
+    if (timePeriod == 'daily') {       
+        $('#dailyButton').attr('disabled',true);    // Disable time period
+        $('#dailyContainer').css("background-color","#DCDCDC");
+        $('#dailyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#dailyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#dailyButton')).css("background-color","white");
+    }
+    if (timePeriod == 'weekly') { 
+        $('#weeklyButton').attr('disabled',true);
+        $('#weeklyContainer').css("background-color","#DCDCDC");
+        $('#weeklyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#weeklyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#weeklyButton')).css("background-color","white");
+    }	
+    if (timePeriod == 'biWeekly') {
+        $('#biWeeklyButton').attr('disabled',true);
+        $('#biWeeklyContainer').css("background-color","#DCDCDC");
+        $('#biWeeklyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#biWeeklyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#biWeeklyButton')).css("background-color","white");
+    }	
+    if (timePeriod == 'monthly') {
+        $('#monthlyButton').attr('disabled',true);
+        $('#monthlyContainer').css("background-color","#DCDCDC");
+        $('#monthlyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#monthlyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#monthlyButton')).css("background-color","white");
+    }	
+    if (timePeriod == 'yearly') { 
+        $('#yearlyButton').attr('disabled',true);
+        $('#yearlyContainer').css("background-color","#DCDCDC");
+        $('#yearlyButton').css("background-color","#DCDCDC");
+        $('#timeContainer').children().not($('#yearlyContainer')).css("background-color","white");
+        $('#timeContainer').children().children().children().not($('#yearlyButton')).css("background-color","white");
+    }	
+}
+
+function onHover() {
+    $("#dailyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#dailyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#dailyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#dailyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#weeklyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#weeklyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#weeklyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#weeklyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#biWeeklyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#biWeeklyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#biWeeklyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#biWeeklyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#monthlyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#monthlyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#monthlyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#monthlyButton").css("background-color", "white");
+            } 
+    });
+
+    $("#yearlyContainer").hover(function(){
+        $(this).css("background-color", "#DCDCDC");
+        $("#yearlyButton").css("background-color", "#DCDCDC");
+    }, function() {
+        if ($('#yearlyButton').is(":not(:disabled)"))
+            {
+                $(this).css("background-color", "white");
+                $("#yearlyButton").css("background-color", "white");
+            } 
+    });
 }
 
 function transactionList() {

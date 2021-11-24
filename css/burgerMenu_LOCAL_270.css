@@ -60,10 +60,31 @@
 	background-color: #DCDCDC;
 }
 
+#dailyContainer:hover, #weeklyContainer:hover, #biWeeklyContainer:hover, #monthlyContainer:hover, #yearlyContainer:hover {
+	background-color: #DCDCDC;
+}
+
+
+#dailyButton:hover, #weeklyButton:hover, #biWeeklyButton:hover, #monthlyButton:hover, #yearlyButton:hover {
+	background-color: #DCDCDC;
+}	
+
+
 /* Change background-color when disabled */
 #goBackHome:disabled, #goChangeTimePeriod:disabled, #goTransactions:disabled, #goReminders:disabled, #goSettings:disabled {
 	background-color: #DCDCDC;
 }
+
+#dailyButton:disabled, #weeklyButton:disabled, #biWeeklyButton:disabled, #monthlyButton:disabled, #yearlyButton:disabled {
+	background-color: #DCDCDC;
+}
+
+/*
+.burgerMenu input[type=button][disabled] {
+	background-color: #DCDCDC;
+}	
+*/
+
 
 #svgContainer {
 	grid-column-start: first;
