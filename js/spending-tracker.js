@@ -653,9 +653,29 @@ function addEditPages() {
     $('.addEditCategories').hide();
 	$('#burgerButton').show();
 
-   $('label').click(function(event) {
-       event.preventDefault();
-   });
+    $('label').click(function(event) {
+        event.preventDefault();
+    });
+
+    window.Parsley.addValidator('preventDuplicate', {
+        validateString: function(value) {
+            var id = -1;
+            if(isIncome) {
+                id = incomeCategory.findIndex(e => {
+                    return e.name == value;
+                });
+            } else {
+                id = incomeCategory.findIndex(e => {
+                    return e.name == value;
+                });
+            }
+
+            return id < 0;
+        },
+        messages: {
+            en: "A category with that name already exists."
+        }
+    });
 
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
