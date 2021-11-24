@@ -777,7 +777,7 @@ function addEditPages() {
             prevPage = '.addEditTransactions';
         }
 
-        if(currPage = '.home') {
+        if(currPage == '.home') {
             resetHome();
         }
     });
