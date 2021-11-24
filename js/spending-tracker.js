@@ -233,59 +233,62 @@ function homePage() {
     $('.legendCategoryAmount').hide();
 
     $('.addCategory').click(function() {
-        $('.home').hide();
-        $('.addEditCategories').show();
-        resetAddEditCategoriesPage();
-        prevPage = '.home';
-        currPage = '.addEditCategories';
-        isIncome = $(this).is('#addIncomeCategory');
-        isNew = true;
-        $('#editCategory').hide();
-        hideExpenseFields(isIncome);
+        if($('.burgerMenu').is(':hidden')) {
+            $('.home').hide();
+            $('.addEditCategories').show();
+            resetAddEditCategoriesPage();
+            prevPage = '.home';
+            currPage = '.addEditCategories';
+            isIncome = $(this).is('#addIncomeCategory');
+            isNew = true;
+            $('#editCategory').hide();
+            hideExpenseFields(isIncome);
+        }
     });
 
     $(document).on('click', '.legendItem', function() {
-        $('.home').hide();
-        $('.addEditCategories').show();
-        resetAddEditCategoriesPage();
-        prevPage = '.home';
-        currPage = '.addEditCategories';
-        isIncome = $(this).parents('#incomeLegend').length;
-        isNew = false;
+        if($('.burgerMenu').is(':hidden')) {
+            $('.home').hide();
+            $('.addEditCategories').show();
+            resetAddEditCategoriesPage();
+            prevPage = '.home';
+            currPage = '.addEditCategories';
+            isIncome = $(this).parents('#incomeLegend').length;
+            isNew = false;
 
-        //Populate data
-        var category = undefined;
-        if(isIncome) {
-            hideExpenseFields(true);
-            category = incomeCategory.find(e => {
-                return e.name == $(this).find('.legendCategoryName:first').text();
-            });
+            //Populate data
+            var category = undefined;
+            if(isIncome) {
+                hideExpenseFields(true);
+                category = incomeCategory.find(e => {
+                    return e.name == $(this).find('.legendCategoryName:first').text();
+                });
 
-            currCategory = incomeCategory.findIndex(e => {
-                return e == category;
-            });
-        } else {
-            category = expenseCategory.find(e => {
-                return e.name == $(this).find('.legendCategoryName:first').text();
-            });
+                currCategory = incomeCategory.findIndex(e => {
+                    return e == category;
+                });
+            } else {
+                category = expenseCategory.find(e => {
+                    return e.name == $(this).find('.legendCategoryName:first').text();
+                });
 
-            currCategory = expenseCategory.findIndex(e => {
-                return e == category;
-            });
+                currCategory = expenseCategory.findIndex(e => {
+                    return e == category;
+                });
+            }
+
+            $('#categoryName').val(category.name);
+            $('#categoryColour').val(category.colour);
+            if(category.setBudget) {
+                $('#setCategoryBudget').click();
+                $('#categoryBudget').val((category.budget).toFixed(2));
+                $('#categoryBudgetEvery_Number').val(category.every_num);
+                $('#categoryBudgetEvery_TimePeriod').val(category.every_timePeriod);
+
+                if(category.warning >= 0)
+                    $('#categoryWarning').val(category.warning);
+            }
         }
-
-        $('#categoryName').val(category.name);
-        $('#categoryColour').val(category.colour);
-        if(category.setBudget) {
-            $('#setCategoryBudget').click();
-            $('#categoryBudget').val((category.budget).toFixed(2));
-            $('#categoryBudgetEvery_Number').val(category.every_num);
-            $('#categoryBudgetEvery_TimePeriod').val(category.every_timePeriod);
-
-            if(category.warning >= 0)
-                $('#categoryWarning').val(category.warning);
-        }
-        
     });
 
     /*$('#incomeGraph').mousemove(function(event) {
@@ -299,67 +302,71 @@ function homePage() {
     });
 
     $('#incomeLegend .expandPanel').click(function() {
-        if($('#incomeLegend .legendCategoryAmount').is(':hidden')) {
-            $('#incomeGraphContainer').hide();
+        if($('.burgerMenu').is(':hidden')) {
+            if($('#incomeLegend .legendCategoryAmount').is(':hidden')) {
+                $('#incomeGraphContainer').hide();
 
-            $('#incomeLegend').css('grid-column-start', 'graph');
-            $('#incomeLegend .legendItem').css('padding-top', '2.5%');
-            $('#incomeLegend .buttonWrapper').css('padding', '2.5% 0px');
-            $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
-            $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
+                $('#incomeLegend').css('grid-column-start', 'graph');
+                $('#incomeLegend .legendItem').css('padding-top', '2.5%');
+                $('#incomeLegend .buttonWrapper').css('padding', '2.5% 0px');
+                $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
+                $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
 
-            if($(window).width() >= 650) {
-                $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
+                if($(window).width() >= 650) {
+                    $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
+                } else {
+                    $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
+                }
+
+                $('#incomeLegend .legendCategoryAmount').show();
             } else {
-                $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
+                $('#incomeLegend .legendCategoryAmount').hide();
+
+                $('#incomeLegend,' +
+                    '#incomeLegend .legendItem,' +
+                    '#incomeLegend .buttonWrapper,' +
+                    '#incomeLegend .legendContentWrapper,' +
+                    '#incomeLegend .expandPanelArrow,' +
+                    '#incomeLegend .expandPanelArrow,' +
+                    '#incomeLegend .expandPanelArrow'
+                ).removeAttr('style');
+
+                $('#incomeGraphContainer').show();
             }
-
-            $('#incomeLegend .legendCategoryAmount').show();
-        } else {
-            $('#incomeLegend .legendCategoryAmount').hide();
-
-            $('#incomeLegend,' +
-                '#incomeLegend .legendItem,' +
-                '#incomeLegend .buttonWrapper,' +
-                '#incomeLegend .legendContentWrapper,' +
-                '#incomeLegend .expandPanelArrow,' +
-                '#incomeLegend .expandPanelArrow,' +
-                '#incomeLegend .expandPanelArrow'
-            ).removeAttr('style');
-
-            $('#incomeGraphContainer').show();
         }
     });
 
     $('#expenseLegend .expandPanel').click(function() {
-        if($('#expenseLegend .legendCategoryAmount').is(':hidden')) {
-            $('#expenseGraphContainer').hide();
-            $('#expenseLegend').css('grid-column-start', 'graph');
-            $('#expenseLegend .legendItem').css('padding-top', '2.5%');
-            $('#expenseLegend .buttonWrapper').css('padding', '2.5% 0px');
-            $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
-            $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
+        if($('.burgerMenu').is(':hidden')) {
+            if($('#expenseLegend .legendCategoryAmount').is(':hidden')) {
+                $('#expenseGraphContainer').hide();
+                $('#expenseLegend').css('grid-column-start', 'graph');
+                $('#expenseLegend .legendItem').css('padding-top', '2.5%');
+                $('#expenseLegend .buttonWrapper').css('padding', '2.5% 0px');
+                $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
+                $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
 
-            if($(window).width() >= 650) {
-                $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
+                if($(window).width() >= 650) {
+                    $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
+                } else {
+                    $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');
+                }
+
+                $('#expenseLegend .legendCategoryAmount').show();
             } else {
-                $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');
+                $('#expenseLegend .legendCategoryAmount').hide();
+
+                $('#expenseLegend,' +
+                    '#expenseLegend .legendItem,' +
+                    '#expenseLegend .buttonWrapper,' +
+                    '#expenseLegend .legendContentWrapper,' +
+                    '#expenseLegend .expandPanelArrow,' +
+                    '#expenseLegend .expandPanelArrow,' +
+                    '#expenseLegend .expandPanelArrow'
+                ).removeAttr('style');
+
+                $('#expenseGraphContainer').show();
             }
-
-            $('#expenseLegend .legendCategoryAmount').show();
-        } else {
-            $('#expenseLegend .legendCategoryAmount').hide();
-
-            $('#expenseLegend,' +
-                '#expenseLegend .legendItem,' +
-                '#expenseLegend .buttonWrapper,' +
-                '#expenseLegend .legendContentWrapper,' +
-                '#expenseLegend .expandPanelArrow,' +
-                '#expenseLegend .expandPanelArrow,' +
-                '#expenseLegend .expandPanelArrow'
-            ).removeAttr('style');
-
-            $('#expenseGraphContainer').show();
         }
     });
 }
@@ -400,14 +407,13 @@ function showMeTheBurger() {
             $('.transactionsList').show();
             prevPage = currPage;
             currPage = '.transactionsList';
-			
-            $('#pageContent').css('padding', '0px');
+            resetTransactionsList();
         }
         $('.burgerMenu').slideUp();
 		disableButton();
     });
 	
-	// Uncomment when we get the reminders page
+	// Uncomment if we add the reminders page
 	//$('#goReminders').click(function() {
     //    if(currPage != '.reminders') {
     //        //$(currPage).hide();
@@ -425,9 +431,18 @@ function showMeTheBurger() {
             $('.settings').show();
             prevPage = currPage;
             currPage = '.settings';
+            $('#pageContent').removeAttr('style');
         }
         $('.burgerMenu').slideUp();
 		disableButton();
+    });
+
+    $(document).click(function(event) {
+        var burger = $('.burgerMenu, #burgerButton');
+
+        if(!burger.is(event.target) && !burger.has(event.target).length) {
+            $('.burgerMenu').hide();
+        }
     });
 	
 }
@@ -579,43 +594,56 @@ function onHover() {
 }
 
 function transactionList() {
+    $('#addTransaction').click(function() {
+        if($('.burgerMenu').is(':hidden')) {
+            $('.transactionsList').hide();
+            $('.addEditTransactions').show();
+            prevPage = '.transactionsList';
+            currPage = '.addEditTransactions';
+            resetAddEditTransactionsPage();
+            $('#pageContent').removeAttr('style');
+        }
+    });
+
     $(document).on('click', '.transactionItem', function() {
-        $('.transactionsList').hide();
-        $('.addEditTransactions').show();
-        $('#pageContent').removeAttr('style');
-        resetAddEditTransactionsPage();
-        prevPage = '.transactionsList';
-        currPage = '.addEditTransactions';
-        isIncome = $(this).find('.income').length > 0;
-        isNew = false;
+        if($('.burgerMenu').is(':hidden')) {
+            $('.transactionsList').hide();
+            $('.addEditTransactions').show();
+            $('#pageContent').removeAttr('style');
+            resetAddEditTransactionsPage();
+            prevPage = '.transactionsList';
+            currPage = '.addEditTransactions';
+            isIncome = $(this).find('.income').length > 0;
+            isNew = false;
 
-        //Populate data
-        if(isIncome)
-            $('#transactionType').val('income');
-        else
-            $('#transactionType').val('expense');
-        $('#transactionType').trigger('change');
+            //Populate data
+            if(isIncome)
+                $('#transactionType').val('income');
+            else
+                $('#transactionType').val('expense');
+            $('#transactionType').trigger('change');
 
-        var category = $(this).find('.rect').attr('category');
-        var amount = (parseFloat(($(this).find('.amount').text()).replace(/\$/g, ''))).toFixed(2);
-        var date = $(this).find('.date').attr('date');
+            var category = $(this).find('.rect').attr('category');
+            var amount = (parseFloat(($(this).find('.amount').text()).replace(/\$/g, ''))).toFixed(2);
+            var date = $(this).find('.date').attr('date');
 
-        $('#transactionCategory_Select').val(category);
-        $('#transactionAmount').val(amount);
-        $('#transactionDate').val(date);
+            $('#transactionCategory_Select').val(category);
+            $('#transactionAmount').val(amount);
+            $('#transactionDate').val(date);
 
-        var transactionItem = transaction.find(e => {
-            return (e.category == category) && (e.date == date) && ((e.amount).toFixed(2) == amount);
-        });
+            var transactionItem = transaction.find(e => {
+                return (e.category == category) && (e.date == date) && ((e.amount).toFixed(2) == amount);
+            });
 
-        currTransaction = transaction.findIndex(e => {
-            return e == transactionItem;
-        });
+            currTransaction = transaction.findIndex(e => {
+                return e == transactionItem;
+            });
 
-        if(transactionItem != undefined && transactionItem.willRepeat) {
-            $('#transactionRepeat_Check').click();
-            $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
-            $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
+            if(transactionItem != undefined && transactionItem.willRepeat) {
+                $('#transactionRepeat_Check').click();
+                $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
+                $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
+            }
         }
     });
 }
@@ -755,10 +783,19 @@ function addEditPages() {
             addTransactionListData();
             addHomeData();
             $(currPage).hide();
-            $('.home').show();
+
+            var nextPage = '.home';
+            if(prevPage == '.transactionsList')
+                nextPage = '.transactionsList';
+
+            $(nextPage).show();
             prevPage = currPage;
-            currPage = '.home';
-            resetHome();
+            currPage = nextPage;
+
+            if(currPage == '.home')
+                resetHome();
+            else
+                resetTransactionsList();
         }
     });
     
@@ -772,7 +809,7 @@ function addEditPages() {
             $('.addEditTransactions').hide();
             $(prevPage).show();
             if(prevPage == '.transactionsList')
-                $('#pageContent').css('padding', '0px');
+                resetTransactionsList();
             currPage = prevPage;
             prevPage = '.addEditTransactions';
         }
@@ -806,14 +843,6 @@ function addEditPages() {
 
     $('#transactionType').change(function() {
         populateCategorySelect($(this).val() == 'income');
-    });
-
-    $('#addTransaction').click(function() {
-        $('.transactionsList').hide();
-        $('.addEditTransactions').show();
-        prevPage = '.transactionsList';
-        currPage = '.addEditTransactions';
-        resetAddEditTransactionsPage();
     });
 
     $('.transactionRepeat').hide();
@@ -910,6 +939,10 @@ function resetHome() {
     ).removeAttr('style');
         
     $('#expenseGraphContainer').show();
+}
+
+function resetTransactionsList() {
+    $('#pageContent').css('padding', '0px');
 }
 
 function resetAddEditTransactionsPage() {
