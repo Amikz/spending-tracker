@@ -657,6 +657,10 @@ function addEditPages() {
     $('.addEditCategories').hide();
 	$('#burgerButton').show();
 
+   $('label').click(function(event) {
+       event.preventDefault();
+   });
+
     $('#saveButton').click(function() {
         $('#addEditPages').parsley().validate();
         if($("#addEditPages").parsley().isValid()) {
