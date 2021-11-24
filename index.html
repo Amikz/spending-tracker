@@ -10,12 +10,14 @@
         <script src="libraries/jquery/jquery-ui.js"></script>
         <link href="libraries/jquery/jquery-ui.css" rel="stylesheet">
         <script src="libraries/parsley.min.js"></script>
+        <script src="libraries/Chart.min.js"></script>
 
         <link rel="stylesheet" href="css/format.css">
         <link rel="stylesheet" href="css/parsley.css">
         <link rel="stylesheet" href="css/home.css">
         <link rel="stylesheet" href="css/burgerMenu.css">
         <link rel="stylesheet" href="css/TransactionList.css">
+        <link rel="stylesheet" href="css/settings.css">
         <link rel="stylesheet" href="css/addEditPages.css">
 
         <script src="js/spending-tracker.js"></script>
@@ -27,11 +29,11 @@
                 <div id="phoneBorderTop" class="phoneBorder"></div>
                 <div id="content">
                     <div id="topBar">
-						<button id='burgerButton' class='home transactionsList settings'>
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-							</svg>
-						</button>
+                        <button id='burgerButton' class='home transactionsList settings'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                        </button>
                         <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
                         <h1 class="addEditCategories">Category</h1>
                         <h1 class="addEditTransactions">Transaction</h1>
@@ -40,6 +42,11 @@
                         <button class="addEditCategories addEditTransactions" id='saveButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                 <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                            </svg>
+                        </button>
+                        <button id="addTransaction" class='transactionsList'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                             </svg>
                         </button>
                     </div>
@@ -115,10 +122,10 @@
                             </div>
                         </div>
                         <hr>
-                        <div id="remindersButton" class='menuButton'>
+                        <!--<div id="remindersButton" class='menuButton'>
                             <input type="button" id="goReminders" value="Reminders">
                         </div>
-                        <hr>
+                        <hr>--> <!--Put inside settings page?-->
                         <div id="settingsButton" class='menuButton'>
                             <input type="button" id="goSettings" value="Settings">
                         </div>
@@ -128,9 +135,10 @@
 
                         <div class='home'>
                             <h2 id='incomeLabel'>Income:</h2>
-                            <h2 id='incomeAmount'>$2130.00</h2>
+                            <h2 id='incomeAmount'></h2>
                             <div id='incomeGraphContainer' class='graphContainer'>
-                                <div id='incomeGraph' class='graph'></div>
+                                <!--<div id='incomeGraph' class='graph'></div>-->
+                                <canvas id="incomeGraph"></canvas>
                             </div>
                             <div id='incomeLegend' class='legend'>
                                 <div class='expandPanel'>
@@ -149,9 +157,9 @@
                             </div>
 
                             <h2 id='expenseLabel'>Expenses:</h2>
-                            <h2 id='expenseAmount'>$1445.00</h2>
+                            <h2 id='expenseAmount'></h2>
                             <div id='expenseGraphContainer' class='graphContainer'>
-                                <div id='expenseGraph' class='graph'></div>
+                                <canvas id='expenseGraph'></canvas>
                             </div>
                             <div id='expenseLegend' class='legend'>
                                 <div class='expandPanel'>
@@ -170,7 +178,7 @@
                             </div>
 
                             <h2 id='balanceLabel'>Balance:</h2>
-                            <h2 id='balanceAmount'>$685.00</h2>
+                            <h2 id='balanceAmount'></h2>
                         </div>
 
                         <div id="transactionsListContent" class='transactionsList'>
@@ -180,13 +188,20 @@
                             <div class="addEditCategories">
                                 <label for="categoryName">Name:</label>
                                 <div class='requiredInput'>
-                                    <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
+                                    <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-prevent-duplicate=""
+                                        data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
                                 </div>
 
                                 <label for="categoryColour">Colour:</label>
                                 <input type="color" id="categoryColour" name="categoryColour">
 
-                                <label for='setCategoryBudget' class='expenseCategory'>Set Budget:</label>
+                                <label for='setCategoryBudget' class='expenseCategory'>Set Budget:
+                                    <span id='tooltip'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                                        </svg>
+                                    </span>
+                                </label>
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
 
                                 <label for='categoryBudget' class='categoryBudget'>Budget:</label>
@@ -284,9 +299,17 @@
                                 <div id="editTransaction">
                                     <hr>
                                     <input type='button' id="deleteTransaction" value="Delete">
+
                                 </div>
                             </div>
                         </form>
+                        <div class="settings">
+                            <div>Dark Mode&nbsp;&nbsp;</div>
+                            <label class="switch">
+                                <input type="checkbox" name="data[SplashPage][firstname]">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div id="phoneBorderBottom" class="phoneBorder"></div>
