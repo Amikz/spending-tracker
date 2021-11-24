@@ -65,7 +65,9 @@ var transaction = [
         date: '2021-11-26',
         willRepeat: true,
         repeat_num: 1,
-        repeat_timePeriod: 'months'
+        repeat_timePeriod: 'months',
+        repeat_forever: false,
+        repeat_until: '2022-12-31'
     },
     {
         transactionID: 10,
@@ -115,7 +117,9 @@ var transaction = [
         date: '2021-11-15',
         willRepeat: true,
         repeat_num: 1,
-        repeat_timePeriod: 'months'
+        repeat_timePeriod: 'months',
+        repeat_forever: false,
+        repeat_until: '2023-03-20'
     },
     {
         transactionID: 3,
@@ -133,7 +137,8 @@ var transaction = [
         date: '2021-11-06',
         willRepeat: true,
         repeat_num: 2,
-        repeat_timePeriod: 'weeks'
+        repeat_timePeriod: 'weeks',
+        repeat_forever: true,
     },
     {
         transactionID: 1,
@@ -151,6 +156,7 @@ var transaction = [
         date: "2021-11-05",
         willRepeat: true,
         repeat_num: 2,
-        repeat_timePeriod: 'weeks'
+        repeat_timePeriod: 'weeks',
+        repeat_forever: true,
     }
 ];

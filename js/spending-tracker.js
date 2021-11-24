@@ -762,6 +762,7 @@ function addEditPages() {
                 };
 
                 if(repeat) {
+                    var repeatForever = $('#transactionDuration_Select').val() == 'forever';
                     newTransaction = {
                         transactionID: transactionID,
                         isIncome: $('#transactionType').val() == 'income',
@@ -770,24 +771,51 @@ function addEditPages() {
                         date: $('#transactionDate').val(),
                         willRepeat: repeat,
                         repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
-                        repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val()
+                        repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
+                        repeat_duration: repeatForever
                     };
+
+                    if(!repeatForever) {
+                        var repeatUntil;
+
+                        if($('#transactionDuration_Select').val() == 'endDate') {
+                            repeatUntil = $('#transactionEndDate').val();
+                        } else {
+                            var repeatUntilDate = new Date($('#transactionDate').val());
+                            repeatUntilDate.setDate(repeatUntilDate.getDate() + 1);
+                            var repeatTimePeriod = $('#transactionRepeatEvery_TimePeriod').val();
+                            var repeatNum = $('#transactionRepeatEvery_Number').val();
+                            var numTimes = $('#numOfPayments').val();
+                            if(repeatTimePeriod == 'days') {
+                                repeatUntilDate.setDate(repeatUntilDate.getDate() + (numTimes * repeatNum));
+                            } else if(repeatTimePeriod == 'weeks') {
+                                repeatUntilDate.setDate(repeatUntilDate.getDate() + (numTimes * 7 * repeatNum));
+                            } else if(repeatTimePeriod == 'months') {
+                                repeatUntilDate.setMonth(repeatUntilDate.getMonth() + (numTimes * repeatNum));
+                            } else if(repeatTimePeriod == 'years') {
+                                repeatUntilDate.setFullYear(repeatUntilDate.getFullYear() + (numTimes * repeatNum));
+                            }
+
+                            repeatUntil = repeatUntilDate.getFullYear() + "-" + (repeatUntilDate.getMonth() + 1) + "-" + repeatUntilDate.getDate();
+                        }
+
+                        newTransaction = {
+                            transactionID: transactionID,
+                            isIncome: $('#transactionType').val() == 'income',
+                            category: $('#transactionCategory_Select').val(),
+                            amount: parseFloat($('#transactionAmount').val()),
+                            date: $('#transactionDate').val(),
+                            willRepeat: repeat,
+                            repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
+                            repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
+                            repeat_duration: repeatForever,
+                            repeat_until: repeatUntil
+                        };
+                    }
                 }
 
                 if(isNew) {
-                    var lo = 0;
-                    var hi = transaction.length;
-                    
-                    while(lo < hi) {
-                        var mid = Math.floor((lo + hi) / 2);
-                        if(new Date(newTransaction.date) >= new Date(transaction[mid].date)) {
-                            hi = mid;
-                        } else {
-                            lo = mid + 1;
-                        }
-                    }
-
-                    transaction.splice(lo, 0, newTransaction);
+                    insertTransaction(newTransaction);
                 } else {
                     transaction[currTransaction].isIncome = newTransaction.isIncome;
                     transaction[currTransaction].category = newTransaction.category;
@@ -1070,6 +1098,22 @@ function hideExpenseFields(isHide) {
         $('.expenseCategory').show();
         $('div.addEditCategories').removeAttr('style');
     }
+}
+
+function insertTransaction(newTransaction) {
+    var lo = 0;
+    var hi = transaction.length;
+    
+    while(lo < hi) {
+        var mid = Math.floor((lo + hi) / 2);
+        if(new Date(newTransaction.date) >= new Date(transaction[mid].date)) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    
+    transaction.splice(lo, 0, newTransaction);
 }
 
 function calculateAngle(event) {

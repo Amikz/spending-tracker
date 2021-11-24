@@ -281,21 +281,19 @@
                                 <label for="transactionDuration" class='transactionDuration'>Duration:</label>
                                 <div id="transactionDuration" class ='transactionDuration'>   
                                     <label for="transactionDuration_Select" style="display: none">Select duration:</label>
-                                    <select id="transactionDuration_Select" name="transactionDuration_Select" data-parsley-required="" data-parsley-required-message="Select a duration."
-                                        data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
+                                    <select id="transactionDuration_Select" name="transactionDuration_Select" data-parsley-required="" data-parsley-required-message="Select a duration.">
                                         <option value="">Select...</option>
                                         <option value="endDate">Ends on a specific date</option>
-                                        <option value="numPayments">After a number of payments</option>
+                                        <option value="numPayments">After a specific number</option>
                                         <option value="forever">Forever</option>
                                     </select>
                                 </div>
                                 <label for="transactionEndDate" class="transactionEndDate">End Date:</label>
                                 <input type="date" id="transactionEndDate" class="transactionEndDate" name="transactionEndDate">
 
-                                <label for="numOfPayments" class='numOfPayments'>Payments:</label>
-                                <div class='numOfPayments' id ='numOfPayments'>
-                                    <input type="text" id='numOfPayments' name='numOfPayments' data-parsley-required="" data-parsley-required-message="Enter the number of payments.">
-                                </div>
+                                <label for="numOfPayments" class='numOfPayments'>Number:</label>
+                                <input type="text" id='numOfPayments' name='numOfPayments' class="numOfPayments wholeNumber" maxlength="3" data-parsley-required="" data-parsley-required-message="Enter the number of times this transaction will recur.">
+                                
                                 <div id="editTransaction">
                                     <hr>
                                     <input type='button' id="deleteTransaction" value="Delete">
