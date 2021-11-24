@@ -58,6 +58,7 @@ var expenseCategory = [
 /*Transactions*/
 var transaction = [
     {
+        transactionID: 11,
         isIncome: false,
         category: 'Rent',
         amount: 1000.00,
@@ -67,6 +68,7 @@ var transaction = [
         repeat_timePeriod: 'months'
     },
     {
+        transactionID: 10,
         isIncome: false,
         category: 'Food',
         amount: 50.00,
@@ -74,6 +76,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 8,
         isIncome: false,
         category: 'Food',
         amount: 100.00,
@@ -81,6 +84,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 7,
         isIncome: false,
         category: 'Clothes',
         amount: 80.00,
@@ -88,6 +92,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 6,
         isIncome: true,
         category: 'Salary',
         amount: 1050.00,
@@ -95,6 +100,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 5,
         isIncome: false,
         category: 'Video Games',
         amount: 30.00,
@@ -102,6 +108,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 4,
         isIncome: false,
         category: 'Phone',
         amount: 60.00,
@@ -111,6 +118,7 @@ var transaction = [
         repeat_timePeriod: 'months'
     },
     {
+        transactionID: 3,
         isIncome: false,
         category: 'Movies',
         amount: 25.00,
@@ -118,6 +126,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 2,
         isIncome: false,
         category: 'Food',
         amount: 100.00,
@@ -127,6 +136,7 @@ var transaction = [
         repeat_timePeriod: 'weeks'
     },
     {
+        transactionID: 1,
         isIncome: true,
         category: 'Sale',
         amount: 30.00,
@@ -134,6 +144,7 @@ var transaction = [
         willRepeat: false
     },
     {
+        transactionID: 0,
         isIncome: true,
         category: 'Salary',
         amount: 1050.00,
