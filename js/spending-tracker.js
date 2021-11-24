@@ -709,7 +709,7 @@ function addEditPages() {
     $('#addTransactionWithinCategory').click(function() {
         var category = $('#categoryName').val();
         $('.addEditCategories').hide();
-        $('.addEditTransactions').hide();
+        $('.addEditTransactions').show();
         resetAddEditTransactionsPage();
         $('#editTransaction').hide();
         prevPage = '.addEditCategories';
