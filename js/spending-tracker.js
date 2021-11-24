@@ -709,7 +709,7 @@ function addEditPages() {
     $('#addTransactionWithinCategory').click(function() {
         var category = $('#categoryName').val();
         $('.addEditCategories').hide();
-        $('.addEditTransactions').show();
+        $('.addEditTransactions').hide();
         resetAddEditTransactionsPage();
         $('#editTransaction').hide();
         prevPage = '.addEditCategories';
@@ -805,6 +805,7 @@ function addEditPages() {
         if(setPosition)
             this.selectionEnd = position - 1;
     });
+    
 }
 
 function resetHome() {
