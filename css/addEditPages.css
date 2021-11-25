@@ -1,15 +1,15 @@
-#cancelButton, #saveButton, #addTransaction {
+#cancelButton, #saveButton, #addTransaction, #leftArrow , #rightArrow{
     color: white;
     font-size: 16pt;
     border: none;
     background-color: inherit;
 }
 
-#saveButton, #addTransaction {
+#saveButton, #addTransaction, #leftArrow ,#rightArrow {
     height: 22pt;
 }
 
-#saveButton svg, #addTransaction svg {
+#saveButton svg, #addTransaction svg , #leftArrow svg, #rightArrow svg{
     height: 22pt;
     width: 22pt;
     color: white;
@@ -100,15 +100,15 @@ div.addEditTransactions input[type=date] {
 }
 
 @media only screen and (min-width: 650px) {
-    #cancelButton, #saveButton, #addTransaction {
+    #cancelButton, #saveButton, #addTransaction, #leftArrow {
         font-size: 20pt;
     }
     
-    #saveButton, #addTransaction {
+    #saveButton, #addTransaction, #leftArrow {
         height: 26pt;
     }
         
-    #saveButton svg, #addTransaction svg {
+    #saveButton svg, #addTransaction svg, #leftArrow {
         height: 26pt;
         width: 26pt;
     }
