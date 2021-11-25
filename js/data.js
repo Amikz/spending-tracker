@@ -66,8 +66,8 @@ var transaction = [
         willRepeat: true,
         repeat_num: 1,
         repeat_timePeriod: 'months',
-        repeat_duration: 'date',
-        repeat_until: '2022-12-31'
+        repeat_until: 'date',
+        repeat_until_date: '2022-12-31'
     },
     {
         transactionID: 10,
@@ -118,8 +118,8 @@ var transaction = [
         willRepeat: true,
         repeat_num: 1,
         repeat_timePeriod: 'months',
-        repeat_duration: 'date',
-        repeat_until: '2023-03-20'
+        repeat_until: 'date',
+        repeat_date: '2023-03-20'
     },
     {
         transactionID: 3,
@@ -138,7 +138,7 @@ var transaction = [
         willRepeat: true,
         repeat_num: 2,
         repeat_timePeriod: 'weeks',
-        repeat_duration: 'forever'
+        repeat_until: 'forever'
     },
     {
         transactionID: 1,
@@ -157,6 +157,6 @@ var transaction = [
         willRepeat: true,
         repeat_num: 2,
         repeat_timePeriod: 'weeks',
-        repeat_duration: 'forever'
+        repeat_until: 'forever'
     }
 ];

@@ -279,20 +279,20 @@
                                     <div id="transactionRepeatEvery_ErrorContainer"></div>
                                 </div>
                                 
-                                <label for="transactionDuration_Select" class ='transactionRepeat transactionRepeat'>Duration:</label>
-                                <select id="transactionDuration_Select" name="transactionDuration_Select" class ='transactionRepeat transactionRepeat' 
-                                    data-parsley-required="" data-parsley-required-message="Select a duration.">
+                                <label for="repeatUntil_Select" class ='transactionRepeat'>&nbsp;&nbsp;Until:</label>
+                                <select id="repeatUntil_Select" name="repeatUntil_Select" class ='transactionRepeat' 
+                                    data-parsley-required="" data-parsley-required-message="Indicate when the transaction will stop being repeated.">
                                     <option value="">Select...</option>
-                                    <option value="date">Ends on a specific date</option>
-                                    <option value="num">After a specific number of times</option>
+                                    <option value="date">Specific date</option>
+                                    <option value="num">Specific number of times</option>
                                     <option value="forever">Forever</option>
                                 </select>
                                 
-                                <label for="transactionEndDate" class="transactionEndDate transactionDuration">End Date:</label>
-                                <input type="date" id="transactionEndDate" name="transactionEndDate" class="transactionEndDate transactionDuration">
+                                <label for="transactionEndDate" class="transactionEndDate repeatUntil">&nbsp;&nbsp;End Date:</label>
+                                <input type="date" id="transactionEndDate" name="transactionEndDate" class="transactionEndDate repeatUntil">
 
-                                <label for="numTimesRepeated" class='numTimesRepeated transactionDuration'>Number:</label>
-                                <input type="text" id='numTimesRepeated' name='numTimesRepeated' class="numTimesRepeated transactionDuration wholeNumber" maxlength="3" 
+                                <label for="numTimesRepeated" class='numTimesRepeated repeatUntil'>&nbsp;&nbsp;Number:</label>
+                                <input type="text" id='numTimesRepeated' name='numTimesRepeated' class="numTimesRepeated repeatUntil wholeNumber" maxlength="3" 
                                     data-parsley-required="" data-parsley-required-message="Enter the number of times this transaction will recur.">
                                 
                                 <div id="editTransaction">
