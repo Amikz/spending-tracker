@@ -30,7 +30,7 @@ body {
     background-color: #0F79D0;
     padding: 10px;
     display: grid;
-    grid-template-columns: [left-button] 10% [spacer1] 1fr [left-arrow] max-content [title] max-content [right-arrow] max-content [spacer2] 1fr [right-button] 10% [end];
+    grid-template-columns: [left-button] 10% [spacer1] 1fr [left-arrow] 5% [title] 55% [right-arrow] 5% [spacer2] 1fr [right-button] 10% [end];
     column-gap: 2%;
     align-items: center;
     justify-items: center;
@@ -38,7 +38,7 @@ body {
 
 #topBar h1 {
     color: white;
-    font-size: 20pt;
+    font-size: 22pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     margin: 0px;
@@ -46,7 +46,7 @@ body {
 }
 
 h2 {
-    font-size: 18pt;
+    font-size: 20pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     width: fit-content;
@@ -167,11 +167,11 @@ input[type=checkbox] {
     }
 
     #topBar h1 {
-        font-size: 22pt;
+        font-size: 17pt;
     }
 
     h2 {
-        font-size: 20pt;
+        font-size: 17pt;
     }
 
     label, input[type=button], p {
