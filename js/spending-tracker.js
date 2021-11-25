@@ -1030,8 +1030,36 @@ function checkAmount(category, amount) {
     if (category.setBudget) {
         if (category.warning >= 0) {
             if (amount >= category.warning) {
-                console.log("Boi ya fucked up lmao");
-                alert(category.name + " warning reached!");
+                // console.log("Boi ya fucked up lmao");
+                var diff = category.budget - amount;
+                var msg = undefined;
+                if (amount < category.budget) {
+                    msg = "You are $" + diff + " away from your \"" + 
+                    category.name + "\" budget." + "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+                }
+                else { 
+                    msg = "You have reached your \"" + category.name + "\" budget limit." + 
+                    "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+                }
+                $(function() {
+                    $('#dialog').css("visibility", "visible");
+                    $('#dialog').css("position", "static");
+                    $('#warningMessage').html(msg);
+                    $('#dialog').dialog({
+                        buttons: [
+                          {
+                                text: "OK",
+                                click: function() {
+                                    $( this ).dialog( "close" );
+                            }
+                          }
+                        ]
+                      });
+                });
             }
         }
         // console.log(category.name);
