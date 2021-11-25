@@ -38,7 +38,7 @@ body {
 
 #topBar h1 {
     color: white;
-    font-size: 22pt;
+    font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     margin: 0px;
@@ -46,7 +46,7 @@ body {
 }
 
 h2 {
-    font-size: 20pt;
+    font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     width: fit-content;
@@ -63,16 +63,35 @@ h2 {
     grid-row-start: pageContent;
 }
 
-#addTransaction{
+#cancelButton, #saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
+    color: white;
+    font-size: 16pt;
+    border: none;
+    background-color: inherit;
+}
+
+#saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
+    height: 22pt;
+}
+
+#saveButton svg, #addTransaction svg, #leftArrow svg, #rightArrow svg, #burgerButton svg {
+    height: 18pt;
+    width: 18pt;
+    color: white;
+}
+
+#addTransaction {
    grid-column-start: right-button;
 }
-#leftArrow{
+
+#leftArrow {
     grid-column-start: left-arrow;
 }
 
-#rightArrow{
-    grid-column-start:right-arrow;
+#rightArrow {
+    grid-column-start: right-arrow;
 }
+
 .burgerMenu {
 	grid-row-start: pageContent;
 	width: 50%;
@@ -167,11 +186,76 @@ input[type=checkbox] {
     }
 
     #topBar h1 {
-        font-size: 17pt;
+        font-size: 18pt;
     }
 
     h2 {
         font-size: 17pt;
+    }
+    
+    #cancelButton, #saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
+        font-size: 18pt;
+    }
+    
+    #saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
+        height: 24pt;
+    }
+        
+    #saveButton svg, #addTransaction svg, #leftArrow svg, #rightArrow svg, #burgerButton svg {
+        height: 22pt;
+        width: 22pt;
+    }
+
+    label, input[type=button], p {
+        font-size: 16pt;
+    }
+    
+    select, input[type=text] {
+        font-size: 14pt;
+    }
+    
+    option {
+        font-size: 12pt;
+    }
+
+    .phoneBorder {
+        display: block;
+        background-color: #121212;
+        width: 100%;
+    }
+
+    #phoneBorderTop {
+        height: 7%;
+        border-radius: 20px 20px 0px 0px;
+    }
+
+    #phoneBorderBottom {
+        height: 9%;
+        border-radius: 0px 0px 20px 20px;
+    }
+}
+
+@media only screen and (min-height: 750px) {
+
+    #topBar h1 {
+        font-size: 22pt;
+    }
+
+    h2 {
+        font-size: 20pt;
+    }
+    
+    #cancelButton, #saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
+        font-size: 20pt;
+    }
+    
+    #saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
+        height: 26pt;
+    }
+        
+    #saveButton svg, #addTransaction svg, #leftArrow svg, #rightArrow svg, #burgerButton svg {
+        height: 26pt;
+        width: 26pt;
     }
 
     label, input[type=button], p {
@@ -206,21 +290,5 @@ input[type=checkbox] {
     
     input[type=color], select {
         height: 39px;
-    }
-
-    .phoneBorder {
-        display: block;
-        background-color: #121212;
-        width: 100%;
-    }
-
-    #phoneBorderTop {
-        height: 7%;
-        border-radius: 20px 20px 0px 0px;
-    }
-
-    #phoneBorderBottom {
-        height: 9%;
-        border-radius: 0px 0px 20px 20px;
     }
 }

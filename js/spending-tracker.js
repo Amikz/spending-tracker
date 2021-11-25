@@ -316,7 +316,7 @@ function homePage() {
                 $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
 
-                if($(window).width() >= 650) {
+                if($(window).width() >= 650 && $(window).height() >= 750) {
                     $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
                 } else {
                     $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
@@ -350,7 +350,7 @@ function homePage() {
                 $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
 
-                if($(window).width() >= 650) {
+                if($(window).width() >= 650 && $(window).height() >= 750) {
                     $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
                 } else {
                     $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');

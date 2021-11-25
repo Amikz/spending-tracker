@@ -14,22 +14,10 @@
     height: 1px;
 }
 
-#burgerButton {
-	color: white;
-	background-color: inherit;
-	border: none;
-}
-
-#burgerButton svg {
-    height: 22pt;
-    width: 22pt;
-    color: white;
-}
-
 #goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings {
 	background-color: white;
 	text-align: left;
-	font-size: 16px;
+	font-size: 18px;
 	padding: 5% 10%;
 	width: 100%;
 	border: none;
@@ -38,7 +26,7 @@
 #dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
 	background-color: white;
 	text-align: left;
-	font-size: 16pt;
+	font-size: 12pt;
 	border:none;
 	padding: 10%;
 	width: 100%;
@@ -77,25 +65,34 @@
 }
 
 #dailyContainer svg, #weeklyContainer svg, #biWeeklyContainer svg, #monthlyContainer svg, #yearlyContainer svg{
-	height:22pt;
-	width:22pt;
+	height: 22pt;
+	width: 22pt;
 	background-color:white;
 }
 
 @media only screen and (min-width: 650px) {
-    #goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings, 
-	#daily, #weekly, #biWeekly, #monthly, #yearly {
-        font-size: 20pt;
+    #goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings {
+        font-size: 16pt;
     }
-    
-    #burgerButton {
-        height: 26pt;
+
+	#dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
+		font-size: 14pt;
+	}
+
+    #homeButton input[type=button], #timePeriodButton input[type=button],
+	#transactionsButton input[type=button], #settingsButton input[type=button]	{
+        margin: auto auto;
     }
-        
-    #burgerButton svg {
-        height: 26pt;
-        width: 26pt;
+}
+
+@media only screen and (min-height: 750px) {
+    #goBackHome, #goChangeTimePeriod, #goTransactions, #goReminders, #goSettings {
+        font-size: 18pt;
     }
+
+	#dailyButton, #weeklyButton, #biWeeklyButton, #monthlyButton, #yearlyButton {
+		font-size: 16pt;
+	}
 
     #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
         width: 35px;
