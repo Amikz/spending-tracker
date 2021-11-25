@@ -639,9 +639,13 @@ function transactionList() {
                 $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
                 $('#repeatUntil_Select').val(transactionItem.repeat_until);
                 if(transactionItem.repeat_until == 'date') {
-
+                    $('#transactionEndDate').val(transactionItem.repeat_until_date);
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+                    $('.transactionEndDate').show();
                 } else if(transactionItem.repeat_until == 'num') {
-
+                    $('#numTimesRepeated').val(transactionItem.repeat_until_num);
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+                    $('.numTimesRepeated').show();
                 }
             }
 
