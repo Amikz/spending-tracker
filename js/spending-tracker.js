@@ -144,9 +144,6 @@ function addHomeData() {
         $legendExpenseCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
 
         totalExpenses += amount;
-        //
-        checkAmount(expenseCategory[i], amount);
-        //
         expenseCategoryAmount.push(amount);
         expenseCategoryLabel.push(expenseCategory[i].name);
         expenseCategoryColour.push(expenseCategory[i].colour);
@@ -785,6 +782,7 @@ function addEditPages() {
                         transaction[currTransaction].repeat_timePeriod = newTransaction.repeat_timePeriod;
                     }
                 }
+                checkAmount(newTransaction.category);
             }
 
             addTransactionListData();
@@ -1026,9 +1024,27 @@ function calculateAngle(event) {
     return Math.abs((Math.atan2(mouseX, mouseY) * (180/Math.PI)) - 180);
 }
 
-function checkAmount(category, amount) {
+function checkAmount(transCategory) {
+    var category = expenseCategory.find(c => {
+        return c.name == transCategory
+    });
+
+    var amount = 0;
+    
+    var filteredTransaction = transaction;
+    var transactionsInCategory = filteredTransaction.filter(e => {
+        return e.category == category.name;
+    });
+
+    for(var t = 0; t < transactionsInCategory.length; t++) {
+        amount += transactionsInCategory[t].amount;
+    }
+
     if (category.setBudget) {
+        console.log("set");
         if (category.warning >= 0) {
+            console.log("Warning");
+            console.log(category.warning);
             if (amount >= category.warning) {
                 // console.log("Boi ya fucked up lmao");
                 var diff = category.budget - amount;
@@ -1062,7 +1078,5 @@ function checkAmount(category, amount) {
                 });
             }
         }
-        // console.log(category.name);
     }
-    // console.log(category.name + " " + amount);
 }
