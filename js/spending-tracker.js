@@ -637,6 +637,12 @@ function transactionList() {
                 $('#transactionRepeat_Check').click();
                 $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
                 $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
+                $('#transactionDuration_Select').val(transactionItem.repeat_duration);
+                if(transactionItem.repeat_duration == 'date') {
+
+                } else if(transactionItem.repeat_duration == 'num') {
+
+                }
             }
 
             $('div.addEditTransactions').attr('transactionID', $(this).attr('transactionID'));
@@ -762,7 +768,7 @@ function addEditPages() {
                 };
 
                 if(repeat) {
-                    var repeatForever = $('#transactionDuration_Select').val() == 'forever';
+                    var repeatDuration = $('#transactionDuration_Select').val();
                     newTransaction = {
                         transactionID: transactionID,
                         isIncome: $('#transactionType').val() == 'income',
@@ -772,13 +778,13 @@ function addEditPages() {
                         willRepeat: repeat,
                         repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
                         repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
-                        repeat_duration: repeatForever
+                        repeat_duration: repeatDuration
                     };
 
-                    if(!repeatForever) {
+                    if(repeatDuration != 'forever') {
                         var repeatUntil;
 
-                        if($('#transactionDuration_Select').val() == 'endDate') {
+                        if($('#transactionDuration_Select').val() == 'date') {
                             repeatUntil = $('#transactionEndDate').val();
                         } else {
                             var repeatUntilDate = new Date($('#transactionDate').val());
@@ -808,7 +814,7 @@ function addEditPages() {
                             willRepeat: repeat,
                             repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
                             repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
-                            repeat_duration: repeatForever,
+                            repeat_duration: repeatDuration,
                             repeat_until: repeatUntil
                         };
                     }
@@ -917,11 +923,11 @@ function addEditPages() {
 
     $('#transactionDuration_Select').on('change', function() {
         $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
-        if (this.value == "endDate") {
+        if (this.value == "date") {
             $('.transactionEndDate').show();
             $('.numTimesRepeated').hide();
         }
-        else if (this.value == "numPayments") {
+        else if (this.value == "num") {
             $('.transactionEndDate').hide();
             $('.numTimesRepeated').show();
         }
