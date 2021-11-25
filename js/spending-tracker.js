@@ -5,7 +5,10 @@ var isNew = false;
 var currTransaction = 0;
 var currCategory = 0;
 var transactionID = 12;
-var timePeriod = 'monthly';
+var timePeriod = 'monthly'
+var startDate = new Date(2021, 10, 1);
+var currDate = new Date(2021, 11, 0);
+var endDate = new Date(2021, 11, 0);
 var incomeCategoryLabel = [];
 var incomeCategoryAmount = [];
 var incomeCategoryColour = [];
@@ -72,6 +75,7 @@ $(document).ready(function() {
     addEditPages();
     transactionList();
 	showMeTheBurger();
+    changeTimePeriod();
 
     $('.settings').hide();
     $('.transactionsList').hide();
@@ -85,12 +89,15 @@ function addHomeData() {
             '<p class="legendCategoryName"></p>' +
             '<p class="legendCategoryAmount"></p>' +
         '</div>';
-
-    var filteredTransaction = transaction;
-    /*var filteredTransaction = transaction.filter(e => {
+    
+    var filteredTransaction = transaction.filter(e => {
         var date = new Date(e.date);
-        return startDate < date && date < currDate;
-    });*/
+        date.setDate(date.getDate() + 1);
+        date.setHours(0, 0, 0, 0);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+        return startDate <= date && date <= endDate;
+    });
 
     //Display income legend
     $('#incomeCategories').empty();
@@ -195,10 +202,14 @@ function addTransactionListData() {
     '</div>';
 
     var filteredTransaction = transaction;
-    /*var filteredTransaction = transaction.filter(e => {
+    filteredTransaction = transaction.filter(e => {
         var date = new Date(e.date);
-        return startDate < date && date < currDate;
-    });*/
+        date.setDate(date.getDate() + 1);
+        endDate.setHours(0, 0, 0, 0);
+        startDate.setHours(0, 0, 0, 0);
+        date.setHours(0, 0, 0, 0);
+        return startDate <= date && date <= endDate;
+    });
 
 
     $('#transactionsListContent').empty();
@@ -369,13 +380,13 @@ function showMeTheBurger() {
 	$('#timeContainer').hide();
 	disableButton();
     onHover();
-	$('#burgerButton').click(function(){
+	$('#burgerButton').click(function() {
 		$('.burgerMenu').slideToggle();
 		$('#timeContainer').hide();
         $('#timePeriodButton hr:not(.hide)').addClass('hide');
 	});
 	
-	$('#goChangeTimePeriod').click(function(){
+	$('#goChangeTimePeriod').click(function() {
 		$('#timeContainer').slideToggle();
         $('#timePeriodButton hr').toggleClass('hide');
         setTimePeriod();
@@ -459,27 +470,61 @@ function setTimePeriod() {
         if(timePeriod != 'daily') {
             timePeriod = 'daily';
         }
+        currDate = new Date(2021, 11, 0);
+        startDate = new Date(2021, 11, 0);
+        endDate = new Date(2021, 11, 0);
+        $('h1.home').text(currDate.toLocaleString('default', { month: 'short' }) + ' ' + currDate.getDate());
+        addHomeData();
+        addTransactionListData();
 		disableButton();
     });
 
     $('#weeklyButton').click(function() {
         if(timePeriod != 'weekly') {
-            timePeriod = 'weekly';
+            timePeriod = 'weekly';     
         }
+        currDate = new Date(2021, 11, 0);
+        startDate = new Date(2021, 10, 28);
+        endDate = new Date(2021, 11, 4);
+        
+        if(startDate.getMonth() != endDate.getMonth()) {
+            $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+        } else {
+            $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
+        }
+        addHomeData();
+        addTransactionListData();
 		disableButton();
     });
 
     $('#biWeeklyButton').click(function() {
         if(timePeriod != 'biWeekly') {
-            timePeriod = 'biWeekly';
+            timePeriod = 'biWeekly';     
         }
-		disableButton();
+        currDate = new Date(2021, 11, 0);
+        startDate = new Date(2021, 10, 28);
+        endDate = new Date(2021, 11, 11);
+        
+        if(startDate.getMonth() != endDate.getMonth()) {
+            $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+        } else {
+            $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
+        }
+        addHomeData();
+        addTransactionListData();
+        disableButton();
     });
 
     $('#monthlyButton').click(function() {
         if(timePeriod != 'monthly') {
             timePeriod = 'monthly';
         }
+        currDate = new Date(2021, 11, 0);
+        startDate = new Date(2021, 10, 01);
+        endDate = new Date(2021, 11, 0);
+        $('h1.home').text(currDate.toLocaleString('default', { month: 'long' }));
+        addHomeData();
+        addTransactionListData();
 		disableButton();
     });
 
@@ -487,7 +532,116 @@ function setTimePeriod() {
         if(timePeriod != 'yearly') {
             timePeriod = 'yearly';
         }
+        currDate = new Date(2021, 11, 0);
+        startDate = new Date(2021, 0, 1);
+        endDate = new Date(2021, 11, 0);
+        $('h1.home').text(currDate.getFullYear());
+        addHomeData();
+        addTransactionListData();
 		disableButton();
+    });
+}
+
+function changeTimePeriod() {
+	$('#leftArrow').click(function() {
+        if(timePeriod == 'daily') {
+            currDate.setDate(currDate.getDate() - 1);
+            startDate.setDate(startDate.getDate() - 1);
+            endDate.setDate(startDate.getDate() - 1);
+            $('h1.home').text(currDate.toLocaleString('default', { month: 'short' }) + ' ' + currDate.getDate());
+        }
+
+        if(timePeriod == 'weekly') {
+            currDate.setDate(currDate.getDate() - 7);
+            startDate.setDate(startDate.getDate() - 7);
+            endDate.setDate(endDate.getDate() - 7);
+            if(startDate.getMonth() != endDate.getMonth()) {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+            } else {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
+            }
+        }
+
+        if(timePeriod == 'biWeekly') {
+            currDate.setDate(currDate.getDate() - 14);
+            startDate.setDate(startDate.getDate() - 14);
+            endDate.setDate(endDate.getDate() - 14);
+            if(startDate.getMonth() != endDate.getMonth()) {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+            } else {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate()+ ' - ' + endDate.getDate());
+            }
+        }
+         
+        if(timePeriod == 'monthly') {
+            var tempYear = currDate.getFullYear();
+            var tempMonth = currDate.getMonth();
+            currDate = new Date(tempYear,tempMonth, 0)
+            startDate = new Date(tempYear,tempMonth-1, 1);
+            endDate = new Date(tempYear,tempMonth, 0);
+            $('h1.home').text(currDate.toLocaleString('default', { month: 'long' }));
+        }
+
+        if(timePeriod == 'yearly') {
+            currDate.setFullYear(currDate.getFullYear() - 1);
+            startDate.setFullYear(startDate.getFullYear() - 1);
+            endDate.setFullYear(endDate.getFullYear() - 1);
+            $('h1.home').text(currDate.getFullYear());
+        }
+
+        addHomeData();
+        addTransactionListData();
+    });
+
+    $('#rightArrow').click(function() {
+
+        if(timePeriod == 'daily') {
+            currDate.setDate(currDate.getDate() + 1);
+            startDate.setDate(startDate.getDate() + 1);
+            endDate.setDate(startDate.getDate() + 1);
+            $('h1.home').text(currDate.toLocaleString('default', { month: 'short' }) + ' ' + currDate.getDate());
+        }
+
+        if(timePeriod == 'weekly') {
+            currDate.setDate(currDate.getDate() + 7);
+            startDate.setDate(startDate.getDate() + 7);
+            endDate.setDate(endDate.getDate() + 7);
+            if(startDate.getMonth()!=endDate.getMonth()) {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' +endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+            } else {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
+            }
+        }
+
+        if(timePeriod == 'biWeekly') {
+            currDate.setDate(currDate.getDate() + 14);
+            startDate.setDate(startDate.getDate() + 14);
+            endDate.setDate(endDate.getDate() + 14);
+            if(startDate.getMonth()!=endDate.getMonth()) {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+            } else {
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
+            }
+        }
+        
+        if(timePeriod == 'monthly') {
+            var tempYear = currDate.getFullYear();
+            var tempMonth = currDate.getMonth()+2;
+            currDate = new Date(tempYear, tempMonth, 0);
+            startDate = new Date(tempYear, tempMonth-1, 1);
+            endDate = new Date(tempYear, tempMonth, 0);
+            $('h1.home').text(currDate.toLocaleString('default', { month: 'long' }));
+        }
+
+        if(timePeriod == 'yearly') {
+            currDate.setFullYear(currDate.getFullYear() + 1);
+            startDate.setFullYear(startDate.getFullYear() + 1);
+            endDate.setFullYear(endDate.getFullYear() + 1);
+            $('h1.home').text(currDate.getFullYear());
+        }
+        
+        addHomeData();
+        addTransactionListData();
     });
 }
 
@@ -530,7 +684,7 @@ function disableTime() {
 }
 
 function onHover() {
-    $("#dailyContainer").hover(function(){
+    $("#dailyContainer").hover(function() {
         $(this).css("background-color", "#DCDCDC");
         $("#dailyButton").css("background-color", "#DCDCDC");
     }, function() {
@@ -541,7 +695,7 @@ function onHover() {
             } 
     });
 
-    $("#weeklyContainer").hover(function(){
+    $("#weeklyContainer").hover(function() {
         $(this).css("background-color", "#DCDCDC");
         $("#weeklyButton").css("background-color", "#DCDCDC");
     }, function() {
@@ -552,7 +706,7 @@ function onHover() {
             } 
     });
 
-    $("#biWeeklyContainer").hover(function(){
+    $("#biWeeklyContainer").hover(function() {
         $(this).css("background-color", "#DCDCDC");
         $("#biWeeklyButton").css("background-color", "#DCDCDC");
     }, function() {
@@ -563,7 +717,7 @@ function onHover() {
             } 
     });
 
-    $("#monthlyContainer").hover(function(){
+    $("#monthlyContainer").hover(function() {
         $(this).css("background-color", "#DCDCDC");
         $("#monthlyButton").css("background-color", "#DCDCDC");
     }, function() {
@@ -574,7 +728,7 @@ function onHover() {
             } 
     });
 
-    $("#yearlyContainer").hover(function(){
+    $("#yearlyContainer").hover(function() {
         $(this).css("background-color", "#DCDCDC");
         $("#yearlyButton").css("background-color", "#DCDCDC");
     }, function() {
@@ -654,6 +808,8 @@ function transactionList() {
         }
     });
 }
+
+
 
 function addEditPages() {
     jQuery("#addEditPages").parsley({ excluded: "input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" });
