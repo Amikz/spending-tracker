@@ -109,20 +109,9 @@ div.addEditTransactions input[type=date] {
 
 #dialog {
     visibility: hidden;
-    /* width: 200px;
-    height: 75px; */
-    /* background-color: #B2B0AA; */
     color: black;
     text-align: left;
-    /* border-radius: 6px; */
-    /* padding: 5px 0; */
     position: absolute;
-    /* z-index: 1; */
-    /* bottom: 125%; */
-    /* left: 50%; */
-    /* margin-left: -103px; */
-    /* opacity: 0; */
-    /* transition: opacity 0.3s; */
     font-size: small;
 }
 
