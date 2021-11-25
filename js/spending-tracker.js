@@ -144,6 +144,9 @@ function addHomeData() {
         $legendExpenseCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
 
         totalExpenses += amount;
+        //
+        checkAmount(expenseCategory[i], amount);
+        //
         expenseCategoryAmount.push(amount);
         expenseCategoryLabel.push(expenseCategory[i].name);
         expenseCategoryColour.push(expenseCategory[i].colour);
@@ -1021,4 +1024,45 @@ function calculateAngle(event) {
     var mouseY = event.pageY - boxCenterY;
 
     return Math.abs((Math.atan2(mouseX, mouseY) * (180/Math.PI)) - 180);
+}
+
+function checkAmount(category, amount) {
+    if (category.setBudget) {
+        if (category.warning >= 0) {
+            if (amount >= category.warning) {
+                // console.log("Boi ya fucked up lmao");
+                var diff = category.budget - amount;
+                var msg = undefined;
+                if (amount < category.budget) {
+                    msg = "You are $" + diff + " away from your \"" + 
+                    category.name + "\" budget." + "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+                }
+                else { 
+                    msg = "You have reached your \"" + category.name + "\" budget limit." + 
+                    "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+                }
+                $(function() {
+                    $('#dialog').css("visibility", "visible");
+                    $('#dialog').css("position", "static");
+                    $('#warningMessage').html(msg);
+                    $('#dialog').dialog({
+                        buttons: [
+                          {
+                                text: "OK",
+                                click: function() {
+                                    $( this ).dialog( "close" );
+                            }
+                          }
+                        ]
+                      });
+                });
+            }
+        }
+        // console.log(category.name);
+    }
+    // console.log(category.name + " " + amount);
 }

@@ -60,6 +60,60 @@ div.addEditCategories div.requiredInput input[type=text], div.addEditCategories>
 div.addEditTransactions input[type=date] {
     width: calc(100% - 6px);
 }
+#tooltip {
+    position: relative;
+}
+
+#tooltip svg {
+    fill: #d3d3d3;
+}
+
+.tooltipText {
+    visibility: hidden;
+    width: 200px;
+    height: 75px;
+    background-color: #B2B0AA;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -103px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: small;
+}
+
+#tooltip:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}
+
+#tooltip .tooltipText::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #B2B0AA transparent transparent transparent;
+}
+
+/* #categoryWarning {
+    position: relative;
+} */
+
+#dialog {
+    visibility: hidden;
+    color: black;
+    text-align: left;
+    position: absolute;
+    font-size: small;
+}
 
 #categoryBudgetEvery, #transactionRepeatEvery {
     display: grid;
