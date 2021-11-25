@@ -841,37 +841,40 @@ function addEditPages() {
                             };
                         }
 
-                        var transactionDate = new Date($('#transactionDate').val());
-                        transactionDate.setDate(transactionDate.getDate() + 1);
-                        var repeatDate = new Date(repeatUntilDate);
-                        repeatDate.setDate(repeatDate.getDate() + 1);
-                        var originalTransactionID = transactionID + '';
-                        while(transactionDate < repeatDate) {
-                            if(repeatTimePeriod == 'days') {
-                                transactionDate.setDate(transactionDate.getDate() + repeatNum);
-                            } else if(repeatTimePeriod == 'weeks') {
-                                transactionDate.setDate(transactionDate.getDate() + (7 * repeatNum));
-                            } else if(repeatTimePeriod == 'months') {
-                                transactionDate.setMonth(transactionDate.getMonth() + repeatNum);
-                            } else if(repeatTimePeriod == 'years') {
-                                transactionDate.setFullYear(transactionDate.getFullYear() + repeatNum);
+                        if(isNew) {
+                            var transactionDate = new Date($('#transactionDate').val());
+                            transactionDate.setDate(transactionDate.getDate() + 1);
+                            var repeatDate = new Date(repeatUntilDate);
+                            repeatDate.setDate(repeatDate.getDate() + 1);
+                            var originalTransactionID = transactionID + '';
+                            while(transactionDate < repeatDate) {
+                                if(repeatTimePeriod == 'days') {
+                                    transactionDate.setDate(transactionDate.getDate() + repeatNum);
+                                } else if(repeatTimePeriod == 'weeks') {
+                                    transactionDate.setDate(transactionDate.getDate() + (7 * repeatNum));
+                                } else if(repeatTimePeriod == 'months') {
+                                    transactionDate.setMonth(transactionDate.getMonth() + repeatNum);
+                                } else if(repeatTimePeriod == 'years') {
+                                    transactionDate.setFullYear(transactionDate.getFullYear() + repeatNum);
+                                }
+    
+                                var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
+                                if(transactionDate.getDate() < 10)
+                                    date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-0" + transactionDate.getDate();
+    
+                                transactionID++;
+                                var transaction = {
+                                    transactionID: originalTransactionID + "-" + transactionID,
+                                    isIncome: $('#transactionType').val() == 'income',
+                                    category: $('#transactionCategory_Select').val(),
+                                    amount: parseFloat($('#transactionAmount').val()),
+                                    date: date,
+                                    isRepeat: true,
+                                    willRepeat: false
+                                };
+                                insertTransaction(transaction);
+
                             }
-
-                            var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
-                            if(transactionDate.getDate() < 10)
-                                date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-0" + transactionDate.getDate();
-
-                            transactionID++;
-                            var transaction = {
-                                transactionID: originalTransactionID + "-" + transactionID,
-                                isIncome: $('#transactionType').val() == 'income',
-                                category: $('#transactionCategory_Select').val(),
-                                amount: parseFloat($('#transactionAmount').val()),
-                                date: date,
-                                isRepeat: true,
-                                willRepeat: false
-                            };
-                            insertTransaction(transaction);
                         }
 
                     }
