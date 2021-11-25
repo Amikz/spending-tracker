@@ -9,7 +9,7 @@
     height: 22pt;
 }
 
-#saveButton svg, #addTransaction svg , #leftArrow svg, #rightArrow svg{
+#saveButton svg, #addTransaction svg, #leftArrow svg, #rightArrow svg {
     height: 22pt;
     width: 22pt;
     color: white;
@@ -108,7 +108,7 @@ div.addEditTransactions input[type=date] {
         height: 26pt;
     }
         
-    #saveButton svg, #addTransaction svg, #leftArrow {
+    #saveButton svg, #addTransaction svg, #leftArrow svg, #rightArrow svg {
         height: 26pt;
         width: 26pt;
     }
