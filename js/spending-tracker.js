@@ -224,7 +224,8 @@ function addTransactionListData() {
         $transactionItem.children('.rect').css('background-color', category.colour).attr('category', category.name);
 
         var date = new Date(filteredTransaction[i].date);
-        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + (date.getDate() + 1) + ', ' + date.getFullYear());
+        date.setDate(date.getDate() + 1);
+        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + date.getDate() + ', ' + date.getFullYear());
         $transactionItem.children('.date').attr('date', filteredTransaction[i].date);
         $('#transactionsListContent').append($transactionItem);
     }
@@ -763,47 +764,52 @@ function addEditPages() {
             } else if($('div.addEditTransactions').is(':visible')) {
                 var repeat = $('#transactionRepeat_Check').is(':checked');
                 var newTransaction = {
-                    transactionID: transactionID,
+                    transactionID: transactionID + '',
                     isIncome: $('#transactionType').val() == 'income',
                     category: $('#transactionCategory_Select').val(),
                     amount: parseFloat($('#transactionAmount').val()),
                     date: $('#transactionDate').val(),
+                    isRepeat: false,
                     willRepeat: repeat
                 };
 
                 if(repeat) {
                     var repeatUntil = $('#repeatUntil_Select').val();
+                    var repeatNum = parseInt($('#transactionRepeatEvery_Number').val());
+                    var repeatTimePeriod = $('#transactionRepeatEvery_TimePeriod').val();
                     newTransaction = {
-                        transactionID: transactionID,
+                        transactionID: transactionID + '',
                         isIncome: $('#transactionType').val() == 'income',
                         category: $('#transactionCategory_Select').val(),
                         amount: parseFloat($('#transactionAmount').val()),
                         date: $('#transactionDate').val(),
+                        isRepeat: false,
                         willRepeat: repeat,
-                        repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
-                        repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
+                        repeat_num: repeatNum,
+                        repeat_timePeriod: repeatTimePeriod,
                         repeat_until: repeatUntil
                     };
 
                     if(repeatUntil != 'forever') {
+                        var repeatUntilDate = $('#transactionEndDate').val();
                         if($('#repeatUntil_Select').val() == 'date') {
                             newTransaction = {
-                                transactionID: transactionID,
+                                transactionID: transactionID + '',
                                 isIncome: $('#transactionType').val() == 'income',
                                 category: $('#transactionCategory_Select').val(),
                                 amount: parseFloat($('#transactionAmount').val()),
                                 date: $('#transactionDate').val(),
+                                isRepeat: false,
                                 willRepeat: repeat,
-                                repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
-                                repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
+                                repeat_num: repeatNum,
+                                repeat_timePeriod: repeatTimePeriod,
                                 repeat_until: repeatUntil,
-                                repeat_until_date: $('#transactionEndDate').val()
+                                repeat_until_date: repeatUntilDate
                             };
                             
                         } else {
-                            var tempRepeatUntilDate = new Date($('#transactionDate').val());
+                            var tempRepeatUntilDate = new Date(repeatUntilDate);
                             tempRepeatUntilDate.setDate(tempRepeatUntilDate.getDate() + 1);
-                            var repeatTimePeriod = $('#transactionRepeatEvery_TimePeriod').val();
                             var repeatNum = $('#transactionRepeatEvery_Number').val();
                             var numTimes = $('#numTimesRepeated').val();
 
@@ -820,18 +826,52 @@ function addEditPages() {
                             repeatUntilDate = tempRepeatUntilDate.getFullYear() + "-" + (tempRepeatUntilDate.getMonth() + 1) + "-" + tempRepeatUntilDate.getDate();
 
                             newTransaction = {
-                                transactionID: transactionID,
+                                transactionID: transactionID + '',
                                 isIncome: $('#transactionType').val() == 'income',
                                 category: $('#transactionCategory_Select').val(),
                                 amount: parseFloat($('#transactionAmount').val()),
                                 date: $('#transactionDate').val(),
+                                isRepeat: false,
                                 willRepeat: repeat,
-                                repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
-                                repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val(),
+                                repeat_num: repeatNum,
+                                repeat_timePeriod: repeatTimePeriod,
                                 repeat_until: repeatUntil,
                                 repeat_until_date: repeatUntilDate,
                                 repeat_until_num: $('#numTimesRepeated').val()
                             };
+                        }
+
+                        var transactionDate = new Date($('#transactionDate').val());
+                        transactionDate.setDate(transactionDate.getDate() + 1);
+                        var repeatDate = new Date(repeatUntilDate);
+                        repeatDate.setDate(repeatDate.getDate() + 1);
+                        var originalTransactionID = transactionID + '';
+                        while(transactionDate < repeatDate) {
+                            if(repeatTimePeriod == 'days') {
+                                transactionDate.setDate(transactionDate.getDate() + repeatNum);
+                            } else if(repeatTimePeriod == 'weeks') {
+                                transactionDate.setDate(transactionDate.getDate() + (7 * repeatNum));
+                            } else if(repeatTimePeriod == 'months') {
+                                transactionDate.setMonth(transactionDate.getMonth() + repeatNum);
+                            } else if(repeatTimePeriod == 'years') {
+                                transactionDate.setFullYear(transactionDate.getFullYear() + repeatNum);
+                            }
+
+                            var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
+                            if(transactionDate.getDate() < 10)
+                                date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-0" + transactionDate.getDate();
+
+                            transactionID++;
+                            var transaction = {
+                                transactionID: originalTransactionID + "-" + transactionID,
+                                isIncome: $('#transactionType').val() == 'income',
+                                category: $('#transactionCategory_Select').val(),
+                                amount: parseFloat($('#transactionAmount').val()),
+                                date: date,
+                                isRepeat: true,
+                                willRepeat: false
+                            };
+                            insertTransaction(transaction);
                         }
 
                     }
