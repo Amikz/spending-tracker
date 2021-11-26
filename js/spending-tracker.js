@@ -4,7 +4,7 @@ var isIncome = false;
 var isNew = false;
 var currTransaction = 0;
 var currCategory = 0;
-var transactionID = 12;
+var transactionID = 17;
 var timePeriod = 'monthly'
 var startDate = new Date(2021, 10, 1);
 var currDate = new Date(2021, 11, 0);
@@ -73,7 +73,7 @@ $(document).ready(function() {
     addTransactionListData();
     homePage();
     addEditPages();
-    transactionList();
+    transactionsListPage();
 	showMeTheBurger();
     changeTimePeriod();
 
@@ -90,7 +90,7 @@ function addHomeData() {
             '<p class="legendCategoryAmount"></p>' +
         '</div>';
     
-    var filteredTransaction = transaction.filter(e => {
+    var filteredTransaction = transactionList.filter(e => {
         var date = new Date(e.date);
         date.setDate(date.getDate() + 1);
         date.setHours(0, 0, 0, 0);
@@ -201,8 +201,8 @@ function addTransactionListData() {
         '<p class="date"></p>' +
     '</div>';
 
-    var filteredTransaction = transaction;
-    filteredTransaction = transaction.filter(e => {
+    var filteredTransaction = transactionList;
+    filteredTransaction = transactionList.filter(e => {
         var date = new Date(e.date);
         date.setDate(date.getDate() + 1);
         endDate.setHours(0, 0, 0, 0);
@@ -316,7 +316,7 @@ function homePage() {
                 $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
 
-                if($(window).width() >= 650 && $(window).height() >= 750) {
+                if($(window).width() >= 650 && $(window).height() >= 775) {
                     $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
                 } else {
                     $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
@@ -350,7 +350,7 @@ function homePage() {
                 $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
 
-                if($(window).width() >= 650 && $(window).height() >= 750) {
+                if($(window).width() >= 650 && $(window).height() >= 775) {
                     $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
                 } else {
                     $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');
@@ -607,7 +607,7 @@ function changeTimePeriod() {
             startDate.setDate(startDate.getDate() + 7);
             endDate.setDate(endDate.getDate() + 7);
             if(startDate.getMonth()!=endDate.getMonth()) {
-                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' +endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
             } else {
                 $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
             }
@@ -638,6 +638,65 @@ function changeTimePeriod() {
             startDate.setFullYear(startDate.getFullYear() + 1);
             endDate.setFullYear(endDate.getFullYear() + 1);
             $('h1.home').text(currDate.getFullYear());
+        }
+
+        var filteredTransaction = transactionList;
+        filteredTransaction = transactionList.filter(e => {
+            var date = new Date(e.date);
+            date.setDate(date.getDate() + 1);
+            date.setHours(0, 0, 0, 0);
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+            return e.willRepeat && e.repeat_until == 'forever';
+        });
+
+        for(var i = 0; i < filteredTransaction.length; i++) {
+            var transactionDate = new Date(filteredTransaction[i].date);
+            transactionDate.setDate(transactionDate.getDate() + 1);
+            
+            while(transactionDate < endDate) {
+                if(filteredTransaction[i].repeat_timePeriod == 'days') {
+                    transactionDate.setDate(transactionDate.getDate() + filteredTransaction[i].repeat_num);
+                } else if(filteredTransaction[i].repeat_timePeriod == 'weeks') {
+                    transactionDate.setDate(transactionDate.getDate() + (7 * filteredTransaction[i].repeat_num));
+                } else if(filteredTransaction[i].repeat_timePeriod == 'months') {
+                    transactionDate.setMonth(transactionDate.getMonth() + filteredTransaction[i].repeat_num);
+                } else if(filteredTransaction[i].repeat_timePeriod == 'years') {
+                    transactionDate.setFullYear(transactionDate.getFullYear() + filteredTransaction[i].repeat_num);
+                }
+
+                if(transactionDate >= startDate) {
+                    var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
+                    if(transactionDate.getDate() < 10) {
+                        var dateArr = date.split('-');
+                        date = dateArr[0] + '-' + dateArr[1] + '-0' + dateArr[2];
+                    }
+                    
+                    if(transactionDate.getMonth() < 11) {
+                        var dateArr = date.split('-');
+                        date = dateArr[0] + '-0' + dateArr[1] + '-' + dateArr[2];
+                    }
+    
+                    var exists = transactionList.findIndex(e => {
+                        var splitID = e.transactionID.split("-");
+                        return e.date == date && splitID[0] == filteredTransaction[i].transactionID;
+                    });
+    
+                    if(exists < 0) {
+                        var transaction = {
+                            transactionID: filteredTransaction[i].transactionID + "-" + transactionID,
+                            isIncome: filteredTransaction[i].isIncome,
+                            category: filteredTransaction[i].category,
+                            amount: filteredTransaction[i].amount,
+                            date: date,
+                            isRepeat: true,
+                            willRepeat: false
+                        };
+                        insertTransaction(transaction);
+                        transactionID++;
+                    }
+                }
+            }
         }
         
         addHomeData();
@@ -740,7 +799,7 @@ function onHover() {
     });
 }
 
-function transactionList() {
+function transactionsListPage() {
     $('#addTransaction').click(function() {
         if($('.burgerMenu').is(':hidden')) {
             $('.transactionsList').hide();
@@ -780,11 +839,11 @@ function transactionList() {
             $('#transactionAmount').val(amount);
             $('#transactionDate').val(date);
 
-            var transactionItem = transaction.find(e => {
+            var transactionItem = transactionList.find(e => {
                 return e.transactionID == $(this).attr('transactionID');
             });
 
-            currTransaction = transaction.findIndex(e => {
+            currTransaction = transactionList.findIndex(e => {
                 return e == transactionItem;
             });
 
@@ -860,9 +919,9 @@ function addEditPages() {
                         incomeCategory.push(newCategory);
                     } else {
 
-                        for(var i = 0; i < transaction.length; i++) {
-                            if(transaction[i].category == incomeCategory[currCategory].name) {
-                                transaction[i].category = newCategory.name;
+                        for(var i = 0; i < transactionList.length; i++) {
+                            if(transactionList[i].category == incomeCategory[currCategory].name) {
+                                transactionList[i].category = newCategory.name;
                             }
                         }
 
@@ -899,9 +958,9 @@ function addEditPages() {
                         expenseCategory.push(newCategory);
                     } else {
 
-                        for(var i = 0; i < transaction.length; i++) {
-                            if(transaction[i].category == expenseCategory[currCategory].name) {
-                                transaction[i].category = newCategory.name;
+                        for(var i = 0; i < transactionList.length; i++) {
+                            if(transactionList[i].category == expenseCategory[currCategory].name) {
+                                transactionList[i].category = newCategory.name;
                             }
                         }
 
@@ -1015,8 +1074,15 @@ function addEditPages() {
                                 }
     
                                 var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
-                                if(transactionDate.getDate() < 10)
-                                    date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-0" + transactionDate.getDate();
+                                if(transactionDate.getDate() < 10) {
+                                    var dateArr = date.split('-');
+                                    date = dateArr[0] + '-' + dateArr[1] + '-0' + dateArr[2];
+                                }
+                                
+                                if(transactionDate.getMonth() < 11) {
+                                    var dateArr = date.split('-');
+                                    date = dateArr[0] + '-0' + dateArr[1] + '-' + dateArr[2];
+                                }
     
                                 transactionID++;
                                 var transaction = {
@@ -1039,15 +1105,15 @@ function addEditPages() {
                 if(isNew) {
                     insertTransaction(newTransaction);
                 } else {
-                    transaction[currTransaction].isIncome = newTransaction.isIncome;
-                    transaction[currTransaction].category = newTransaction.category;
-                    transaction[currTransaction].amount = newTransaction.amount;
-                    transaction[currTransaction].date = newTransaction.date;
-                    transaction[currTransaction].willRepeat = newTransaction.willRepeat;
+                    transactionList[currTransaction].isIncome = newTransaction.isIncome;
+                    transactionList[currTransaction].category = newTransaction.category;
+                    transactionList[currTransaction].amount = newTransaction.amount;
+                    transactionList[currTransaction].date = newTransaction.date;
+                    transactionList[currTransaction].willRepeat = newTransaction.willRepeat;
 
                     if(repeat) {
-                        transaction[currTransaction].repeat_num = newTransaction.repeat_num;
-                        transaction[currTransaction].repeat_timePeriod = newTransaction.repeat_timePeriod;
+                        transactionList[currTransaction].repeat_num = newTransaction.repeat_num;
+                        transactionList[currTransaction].repeat_timePeriod = newTransaction.repeat_timePeriod;
                     }
                 }
 
@@ -1310,18 +1376,18 @@ function hideExpenseFields(isHide) {
 
 function insertTransaction(newTransaction) {
     var lo = 0;
-    var hi = transaction.length;
+    var hi = transactionList.length;
     
     while(lo < hi) {
         var mid = Math.floor((lo + hi) / 2);
-        if(new Date(newTransaction.date) >= new Date(transaction[mid].date)) {
+        if(new Date(newTransaction.date) >= new Date(transactionList[mid].date)) {
             hi = mid;
         } else {
             lo = mid + 1;
         }
     }
     
-    transaction.splice(lo, 0, newTransaction);
+    transactionList.splice(lo, 0, newTransaction);
 }
 
 function calculateAngle(event) {

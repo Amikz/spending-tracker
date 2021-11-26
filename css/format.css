@@ -235,7 +235,7 @@ input[type=checkbox] {
     }
 }
 
-@media only screen and (min-height: 750px) {
+@media only screen and (min-height: 775px) {
 
     #topBar h1 {
         font-size: 22pt;

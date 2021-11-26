@@ -56,22 +56,18 @@ var expenseCategory = [
 ];
 
 /*Transactions*/
-var transaction = [
+var transactionList = [
     {
-        transactionID: '11',
+        transactionID: '5-16',
         isIncome: false,
         category: 'Rent',
         amount: 1000.00,
         date: '2021-11-26',
-        isRepeat: false,
-        willRepeat: true,
-        repeat_num: 1,
-        repeat_timePeriod: 'months',
-        repeat_until: 'date',
-        repeat_until_date: '2022-12-31'
+        isRepeat: true,
+        willRepeat: false
     },
     {
-        transactionID: '10',
+        transactionID: '15',
         isIncome: false,
         category: 'Food',
         amount: 50.00,
@@ -80,7 +76,7 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '2-8',
+        transactionID: '1-14',
         isIncome: false,
         category: 'Food',
         amount: 100.00,
@@ -89,7 +85,7 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '7',
+        transactionID: '13',
         isIncome: false,
         category: 'Clothes',
         amount: 80.00,
@@ -98,7 +94,7 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '0-6',
+        transactionID: '0-12',
         isIncome: true,
         category: 'Salary',
         amount: 1050.00,
@@ -107,7 +103,7 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '5',
+        transactionID: '11',
         isIncome: false,
         category: 'Video Games',
         amount: 30.00,
@@ -116,20 +112,16 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '4',
+        transactionID: '2-10',
         isIncome: false,
         category: 'Phone',
         amount: 60.00,
         date: '2021-11-15',
         isRepeat: false,
-        willRepeat: true,
-        repeat_num: 1,
-        repeat_timePeriod: 'months',
-        repeat_until: 'date',
-        repeat_date: '2023-03-20'
+        willRepeat: false
     },
     {
-        transactionID: '3',
+        transactionID: '9',
         isIncome: false,
         category: 'Movies',
         amount: 25.00,
@@ -138,19 +130,16 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '2',
+        transactionID: '1-8',
         isIncome: false,
         category: 'Food',
         amount: 100.00,
         date: '2021-11-06',
         isRepeat: false,
-        willRepeat: true,
-        repeat_num: 2,
-        repeat_timePeriod: 'weeks',
-        repeat_until: 'forever'
+        willRepeat: false
     },
     {
-        transactionID: '1',
+        transactionID: '7',
         isIncome: true,
         category: 'Sale',
         amount: 30.00,
@@ -159,11 +148,74 @@ var transaction = [
         willRepeat: false
     },
     {
-        transactionID: '0',
+        transactionID: '0-6',
         isIncome: true,
         category: 'Salary',
         amount: 1050.00,
         date: "2021-11-05",
+        isRepeat: false,
+        willRepeat: false
+    },
+    {
+        transactionID: '5',
+        isIncome: false,
+        category: 'Rent',
+        amount: 1000.00,
+        date: '2021-10-26',
+        isRepeat: false,
+        willRepeat: true,
+        repeat_num: 1,
+        repeat_timePeriod: 'months',
+        repeat_until: 'forever'
+    },
+    {
+        transactionID: '1-4',
+        isIncome: false,
+        category: 'Food',
+        amount: 100.00,
+        date: '2021-10-23',
+        isRepeat: true,
+        willRepeat: false
+    },
+    {
+        transactionID: '0-3',
+        isIncome: true,
+        category: 'Salary',
+        amount: 1050.00,
+        date: "2021-10-22",
+        isRepeat: true,
+        willRepeat: false
+    },
+    {
+        transactionID: '2',
+        isIncome: false,
+        category: 'Phone',
+        amount: 60.00,
+        date: '2021-10-15',
+        isRepeat: false,
+        willRepeat: true,
+        repeat_num: 1,
+        repeat_timePeriod: 'months',
+        repeat_until: 'forever'
+    },
+    {
+        transactionID: '1',
+        isIncome: false,
+        category: 'Food',
+        amount: 100.00,
+        date: '2021-10-09',
+        isRepeat: false,
+        willRepeat: true,
+        repeat_num: 2,
+        repeat_timePeriod: 'weeks',
+        repeat_until: 'forever'
+    },
+    {
+        transactionID: '0',
+        isIncome: true,
+        category: 'Salary',
+        amount: 1050.00,
+        date: "2021-10-08",
         isRepeat: false,
         willRepeat: true,
         repeat_num: 2,
