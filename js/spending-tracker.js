@@ -92,6 +92,18 @@ $(document).ready(function() {
     $('.settings').hide();
     $('.transactionsList').hide();
     $('.home').show();
+
+    $('#darkmode').click(function() {
+        console.log('clicked');
+        console.log($(this));
+    })
+
+    $('.switch').click(function() {
+        if( $(this).children('input').prop("checked"))
+            $(this).children('input').prop("checked", false);
+        else
+            $(this).children('input').prop("checked", true);
+    });
 });
 
 function addHomeData() {
