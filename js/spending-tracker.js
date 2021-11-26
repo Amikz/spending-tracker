@@ -1647,7 +1647,7 @@ function deleteWarning(eType) {
     else {
         msg = 'category';
         cType = '#deleteCatWarning';
-        $('#catMessage').html("Are you sure you want to delete this " + msg + "?");
+        $('#catMessage').html("Are you sure you want to delete this " + msg + "? Deleting this category will delete all transactions within it.");
     }
     $(function() {
         $(cType).css("visibility", "visible");
