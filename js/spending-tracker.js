@@ -1626,17 +1626,20 @@ function checkAmount(transCategory) {
 
 function deleteWarning(eType) {
     var msg = undefined;
+    var cType = undefined;
     if (eType == 'transaction') {
-        msg = 'transaction'
+        msg = 'transaction';
+        cType = '#deleteTransWarning';
     }
     else {
         msg = 'category';
+        cType = '#deleteCatWarning';
     }
     $(function() {
         $('#deleteTransWarning').css("visibility", "visible");
         $('#deleteTransWarning').css("position", "static");
         $('#transMessage').html("Are you sure you want to delete this " + msg + "?");
-        $('#deleteTransWarning').dialog({
+        $(cType).dialog({
             buttons: [
                 {
                     text: "CANCEL",
