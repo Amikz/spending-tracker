@@ -4,12 +4,22 @@
     position:relative;
 }*/
 
-.settings div {
-    display: inline-block;
+div.settings {
+    display: grid;
+    grid-template-columns: [setting-label] max-content [spacing] auto [control] max-content;
+    grid-template-rows: repeat(1,max-content);
+    row-gap: 20px;
+    width: inherit;
+    max-width: 100%;
+}
+
+div.settings label {
+  grid-column-start: setting-label;
 }
 
  /* The switch - the box around the slider */
 .switch {
+  grid-column-start: control ;
   position: relative;
   display: inline-block;
   padding:0px;
