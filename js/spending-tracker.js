@@ -739,7 +739,7 @@ function changeTimePeriod() {
                         date = dateArr[0] + '-' + dateArr[1] + '-0' + dateArr[2];
                     }
                     
-                    if(transactionDate.getMonth() < 11) {
+                    if(transactionDate.getMonth() < 10) {
                         var dateArr = date.split('-');
                         date = dateArr[0] + '-0' + dateArr[1] + '-' + dateArr[2];
                     }
@@ -1108,10 +1108,9 @@ function addEditPages() {
                             };
                             
                         } else {
-                            var tempRepeatUntilDate = new Date(repeatUntilDate);
+                            var tempRepeatUntilDate = new Date($('#transactionDate').val());
                             tempRepeatUntilDate.setDate(tempRepeatUntilDate.getDate() + 1);
-                            var repeatNum = $('#transactionRepeatEvery_Number').val();
-                            var numTimes = $('#numTimesRepeated').val();
+                            var numTimes = parseInt($('#numTimesRepeated').val());
 
                             if(repeatTimePeriod == 'days') {
                                 tempRepeatUntilDate.setDate(tempRepeatUntilDate.getDate() + (numTimes * repeatNum));
@@ -1137,7 +1136,7 @@ function addEditPages() {
                                 repeat_timePeriod: repeatTimePeriod,
                                 repeat_until: repeatUntil,
                                 repeat_until_date: repeatUntilDate,
-                                repeat_until_num: $('#numTimesRepeated').val()
+                                repeat_until_num: numTimes
                             };
                         }
 
@@ -1164,7 +1163,7 @@ function addEditPages() {
                                     date = dateArr[0] + '-' + dateArr[1] + '-0' + dateArr[2];
                                 }
                                 
-                                if(transactionDate.getMonth() < 11) {
+                                if(transactionDate.getMonth() < 10) {
                                     var dateArr = date.split('-');
                                     date = dateArr[0] + '-0' + dateArr[1] + '-' + dateArr[2];
                                 }
