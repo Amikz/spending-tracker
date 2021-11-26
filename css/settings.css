@@ -1,6 +1,6 @@
 /*.settings {
     display: inline-block;
-    margin:24px 24px 24px 24px;
+    margin: 24px 24px 24px 24px;
     position:relative;
 }*/
 
@@ -11,27 +11,28 @@ div.settings {
     row-gap: 20px;
     column-gap: 20px;
     width: inherit;
-    max-width: 100%;
+	max-width: 100%;
 }
 
 div.settings label {
-  grid-column-start: setting-label;
+    grid-column-start: setting-label;
+    align-self: center;
 }
 
- /* The switch - the box around the slider */
+/* The switch - the box around the slider */
 .switch {
-  grid-column-start: control ;
-  justify-self: right;
-  position: relative;
-  display: inline-block;
-  padding:0px;
-  vertical-align:middle;
-  width: 60px;
-  height: 34px;
+    grid-column-start: control ;
+    justify-self: right;
+    position: relative;
+    display: inline-block;
+    padding:0px;
+    vertical-align:middle;
+    width: 60px;
+    height: 34px;
 }
 
 div.settings select {
-  grid-column-start: control;
+    grid-column-start: control;
 }
 
 /* Hide default HTML checkbox */
@@ -41,27 +42,27 @@ div.settings select {
 
 /* The slider */
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #d7d7d7;
-  -webkit-transition: .4s;
-  transition: .4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #d7d7d7;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 input:checked + .slider {
@@ -72,11 +73,11 @@ input:checked + .slider {
 }
 
 .slider.round {
-  border-radius: 34px;
+    border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
 input:focus + .slider {
