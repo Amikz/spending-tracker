@@ -1149,6 +1149,7 @@ function addEditPages() {
                 }
 
                 transactionID++;
+                checkAmount(newTransaction.category);
             }
 
             addTransactionListData();
@@ -1473,4 +1474,61 @@ function calculateAngle(event) {
     var mouseY = event.pageY - boxCenterY;
 
     return Math.abs((Math.atan2(mouseX, mouseY) * (180/Math.PI)) - 180);
+}
+
+function checkAmount(transCategory) {
+    var category = expenseCategory.find(c => {
+        return c.name == transCategory
+    });
+
+    var amount = 0;
+    
+    var filteredTransaction = transaction;
+    var transactionsInCategory = filteredTransaction.filter(e => {
+        return e.category == category.name;
+    });
+
+    for(var t = 0; t < transactionsInCategory.length; t++) {
+        amount += transactionsInCategory[t].amount;
+    }
+
+    if (category.setBudget) {
+        console.log("set");
+        if (category.warning >= 0) {
+            console.log("Warning");
+            console.log(category.warning);
+            if (amount >= category.warning) {
+                // console.log("Boi ya fucked up lmao");
+                var diff = category.budget - amount;
+                var msg = undefined;
+                if (amount < category.budget) {
+                    msg = "You are $" + diff + " away from your \"" + 
+                    category.name + "\" budget." + "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+                }
+                else { 
+                    msg = "You have reached your \"" + category.name + "\" budget limit." + 
+                    "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+                }
+                $(function() {
+                    $('#dialog').css("visibility", "visible");
+                    $('#dialog').css("position", "static");
+                    $('#warningMessage').html(msg);
+                    $('#dialog').dialog({
+                        buttons: [
+                          {
+                                text: "OK",
+                                click: function() {
+                                    $( this ).dialog( "close" );
+                            }
+                          }
+                        ]
+                      });
+                });
+            }
+        }
+    }
 }
