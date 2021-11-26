@@ -1224,6 +1224,8 @@ function addEditPages() {
                 resetHome();
             else
                 resetTransactionsList();
+
+            disableButton();
         }
     });
     
@@ -1249,6 +1251,8 @@ function addEditPages() {
         } else if(currPage == '.transactionsList') {
             resetTransactionsList();
         }
+
+        disableButton();
     });
 
     $('#deleteTransaction').click(function() {
@@ -1274,6 +1278,8 @@ function addEditPages() {
             resetHome();
         else
             resetTransactionsList();
+
+        disableButton();
     });
 
     $('#deleteCategory').click(function() {
