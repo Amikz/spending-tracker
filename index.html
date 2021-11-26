@@ -215,7 +215,7 @@
                                 </label>
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
 
-                                <label for='categoryBudget' class='categoryBudget'>Budget:</label>
+                                <label for='categoryBudget' class='categoryBudget'>&nbsp;&nbsp;Budget:</label>
                                 <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
                                         data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
 
@@ -238,7 +238,7 @@
                                     <div id="categoryBudgetEvery_ErrorContainer"></div>
                                 </div>
 
-                                <label for="categoryWarning" class='categoryBudget'>Warning:</label>
+                                <label for="categoryWarning" class='categoryBudget'>&nbsp;&nbsp;Warning:</label>
                                 <input type="text" id="categoryWarning" name="categoryWarning" class='categoryBudget monetaryAmount'>
 
                                 <div id="editCategory">
@@ -287,14 +287,28 @@
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
                                     </select>
-
                                     <div id="transactionRepeatEvery_ErrorContainer"></div>
                                 </div>
+                                
+                                <label for="repeatUntil_Select" class ='transactionRepeat'>&nbsp;&nbsp;Until:</label>
+                                <select id="repeatUntil_Select" name="repeatUntil_Select" class ='transactionRepeat' 
+                                    data-parsley-required="" data-parsley-required-message="Indicate when the transaction will stop being repeated.">
+                                    <option value="">Select...</option>
+                                    <option value="date">Specific date</option>
+                                    <option value="num">Specific number of times</option>
+                                    <option value="forever">Forever</option>
+                                </select>
+                                
+                                <label for="transactionEndDate" class="transactionEndDate repeatUntil">&nbsp;&nbsp;End Date:</label>
+                                <input type="date" id="transactionEndDate" name="transactionEndDate" class="transactionEndDate repeatUntil">
 
+                                <label for="numTimesRepeated" class='numTimesRepeated repeatUntil'>&nbsp;&nbsp;Number:</label>
+                                <input type="text" id='numTimesRepeated' name='numTimesRepeated' class="numTimesRepeated repeatUntil wholeNumber" maxlength="3" 
+                                    data-parsley-required="" data-parsley-required-message="Enter the number of times this transaction will recur.">
+                                
                                 <div id="editTransaction">
                                     <hr>
                                     <input type='button' id="deleteTransaction" value="Delete">
-
                                 </div>
                             </div>
                         </form>

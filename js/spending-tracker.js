@@ -4,7 +4,7 @@ var isIncome = false;
 var isNew = false;
 var currTransaction = 0;
 var currCategory = 0;
-var transactionID = 12;
+var transactionID = 17;
 var timePeriod = 'monthly'
 var startDate = new Date(2021, 10, 1);
 var currDate = new Date(2021, 11, 0);
@@ -73,7 +73,7 @@ $(document).ready(function() {
     addTransactionListData();
     homePage();
     addEditPages();
-    transactionList();
+    transactionsListPage();
 	showMeTheBurger();
     changeTimePeriod();
 
@@ -90,7 +90,7 @@ function addHomeData() {
             '<p class="legendCategoryAmount"></p>' +
         '</div>';
     
-    var filteredTransaction = transaction.filter(e => {
+    var filteredTransaction = transactionList.filter(e => {
         var date = new Date(e.date);
         date.setDate(date.getDate() + 1);
         date.setHours(0, 0, 0, 0);
@@ -201,8 +201,8 @@ function addTransactionListData() {
         '<p class="date"></p>' +
     '</div>';
 
-    var filteredTransaction = transaction;
-    filteredTransaction = transaction.filter(e => {
+    var filteredTransaction = transactionList;
+    filteredTransaction = transactionList.filter(e => {
         var date = new Date(e.date);
         date.setDate(date.getDate() + 1);
         endDate.setHours(0, 0, 0, 0);
@@ -235,7 +235,8 @@ function addTransactionListData() {
         $transactionItem.children('.rect').css('background-color', category.colour).attr('category', category.name);
 
         var date = new Date(filteredTransaction[i].date);
-        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + (date.getDate() + 1) + ', ' + date.getFullYear());
+        date.setDate(date.getDate() + 1);
+        $transactionItem.children('.date').text(date.toLocaleString('default', { month: 'short' }) + ' ' + date.getDate() + ', ' + date.getFullYear());
         $transactionItem.children('.date').attr('date', filteredTransaction[i].date);
         $('#transactionsListContent').append($transactionItem);
     }
@@ -315,7 +316,7 @@ function homePage() {
                 $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
 
-                if($(window).width() >= 650) {
+                if($(window).width() >= 650 && $(window).height() >= 775) {
                     $('#incomeLegend .expandPanelArrow').css('border-left', '8px solid black');
                 } else {
                     $('#incomeLegend .expandPanelArrow').css('border-left', '6px solid black');
@@ -349,7 +350,7 @@ function homePage() {
                 $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
 
-                if($(window).width() >= 650) {
+                if($(window).width() >= 650 && $(window).height() >= 775) {
                     $('#expenseLegend .expandPanelArrow').css('border-left', '8px solid black');
                 } else {
                     $('#expenseLegend .expandPanelArrow').css('border-left', '6px solid black');
@@ -606,7 +607,7 @@ function changeTimePeriod() {
             startDate.setDate(startDate.getDate() + 7);
             endDate.setDate(endDate.getDate() + 7);
             if(startDate.getMonth()!=endDate.getMonth()) {
-                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' +endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
+                $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.toLocaleString('default', { month: 'short' }) + ' ' + endDate.getDate());
             } else {
                 $('h1.home').text(startDate.toLocaleString('default', { month: 'short' }) + ' ' + startDate.getDate() + ' - ' + endDate.getDate());
             }
@@ -637,6 +638,65 @@ function changeTimePeriod() {
             startDate.setFullYear(startDate.getFullYear() + 1);
             endDate.setFullYear(endDate.getFullYear() + 1);
             $('h1.home').text(currDate.getFullYear());
+        }
+
+        var filteredTransaction = transactionList;
+        filteredTransaction = transactionList.filter(e => {
+            var date = new Date(e.date);
+            date.setDate(date.getDate() + 1);
+            date.setHours(0, 0, 0, 0);
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+            return e.willRepeat && e.repeat_until == 'forever';
+        });
+
+        for(var i = 0; i < filteredTransaction.length; i++) {
+            var transactionDate = new Date(filteredTransaction[i].date);
+            transactionDate.setDate(transactionDate.getDate() + 1);
+            
+            while(transactionDate < endDate) {
+                if(filteredTransaction[i].repeat_timePeriod == 'days') {
+                    transactionDate.setDate(transactionDate.getDate() + filteredTransaction[i].repeat_num);
+                } else if(filteredTransaction[i].repeat_timePeriod == 'weeks') {
+                    transactionDate.setDate(transactionDate.getDate() + (7 * filteredTransaction[i].repeat_num));
+                } else if(filteredTransaction[i].repeat_timePeriod == 'months') {
+                    transactionDate.setMonth(transactionDate.getMonth() + filteredTransaction[i].repeat_num);
+                } else if(filteredTransaction[i].repeat_timePeriod == 'years') {
+                    transactionDate.setFullYear(transactionDate.getFullYear() + filteredTransaction[i].repeat_num);
+                }
+
+                if(transactionDate >= startDate) {
+                    var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
+                    if(transactionDate.getDate() < 10) {
+                        var dateArr = date.split('-');
+                        date = dateArr[0] + '-' + dateArr[1] + '-0' + dateArr[2];
+                    }
+                    
+                    if(transactionDate.getMonth() < 11) {
+                        var dateArr = date.split('-');
+                        date = dateArr[0] + '-0' + dateArr[1] + '-' + dateArr[2];
+                    }
+    
+                    var exists = transactionList.findIndex(e => {
+                        var splitID = e.transactionID.split("-");
+                        return e.date == date && splitID[0] == filteredTransaction[i].transactionID;
+                    });
+    
+                    if(exists < 0) {
+                        var transaction = {
+                            transactionID: filteredTransaction[i].transactionID + "-" + transactionID,
+                            isIncome: filteredTransaction[i].isIncome,
+                            category: filteredTransaction[i].category,
+                            amount: filteredTransaction[i].amount,
+                            date: date,
+                            isRepeat: true,
+                            willRepeat: false
+                        };
+                        insertTransaction(transaction);
+                        transactionID++;
+                    }
+                }
+            }
         }
         
         addHomeData();
@@ -739,7 +799,7 @@ function onHover() {
     });
 }
 
-function transactionList() {
+function transactionsListPage() {
     $('#addTransaction').click(function() {
         if($('.burgerMenu').is(':hidden')) {
             $('.transactionsList').hide();
@@ -779,11 +839,11 @@ function transactionList() {
             $('#transactionAmount').val(amount);
             $('#transactionDate').val(date);
 
-            var transactionItem = transaction.find(e => {
+            var transactionItem = transactionList.find(e => {
                 return e.transactionID == $(this).attr('transactionID');
             });
 
-            currTransaction = transaction.findIndex(e => {
+            currTransaction = transactionList.findIndex(e => {
                 return e == transactionItem;
             });
 
@@ -791,6 +851,16 @@ function transactionList() {
                 $('#transactionRepeat_Check').click();
                 $('#transactionRepeatEvery_Number').val(transactionItem.repeat_num);
                 $('#transactionRepeatEvery_TimePeriod').val(transactionItem.repeat_timePeriod);
+                $('#repeatUntil_Select').val(transactionItem.repeat_until);
+                if(transactionItem.repeat_until == 'date') {
+                    $('#transactionEndDate').val(transactionItem.repeat_until_date);
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+                    $('.transactionEndDate').show();
+                } else if(transactionItem.repeat_until == 'num') {
+                    $('#numTimesRepeated').val(transactionItem.repeat_until_num);
+                    $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+                    $('.numTimesRepeated').show();
+                }
             }
 
             $('div.addEditTransactions').attr('transactionID', $(this).attr('transactionID'));
@@ -849,9 +919,9 @@ function addEditPages() {
                         incomeCategory.push(newCategory);
                     } else {
 
-                        for(var i = 0; i < transaction.length; i++) {
-                            if(transaction[i].category == incomeCategory[currCategory].name) {
-                                transaction[i].category = newCategory.name;
+                        for(var i = 0; i < transactionList.length; i++) {
+                            if(transactionList[i].category == incomeCategory[currCategory].name) {
+                                transactionList[i].category = newCategory.name;
                             }
                         }
 
@@ -888,9 +958,9 @@ function addEditPages() {
                         expenseCategory.push(newCategory);
                     } else {
 
-                        for(var i = 0; i < transaction.length; i++) {
-                            if(transaction[i].category == expenseCategory[currCategory].name) {
-                                transaction[i].category = newCategory.name;
+                        for(var i = 0; i < transactionList.length; i++) {
+                            if(transactionList[i].category == expenseCategory[currCategory].name) {
+                                transactionList[i].category = newCategory.name;
                             }
                         }
 
@@ -909,51 +979,141 @@ function addEditPages() {
             } else if($('div.addEditTransactions').is(':visible')) {
                 var repeat = $('#transactionRepeat_Check').is(':checked');
                 var newTransaction = {
-                    transactionID: transactionID,
+                    transactionID: transactionID + '',
                     isIncome: $('#transactionType').val() == 'income',
                     category: $('#transactionCategory_Select').val(),
                     amount: parseFloat($('#transactionAmount').val()),
                     date: $('#transactionDate').val(),
+                    isRepeat: false,
                     willRepeat: repeat
                 };
 
                 if(repeat) {
+                    var repeatUntil = $('#repeatUntil_Select').val();
+                    var repeatNum = parseInt($('#transactionRepeatEvery_Number').val());
+                    var repeatTimePeriod = $('#transactionRepeatEvery_TimePeriod').val();
                     newTransaction = {
-                        transactionID: transactionID,
+                        transactionID: transactionID + '',
                         isIncome: $('#transactionType').val() == 'income',
                         category: $('#transactionCategory_Select').val(),
                         amount: parseFloat($('#transactionAmount').val()),
                         date: $('#transactionDate').val(),
+                        isRepeat: false,
                         willRepeat: repeat,
-                        repeat_num: parseInt($('#transactionRepeatEvery_Number').val()),
-                        repeat_timePeriod: $('#transactionRepeatEvery_TimePeriod').val()
+                        repeat_num: repeatNum,
+                        repeat_timePeriod: repeatTimePeriod,
+                        repeat_until: repeatUntil
                     };
+
+                    if(repeatUntil != 'forever') {
+                        var repeatUntilDate = $('#transactionEndDate').val();
+                        if($('#repeatUntil_Select').val() == 'date') {
+                            newTransaction = {
+                                transactionID: transactionID + '',
+                                isIncome: $('#transactionType').val() == 'income',
+                                category: $('#transactionCategory_Select').val(),
+                                amount: parseFloat($('#transactionAmount').val()),
+                                date: $('#transactionDate').val(),
+                                isRepeat: false,
+                                willRepeat: repeat,
+                                repeat_num: repeatNum,
+                                repeat_timePeriod: repeatTimePeriod,
+                                repeat_until: repeatUntil,
+                                repeat_until_date: repeatUntilDate
+                            };
+                            
+                        } else {
+                            var tempRepeatUntilDate = new Date(repeatUntilDate);
+                            tempRepeatUntilDate.setDate(tempRepeatUntilDate.getDate() + 1);
+                            var repeatNum = $('#transactionRepeatEvery_Number').val();
+                            var numTimes = $('#numTimesRepeated').val();
+
+                            if(repeatTimePeriod == 'days') {
+                                tempRepeatUntilDate.setDate(tempRepeatUntilDate.getDate() + (numTimes * repeatNum));
+                            } else if(repeatTimePeriod == 'weeks') {
+                                tempRepeatUntilDate.setDate(tempRepeatUntilDate.getDate() + (numTimes * 7 * repeatNum));
+                            } else if(repeatTimePeriod == 'months') {
+                                tempRepeatUntilDate.setMonth(tempRepeatUntilDate.getMonth() + (numTimes * repeatNum));
+                            } else if(repeatTimePeriod == 'years') {
+                                tempRepeatUntilDate.setFullYear(tempRepeatUntilDate.getFullYear() + (numTimes * repeatNum));
+                            }
+
+                            repeatUntilDate = tempRepeatUntilDate.getFullYear() + "-" + (tempRepeatUntilDate.getMonth() + 1) + "-" + tempRepeatUntilDate.getDate();
+
+                            newTransaction = {
+                                transactionID: transactionID + '',
+                                isIncome: $('#transactionType').val() == 'income',
+                                category: $('#transactionCategory_Select').val(),
+                                amount: parseFloat($('#transactionAmount').val()),
+                                date: $('#transactionDate').val(),
+                                isRepeat: false,
+                                willRepeat: repeat,
+                                repeat_num: repeatNum,
+                                repeat_timePeriod: repeatTimePeriod,
+                                repeat_until: repeatUntil,
+                                repeat_until_date: repeatUntilDate,
+                                repeat_until_num: $('#numTimesRepeated').val()
+                            };
+                        }
+
+                        if(isNew) {
+                            var transactionDate = new Date($('#transactionDate').val());
+                            transactionDate.setDate(transactionDate.getDate() + 1);
+                            var repeatDate = new Date(repeatUntilDate);
+                            repeatDate.setDate(repeatDate.getDate() + 1);
+                            var originalTransactionID = transactionID + '';
+                            while(transactionDate < repeatDate) {
+                                if(repeatTimePeriod == 'days') {
+                                    transactionDate.setDate(transactionDate.getDate() + repeatNum);
+                                } else if(repeatTimePeriod == 'weeks') {
+                                    transactionDate.setDate(transactionDate.getDate() + (7 * repeatNum));
+                                } else if(repeatTimePeriod == 'months') {
+                                    transactionDate.setMonth(transactionDate.getMonth() + repeatNum);
+                                } else if(repeatTimePeriod == 'years') {
+                                    transactionDate.setFullYear(transactionDate.getFullYear() + repeatNum);
+                                }
+    
+                                var date = transactionDate.getFullYear() + "-" + (transactionDate.getMonth() + 1) + "-" + transactionDate.getDate();
+                                if(transactionDate.getDate() < 10) {
+                                    var dateArr = date.split('-');
+                                    date = dateArr[0] + '-' + dateArr[1] + '-0' + dateArr[2];
+                                }
+                                
+                                if(transactionDate.getMonth() < 11) {
+                                    var dateArr = date.split('-');
+                                    date = dateArr[0] + '-0' + dateArr[1] + '-' + dateArr[2];
+                                }
+    
+                                transactionID++;
+                                var transaction = {
+                                    transactionID: originalTransactionID + "-" + transactionID,
+                                    isIncome: $('#transactionType').val() == 'income',
+                                    category: $('#transactionCategory_Select').val(),
+                                    amount: parseFloat($('#transactionAmount').val()),
+                                    date: date,
+                                    isRepeat: true,
+                                    willRepeat: false
+                                };
+                                insertTransaction(transaction);
+
+                            }
+                        }
+
+                    }
                 }
 
                 if(isNew) {
-                    var lo = 0;
-                    var hi = transaction.length;
-                    
-                    while(lo < hi) {
-                        var mid = Math.floor((lo + hi) / 2);
-                        if(new Date(newTransaction.date) >= new Date(transaction[mid].date)) {
-                            hi = mid;
-                        } else {
-                            lo = mid + 1;
-                        }
-                    }
-
-                    transaction.splice(lo, 0, newTransaction);
+                    insertTransaction(newTransaction);
                 } else {
-                    transaction[currTransaction].isIncome = newTransaction.isIncome;
-                    transaction[currTransaction].category = newTransaction.category;
-                    transaction[currTransaction].amount = newTransaction.amount;
-                    transaction[currTransaction].date = newTransaction.date;
-                    transaction[currTransaction].willRepeat = newTransaction.willRepeat;
+                    transactionList[currTransaction].isIncome = newTransaction.isIncome;
+                    transactionList[currTransaction].category = newTransaction.category;
+                    transactionList[currTransaction].amount = newTransaction.amount;
+                    transactionList[currTransaction].date = newTransaction.date;
+                    transactionList[currTransaction].willRepeat = newTransaction.willRepeat;
 
                     if(repeat) {
-                        transaction[currTransaction].repeat_num = newTransaction.repeat_num;
-                        transaction[currTransaction].repeat_timePeriod = newTransaction.repeat_timePeriod;
+                        transactionList[currTransaction].repeat_num = newTransaction.repeat_num;
+                        transactionList[currTransaction].repeat_timePeriod = newTransaction.repeat_timePeriod;
                     }
                 }
 
@@ -1033,17 +1193,33 @@ function addEditPages() {
     $('#transactionType').change(function() {
         populateCategorySelect($(this).val() == 'income');
     });
-
-    $('.transactionRepeat').hide();
-	$('#transactionRepeat_Check').click(function() {
+    
+    $('#transactionRepeat_Check').click(function() {
         $(".transactionRepeat").toggle();
 		if ($("#transactionRepeat_Check").is(':checked')) {
-            $('div.addEditTransactions').css('grid-template-rows', 'repeat(6, [inputField] max-content) [buttons] auto [end]');
+            $('div.addEditTransactions').css('grid-template-rows', 'repeat(7, [inputField] max-content) [buttons] auto [end]');
 		} else {
             $('div.addEditTransactions').removeAttr('style');
 		}
 	});
-    
+
+    $('#repeatUntil_Select').on('change', function() {
+        $('div.addEditTransactions').css('grid-template-rows', 'repeat(8, [inputField] max-content) [buttons] auto [end]');
+        if (this.value == "date") {
+            $('.transactionEndDate').show();
+            $('.numTimesRepeated').hide();
+        }
+        else if (this.value == "num") {
+            $('.transactionEndDate').hide();
+            $('.numTimesRepeated').show();
+        }
+        else {
+            $('div.addEditTransactions').css('grid-template-rows', 'repeat(7, [inputField] max-content) [buttons] auto [end]');
+            $('.transactionEndDate').hide();
+            $('.numTimesRepeated').hide();
+        }
+    });
+
     $('.categoryBudget').hide();
     $('#setCategoryBudget').click(function() {
         $('.categoryBudget').toggle();
@@ -1148,9 +1324,9 @@ function resetAddEditTransactionsPage() {
     var date = new Date();
     $('#transactionDate').val(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
 
-    if($('#transactionRepeat_Check').is(":checked")) {
-        $("#transactionRepeat_Check").click();
-    }
+    $('.repeatUntil').hide();
+    $('#transactionRepeat_Check').prop('checked', false);
+    $('.transactionRepeat').hide();
     
     $('#editTransaction').show();
 }
@@ -1196,6 +1372,22 @@ function hideExpenseFields(isHide) {
         $('.expenseCategory').show();
         $('div.addEditCategories').removeAttr('style');
     }
+}
+
+function insertTransaction(newTransaction) {
+    var lo = 0;
+    var hi = transactionList.length;
+    
+    while(lo < hi) {
+        var mid = Math.floor((lo + hi) / 2);
+        if(new Date(newTransaction.date) >= new Date(transactionList[mid].date)) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    
+    transactionList.splice(lo, 0, newTransaction);
 }
 
 function calculateAngle(event) {
