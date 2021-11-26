@@ -34,14 +34,14 @@
                                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
                             </svg>
                         </button>
-                        <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
+                        <input class="addEditCategories addEditTransactions existingCategory existingTransaction" type='button' id="cancelButton" value="&#x2715">
                         <button id="leftArrow" class="transactionsList home">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                             </svg>
                         </button>
-                        <h1 class="addEditCategories">Category</h1>
-                        <h1 class="addEditTransactions">Transaction</h1>
+                        <h1 class="addEditCategories existingCategory">Category</h1>
+                        <h1 class="addEditTransactions existingTransaction">Transaction</h1>
                         <h1 class="home transactionsList">November</h1>
                         <h1 class="settings">Settings</h1>
                         <button id="rightArrow" class="transactionsList home" >
@@ -196,124 +196,131 @@
                         </div>
 
                         <form id='addEditPages' data-parsley-validate>
-                            <div class="addEditCategories">
-                                <label for="categoryName">Name:</label>
-                                <div class='requiredInput'>
-                                    <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-prevent-duplicate=""
-                                        data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
-                                </div>
-
-                                <label for="categoryColour">Colour:</label>
-                                <input type="color" id="categoryColour" name="categoryColour">
-
-                                <label for='setCategoryBudget' class='expenseCategory'>Set Budget:
-                                    <span id='tooltip'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
-                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-                                        </svg>
-                                        <span class="tooltipText">Set an amount for the budget warning. It won't stop you from any purchases, but we'll let you know if you're close to your budget.</span>
-                                    </span>
-                                </label>
-                                <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
-
-                                <label for='categoryBudget' class='categoryBudget'>&nbsp;&nbsp;Budget:</label>
-                                <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
-                                        data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
-
-                                <label for="categoryBudgetEvery" class='categoryBudget'>&nbsp;&nbsp;Every:</label>
-                                <div id="categoryBudgetEvery" class='categoryBudget'>
-                                    <label for="categoryBudgetEvery_Number" style="display: none">Number:</label>
-                                    <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number" class="wholeNumber" maxlength="3" 
-                                        data-parsley-required="" data-parsley-required-message="Enter a number for the time period." data-parsley-errors-container="#categoryBudgetEvery_ErrorContainer">
-
-                                    <label for="categoryBudgetEvery_TimePeriod" style="display: none">Time Period:</label>
-                                    <select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod" data-parsley-required="" data-parsley-required-message="Select the time period."
-                                        data-parsley-errors-container="#categoryBudgetEvery_ErrorContainer">
-                                        <option value="">Select...</option>
-                                        <option value="days">Day(s)</option>
-                                        <option value="weeks">Week(s)</option>
-                                        <option value="months">Month(s)</option>
-                                        <option value="years">Year(s)</option>
-                                    </select>
-
-                                    <div id="categoryBudgetEvery_ErrorContainer"></div>
-                                </div>
-
-                                <label for="categoryWarning" class='categoryBudget'>&nbsp;&nbsp;Warning:
-                                    <div id="dialog" title="Account Spending">
-                                        <div id="warningMessage"></div>
+                            <div>
+                                <div class='addEditCategories'>
+                                    <label for="categoryName">Name:</label>
+                                    <div class='requiredInput'>
+                                        <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-prevent-duplicate=""
+                                            data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
                                     </div>
-                                </label>
-                                <input type="text" id="categoryWarning" name="categoryWarning" class='categoryBudget monetaryAmount'>
+    
+                                    <label for="categoryColour">Colour:</label>
+                                    <input type="color" id="categoryColour" name="categoryColour">
+    
+                                    <label for='setCategoryBudget' class='expenseCategory'>Set Budget:
+                                        <span id='tooltip'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                                            </svg>
+                                            <span class="tooltipText">Set an amount for the budget warning. It won't stop you from any purchases, but we'll let you know if you're close to your budget.</span>
+                                        </span>
+                                    </label>
+                                    <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
+    
+                                    <label for='categoryBudget' class='categoryBudget'>&nbsp;&nbsp;Budget:</label>
+                                    <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
+                                            data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
+    
+                                    <label for="categoryBudgetEvery" class='categoryBudget'>&nbsp;&nbsp;Every:</label>
+                                    <div id="categoryBudgetEvery" class='categoryBudget'>
+                                        <label for="categoryBudgetEvery_Number" style="display: none">Number:</label>
+                                        <input type="text" id="categoryBudgetEvery_Number" name="categoryBudgetEvery_Number" class="wholeNumber" maxlength="3" 
+                                            data-parsley-required="" data-parsley-required-message="Enter a number for the time period." data-parsley-errors-container="#categoryBudgetEvery_ErrorContainer">
+    
+                                        <label for="categoryBudgetEvery_TimePeriod" style="display: none">Time Period:</label>
+                                        <select id="categoryBudgetEvery_TimePeriod" name="categoryBudgetEvery_TimePeriod" data-parsley-required="" data-parsley-required-message="Select the time period."
+                                            data-parsley-errors-container="#categoryBudgetEvery_ErrorContainer">
+                                            <option value="">Select...</option>
+                                            <option value="days">Day(s)</option>
+                                            <option value="weeks">Week(s)</option>
+                                            <option value="months">Month(s)</option>
+                                            <option value="years">Year(s)</option>
+                                        </select>
+    
+                                        <div id="categoryBudgetEvery_ErrorContainer"></div>
+                                    </div>
+    
+                                    <label for="categoryWarning" class='categoryBudget'>&nbsp;&nbsp;Warning:
+                                        <div id="dialog" title="Account Spending">
+                                            <div id="warningMessage"></div>
+                                        </div>
+                                    </label>
+                                    <input type="text" id="categoryWarning" name="categoryWarning" class='categoryBudget monetaryAmount'>
+                                </div>
 
-                                <div id="editCategory">
-                                    <hr>
+                                <div class="existingCategory">
                                     <input type="button" id="addTransactionWithinCategory" value="Add Transaction">
                                     <hr>
-                                    <input type='button' id='deleteCategory' value="Delete">
+                                    <input type="button" id="editCategory" value="Edit Category">
+                                    <hr>
+                                    <input type='button' id='deleteCategory' value="Delete Category">
                                 </div>
                             </div>
-                            <div class="addEditTransactions">
-                                <label for="transactionType">Type:</label>
-                                <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
-                                    <option value="" selected disabled>Select...</option>
-                                    <option value="income">Income</option>
-                                    <option value="expense">Expense</option>
-                                </select></div>
 
-                                <label for="transactionCategory_Select">Category:</label>
-                                <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
-                                    <option value="">Select...</option>
-                                </select></div>
-
-                                <label for="transactionAmount">Amount:</label>
-                                <div class='requiredInput'>
-                                    <input type="text" id="transactionAmount" name="transactionAmount" class="monetaryAmount" data-parsley-required="" data-parsley-required-message="Enter the transaction amount.">
-                                </div>
-
-                                <label for="transactionDate">Date:</label>
-                                <input type="date" id="transactionDate" name="transactionDate">
-
-                                <label for="transactionRepeat_Check">Repeat:</label>
-                                <input type="checkbox" id="transactionRepeat_Check" name="transactionRepeat_Check">
-
-                                <label for="transactionRepeatEvery" class='transactionRepeat'>&nbsp;&nbsp;Every:</label>
-                                <div id="transactionRepeatEvery" class='transactionRepeat'>
-                                    <label for="transactionRepeatEvery_Number" style="display: none">Number:</label>
-                                    <input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number" class="wholeNumber" maxlength="3" 
-                                        data-parsley-required="" data-parsley-required-message="Enter a number for the time period." data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
-
-                                    <label for="transactionRepeatEvery_TimePeriod" style="display: none">Time Period:</label>
-                                    <select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod" data-parsley-required="" data-parsley-required-message="Select the time period."
-                                        data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
+                            <div>
+                                <div class="addEditTransactions">
+                                    <label for="transactionType">Type:</label>
+                                    <div class='requiredInput'><select id="transactionType" name="transactionType" data-parsley-required="" data-parsley-required-message="Select the transaction type.">
+                                        <option value="" selected disabled>Select...</option>
+                                        <option value="income">Income</option>
+                                        <option value="expense">Expense</option>
+                                    </select></div>
+    
+                                    <label for="transactionCategory_Select">Category:</label>
+                                    <div class='requiredInput'><select id="transactionCategory_Select" name="transactionCategory_Select" data-parsley-required="" data-parsley-required-message="Select a category for this transaction.">
                                         <option value="">Select...</option>
-                                        <option value="days">Day(s)</option>
-                                        <option value="weeks">Week(s)</option>
-                                        <option value="months">Month(s)</option>
-                                        <option value="years">Year(s)</option>
+                                    </select></div>
+    
+                                    <label for="transactionAmount">Amount:</label>
+                                    <div class='requiredInput'>
+                                        <input type="text" id="transactionAmount" name="transactionAmount" class="monetaryAmount" data-parsley-required="" data-parsley-required-message="Enter the transaction amount.">
+                                    </div>
+    
+                                    <label for="transactionDate">Date:</label>
+                                    <input type="date" id="transactionDate" name="transactionDate">
+    
+                                    <label for="transactionRepeat_Check">Repeat:</label>
+                                    <input type="checkbox" id="transactionRepeat_Check" name="transactionRepeat_Check">
+    
+                                    <label for="transactionRepeatEvery" class='transactionRepeat'>&nbsp;&nbsp;Every:</label>
+                                    <div id="transactionRepeatEvery" class='transactionRepeat'>
+                                        <label for="transactionRepeatEvery_Number" style="display: none">Number:</label>
+                                        <input type="text" id="transactionRepeatEvery_Number" name="transactionRepeatEvery_Number" class="wholeNumber" maxlength="3" 
+                                            data-parsley-required="" data-parsley-required-message="Enter a number for the time period." data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
+    
+                                        <label for="transactionRepeatEvery_TimePeriod" style="display: none">Time Period:</label>
+                                        <select id="transactionRepeatEvery_TimePeriod" name="transactionRepeatEvery_TimePeriod" data-parsley-required="" data-parsley-required-message="Select the time period."
+                                            data-parsley-errors-container="#transactionRepeatEvery_ErrorContainer">
+                                            <option value="">Select...</option>
+                                            <option value="days">Day(s)</option>
+                                            <option value="weeks">Week(s)</option>
+                                            <option value="months">Month(s)</option>
+                                            <option value="years">Year(s)</option>
+                                        </select>
+                                        <div id="transactionRepeatEvery_ErrorContainer"></div>
+                                    </div>
+                                    
+                                    <label for="repeatUntil_Select" class ='transactionRepeat'>&nbsp;&nbsp;Until:</label>
+                                    <select id="repeatUntil_Select" name="repeatUntil_Select" class ='transactionRepeat' 
+                                        data-parsley-required="" data-parsley-required-message="Indicate when the transaction will stop being repeated.">
+                                        <option value="">Select...</option>
+                                        <option value="date">Specific date</option>
+                                        <option value="num">Specific number of times</option>
+                                        <option value="forever">Forever</option>
                                     </select>
-                                    <div id="transactionRepeatEvery_ErrorContainer"></div>
+                                    
+                                    <label for="transactionEndDate" class="transactionEndDate repeatUntil">&nbsp;&nbsp;End Date:</label>
+                                    <input type="date" id="transactionEndDate" name="transactionEndDate" class="transactionEndDate repeatUntil">
+    
+                                    <label for="numTimesRepeated" class='numTimesRepeated repeatUntil'>&nbsp;&nbsp;Number:</label>
+                                    <input type="text" id='numTimesRepeated' name='numTimesRepeated' class="numTimesRepeated repeatUntil wholeNumber" maxlength="3" 
+                                        data-parsley-required="" data-parsley-required-message="Enter the number of times this transaction will recur.">
+                                    
                                 </div>
-                                
-                                <label for="repeatUntil_Select" class ='transactionRepeat'>&nbsp;&nbsp;Until:</label>
-                                <select id="repeatUntil_Select" name="repeatUntil_Select" class ='transactionRepeat' 
-                                    data-parsley-required="" data-parsley-required-message="Indicate when the transaction will stop being repeated.">
-                                    <option value="">Select...</option>
-                                    <option value="date">Specific date</option>
-                                    <option value="num">Specific number of times</option>
-                                    <option value="forever">Forever</option>
-                                </select>
-                                
-                                <label for="transactionEndDate" class="transactionEndDate repeatUntil">&nbsp;&nbsp;End Date:</label>
-                                <input type="date" id="transactionEndDate" name="transactionEndDate" class="transactionEndDate repeatUntil">
-
-                                <label for="numTimesRepeated" class='numTimesRepeated repeatUntil'>&nbsp;&nbsp;Number:</label>
-                                <input type="text" id='numTimesRepeated' name='numTimesRepeated' class="numTimesRepeated repeatUntil wholeNumber" maxlength="3" 
-                                    data-parsley-required="" data-parsley-required-message="Enter the number of times this transaction will recur.">
-                                
-                                <div id="editTransaction">
+                                <div class="existingTransaction">
+                                    <input type="button" id="editTransaction" value="Edit Transaction">
                                     <hr>
-                                    <input type='button' id="deleteTransaction" value="Delete">
+                                    <input type='button' id="deleteTransaction" value="Delete Transaction">
                                 </div>
                             </div>
                         </form>

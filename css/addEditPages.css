@@ -8,21 +8,15 @@ div.addEditCategories, div.addEditTransactions {
 }
 
 div.addEditCategories {
-    grid-template-rows: repeat(3, [requiredInput] max-content) [buttons] auto [end];
+    grid-template-rows: repeat(3, [requiredInput] max-content) [end];
 }
 
 div.addEditTransactions {
-    grid-template-rows: repeat(5, [requiredInput] max-content) [buttons] auto [end];
+    grid-template-rows: repeat(5, [requiredInput] max-content) [end];
 }
 
 div.addEditCategories label, div.addEditCategories div.requiredInput input, div.addEditCategories #categoryBudgetEvery {
     grid-row-start: auto;
-}
-
-#editCategory, #editTransaction {
-    grid-row-start: buttons;
-    grid-column-start: label;
-    grid-column-end: end;
 }
 
 div.addEditCategories label, div.addEditTransactions label {
@@ -43,12 +37,9 @@ div.addEditCategories div.requiredInput input[type=text], div.addEditCategories>
 div.addEditTransactions input[type=date] {
     width: calc(100% - 6px);
 }
+
 #tooltip {
     position: relative;
-}
-
-#tooltip svg {
-    fill: #d3d3d3;
 }
 
 .tooltipText {
@@ -118,12 +109,17 @@ div.addEditTransactions input[type=date] {
     width: -webkit-fill-available;
 }
 
-#editCategory input[type=button], #editTransaction input[type=button] {
+.existingCategory input[type=button], .existingTransaction input[type=button] {
     display: block;
     margin: 25px auto;
     padding: 8px 15px;
     border-radius: 5px;
     border: none;
+}
+
+#editCategory, #editTransaction {
+    background-color: #454545;
+    color: white;
 }
 
 #addTransactionWithinCategory {
@@ -141,7 +137,7 @@ div.addEditTransactions input[type=date] {
         width: 35px;
     }
 
-    #editCategory input[type=button], #editTransaction input[type=button] {
+    .existingCategory input[type=button], .existingTransaction input[type=button] {
         margin: 30px auto;
         padding: 13px 20px;
     }

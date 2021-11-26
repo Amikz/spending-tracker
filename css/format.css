@@ -124,6 +124,7 @@ option {
 #tooltip svg {
     width: 16pt;
     height: 16pt;
+    fill: #a3a3a3;
 }
 
 input[type=text], input[type=date], input[type=color], select {
