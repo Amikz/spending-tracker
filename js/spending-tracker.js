@@ -1721,8 +1721,8 @@ function deleteWarning(eType) {
                             currPage = ".home";
                             resetHome();
                         }
-                } 
-            }
+                    } 
+                }
             ]
           });
     });
