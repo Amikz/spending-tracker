@@ -13,6 +13,22 @@ var incomeGraph;
 var expenseGraph;
 
 $(document).ready(function() {
+    var draw = Chart.controllers.pie.prototype.draw;
+    Chart.controllers.pie = Chart.controllers.pie.extend({
+        draw: function() {
+            draw.apply(this, arguments);
+            var ctx = this.chart.chart.ctx;
+            var fill = ctx.fill;
+            ctx.fill = function() {
+                ctx.save();
+                ctx.shadowColor = 'rgb(0 0 0 / 20%)';
+                ctx.shadowBlur = 3;
+                fill.apply(this, arguments);
+                ctx.restore();
+            }
+        }
+    });
+
     incomeGraph = new Chart($('#incomeGraph'), {
         type: 'pie',
         data: {
@@ -21,7 +37,8 @@ $(document).ready(function() {
                 label: "Income Graph",
                 data: [],
                 backgroundColor: [],
-                borderColor: '#F3F3F3'
+                borderColor: '#F3F3F3',
+                borderWidth: 0.75
             }]
         },
         options: {
@@ -46,7 +63,8 @@ $(document).ready(function() {
                 label: "Expense Graph",
                 data: [],
                 backgroundColor: [],
-                borderColor: '#F3F3F3'
+                borderColor: '#F3F3F3',
+                borderWidth: 0.75
             }]
         },
         options: {
