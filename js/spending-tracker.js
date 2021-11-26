@@ -370,6 +370,12 @@ function homePage() {
         $('.existingCategory').hide();
         $('.addEditCategories').show();
         $('#categoryName').removeAttr('data-parsley-prevent-duplicate');
+
+        if(isIncome) {
+            $('h1.addEditCategories').text('Income Category');
+        } else {
+            $('h1.addEditCategories').text('Expense Category');
+        }
     });
 
     $('#incomeLegend .expandPanel').click(function() {

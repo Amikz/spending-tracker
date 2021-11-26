@@ -160,7 +160,7 @@ div.home {
 }
 
 /* Desktop Formatting */
-@media only screen and (min-height: 775px) {
+@media only screen and (min-height: 850px) {
     .legendCategoryColour {
         height: 18pt;
     }
