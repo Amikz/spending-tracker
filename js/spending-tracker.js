@@ -11,6 +11,7 @@ var currDate = new Date(2021, 11, 0);
 var endDate = new Date(2021, 11, 0);
 var incomeGraph;
 var expenseGraph;
+var deleteMe = false;
 
 $(document).ready(function() {
     var draw = Chart.controllers.pie.prototype.draw;
@@ -1269,51 +1270,61 @@ function addEditPages() {
     });
 
     $('#deleteTransaction').click(function() {
+        
+        
         var ID = $('div.addEditTransactions').attr('transactionID');
-        var index = transactionList.findIndex(e => {
-           return e.transactionID == ID;   
-        });
+        deleteWarning('transaction');
+        // if (deleteMe) {
+        //     var index = transactionList.findIndex(e => {
+        //     return e.transactionID == ID;   
+        //     });
 
-        transactionList.splice(index,1);
-        addTransactionListData();
-        addHomeData();
-        $(currPage).hide();
+        //     transactionList.splice(index,1);
+        //     addTransactionListData();
+        //     addHomeData();
+        //     $(currPage).hide();
 
-        var nextPage = '.home';
-        if(prevPage == '.transactionsList')
-            nextPage = '.transactionsList';
+        //     var nextPage = '.home';
+        //     if(prevPage == '.transactionsList')
+        //         nextPage = '.transactionsList';
 
-        $(nextPage).show();
-        prevPage = currPage;
-        currPage = nextPage;
+        //     $(nextPage).show();
+        //     prevPage = currPage;
+        //     currPage = nextPage;
 
-        if(currPage == '.home')
-            resetHome();
-        else
-            resetTransactionsList();
+        //     if(currPage == '.home')
+        //         resetHome();
+        //     else
+        //         resetTransactionsList();
 
-        disableButton();
+        //     disableButton();
+        //     deleteMe = false;
+        // }
+        // else {
+        //     //
+        // }
     });
 
     $('#deleteCategory').click(function() {
-        var categoryName = $('#categoryName').val();
-        if(isIncome) {
-            var index = incomeCategoryList.findIndex(e => {
-                return e.name == categoryName;
-            });
-            incomeCategoryList.splice(index,1);
-        } else {
-            var index = expenseCategoryList.findIndex(e => {
-                return e.name == categoryName;
-            });
-            expenseCategoryList.splice(index,1);
-        }
-        addHomeData();
-        $(currPage).hide();
-        $(".home").show();
-        prevPage = currPage;
-        currPage = ".home";
-        resetHome();
+        deleteWarning('category');
+        // var categoryName = $('#categoryName').val();
+        // if(isIncome) {
+        //     var index = incomeCategoryList.findIndex(e => {
+        //         return e.name == categoryName;
+        //     });
+        //     incomeCategoryList.splice(index,1);
+        // } else {
+        //     var index = expenseCategoryList.findIndex(e => {
+        //         return e.name == categoryName;
+        //     });
+        //     expenseCategoryList.splice(index,1);
+        // }
+        // addHomeData();
+        // $(currPage).hide();
+        // $(".home").show();
+        // prevPage = currPage;
+        // currPage = ".home";
+        // resetHome();
     });
     
     $('#addTransactionWithinCategory').click(function() {
@@ -1623,4 +1634,85 @@ function checkAmount(transCategory) {
             }
         }
     }
+}
+
+function deleteWarning(eType) {
+    var msg = undefined;
+    var cType = undefined;
+    if (eType == 'transaction') {
+        msg = 'transaction';
+        cType = '#deleteTransWarning';
+    }
+    else {
+        msg = 'category';
+        cType = '#deleteCatWarning';
+    }
+    $(function() {
+        $('#deleteTransWarning').css("visibility", "visible");
+        $('#deleteTransWarning').css("position", "static");
+        $('#transMessage').html("Are you sure you want to delete this " + msg + "?");
+        $(cType).dialog({
+            buttons: [
+                {
+                    text: "CANCEL",
+                    click: function() {
+                        $( this ).dialog( "close" );                       
+                    }
+                },
+                {
+                    text: "OK",
+                    click: function() {
+                        if (eType == 'transaction') {
+                            $( this ).dialog( "close" );
+                            var ID = $('div.addEditTransactions').attr('transactionID');
+                            var index = transactionList.findIndex(e => {
+                                return e.transactionID == ID;   
+                                });
+                    
+                                transactionList.splice(index,1);
+                                addTransactionListData();
+                                addHomeData();
+                                $(currPage).hide();
+                    
+                                var nextPage = '.home';
+                                if(prevPage == '.transactionsList')
+                                    nextPage = '.transactionsList';
+                    
+                                $(nextPage).show();
+                                prevPage = currPage;
+                                currPage = nextPage;
+                    
+                                if(currPage == '.home')
+                                    resetHome();
+                                else
+                                    resetTransactionsList();
+                    
+                                disableButton();
+                        }
+                        if (eType == 'category') {
+                            $( this ).dialog( "close" );
+                            var categoryName = $('#categoryName').val();
+                            if(isIncome) {
+                                var index = incomeCategoryList.findIndex(e => {
+                                    return e.name == categoryName;
+                                });
+                                incomeCategoryList.splice(index,1);
+                            } else {
+                                var index = expenseCategoryList.findIndex(e => {
+                                    return e.name == categoryName;
+                                });
+                                expenseCategoryList.splice(index,1);
+                            }
+                            addHomeData();
+                            $(currPage).hide();
+                            $(".home").show();
+                            prevPage = currPage;
+                            currPage = ".home";
+                            resetHome();
+                        }
+                } 
+            }
+            ]
+          });
+    });
 }
