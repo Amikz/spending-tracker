@@ -43,6 +43,16 @@
     padding-left: 10%;
 }
 
+#goBackHome:hover, #goChangeTimePeriod:hover, #goTransactions:hover, #goReminders:hover, #goSettings:hover, 
+#dailyButton:hover, #weeklyButton:hover, #biWeeklyButton:hover, #monthlyButton:hover, #yearlyButton:hover,
+#dailyContainer:hover, #weeklyContainer:hover, #biWeeklyContainer:hover, #monthlyContainer:hover, #yearlyContainer:hover {
+	cursor: pointer;
+}
+
+#goBackHome:disabled, #goChangeTimePeriod:disabled, #goTransactions:disabled, #goReminders:disabled, #goSettings:disabled {
+	cursor: default;
+}
+
 /* Change background-color when hovering over element*/
 #goBackHome:hover, #goChangeTimePeriod:hover, #goTransactions:hover, #goReminders:hover, #goSettings:hover {
 	background-color: #DCDCDC;
@@ -64,7 +74,7 @@
 	grid-column-end: end;
 }
 
-#dailyContainer svg, #weeklyContainer svg, #biWeeklyContainer svg, #monthlyContainer svg, #yearlyContainer svg{
+#dailyContainer svg, #weeklyContainer svg, #biWeeklyContainer svg, #monthlyContainer svg, #yearlyContainer svg {
 	height: 22pt;
 	width: 22pt;
 	background-color:white;

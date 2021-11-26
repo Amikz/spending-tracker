@@ -70,6 +70,14 @@ h2 {
     background-color: inherit;
 }
 
+#cancelButton:hover, #saveButton:hover, #addTransaction:hover, #leftArrow:hover, #rightArrow:hover, #burgerButton:hover {
+    cursor: pointer;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+}
+
 #saveButton, #addTransaction, #leftArrow, #rightArrow, #burgerButton {
     height: 22pt;
 }

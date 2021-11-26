@@ -776,6 +776,8 @@ function disableTime() {
         $('#dailyButton').attr('disabled',true);    // Disable time period
         $('#dailyContainer').css("background-color","#DCDCDC");
         $('#dailyButton').css("background-color","#DCDCDC");
+        $('#dailyContainer').css("cursor","default");
+        $('#dailyButton').css("cursor","default");
         $('#timeContainer').children().not($('#dailyContainer')).css("background-color","white");
         $('#timeContainer').children().children().children().not($('#dailyButton')).css("background-color","white");
     }
@@ -783,6 +785,8 @@ function disableTime() {
         $('#weeklyButton').attr('disabled',true);
         $('#weeklyContainer').css("background-color","#DCDCDC");
         $('#weeklyButton').css("background-color","#DCDCDC");
+        $('#weeklyContainer').css("cursor","default");
+        $('#weeklyButton').css("cursor","default");
         $('#timeContainer').children().not($('#weeklyContainer')).css("background-color","white");
         $('#timeContainer').children().children().children().not($('#weeklyButton')).css("background-color","white");
     }	
@@ -790,6 +794,8 @@ function disableTime() {
         $('#biWeeklyButton').attr('disabled',true);
         $('#biWeeklyContainer').css("background-color","#DCDCDC");
         $('#biWeeklyButton').css("background-color","#DCDCDC");
+        $('#biWeeklyContainer').css("cursor","default");
+        $('#biWeeklyButton').css("cursor","default");
         $('#timeContainer').children().not($('#biWeeklyContainer')).css("background-color","white");
         $('#timeContainer').children().children().children().not($('#biWeeklyButton')).css("background-color","white");
     }	
@@ -797,6 +803,8 @@ function disableTime() {
         $('#monthlyButton').attr('disabled',true);
         $('#monthlyContainer').css("background-color","#DCDCDC");
         $('#monthlyButton').css("background-color","#DCDCDC");
+        $('#monthlyContainer').css("cursor","default");
+        $('#monthlyButton').css("cursor","default");
         $('#timeContainer').children().not($('#monthlyContainer')).css("background-color","white");
         $('#timeContainer').children().children().children().not($('#monthlyButton')).css("background-color","white");
     }	
@@ -804,6 +812,8 @@ function disableTime() {
         $('#yearlyButton').attr('disabled',true);
         $('#yearlyContainer').css("background-color","#DCDCDC");
         $('#yearlyButton').css("background-color","#DCDCDC");
+        $('#yearlyContainer').css("cursor","default");
+        $('#yearlyButton').css("cursor","default");
         $('#timeContainer').children().not($('#yearlyContainer')).css("background-color","white");
         $('#timeContainer').children().children().children().not($('#yearlyButton')).css("background-color","white");
     }	

@@ -1,6 +1,4 @@
-﻿
-
-.transactionItem {
+﻿.transactionItem {
     height: 12%;
     border-bottom: 1px solid #000;
     padding:3%;
@@ -8,6 +6,10 @@
     grid-template-columns: [name-colour] max-content [spacer] auto [amount-date] max-content [end];
     grid-template-rows: [name-amount] max-content [colour-date] max-content [end];
     grid-row-gap: 4px;
+}
+
+.transactionItem:hover {
+    cursor: pointer;
 }
 
 .category {

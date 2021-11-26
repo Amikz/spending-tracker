@@ -81,6 +81,10 @@ div.home {
     border-radius: 20px 0px 0px 20px;
 }
 
+.expandPanel:hover {
+    cursor: pointer;
+}
+
 .expandPanelArrow {
     width: 0;
     height: 0;
@@ -110,6 +114,10 @@ div.home {
 
 .legendItem:first-child {
     padding-top: 0;
+}
+
+.legendItem:hover, .addCategory:hover {
+    cursor: pointer;
 }
 
 .legendCategoryColour, .addCategory {
