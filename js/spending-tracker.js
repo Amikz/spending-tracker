@@ -9,12 +9,6 @@ var timePeriod = 'monthly'
 var startDate = new Date(2021, 10, 1);
 var currDate = new Date(2021, 11, 0);
 var endDate = new Date(2021, 11, 0);
-var incomeCategoryLabel = [];
-var incomeCategoryAmount = [];
-var incomeCategoryColour = [];
-var expenseCategoryLabel = [];
-var expenseCategoryAmount = [];
-var expenseCategoryColour = [];
 var incomeGraph;
 var expenseGraph;
 
@@ -22,11 +16,11 @@ $(document).ready(function() {
     incomeGraph = new Chart($('#incomeGraph'), {
         type: 'pie',
         data: {
-            labels: incomeCategoryLabel,
+            labels: [],
             datasets: [{
                 label: "Income Graph",
-                data: incomeCategoryAmount,
-                backgroundColor: incomeCategoryColour,
+                data: [],
+                backgroundColor: [],
                 borderColor: '#F3F3F3'
             }]
         },
@@ -47,11 +41,11 @@ $(document).ready(function() {
     expenseGraph = new Chart($('#expenseGraph'), {
         type: 'pie',
         data: {
-            labels: expenseCategoryLabel,
+            labels: [],
             datasets: [{
                 label: "Expense Graph",
-                data: expenseCategoryAmount,
-                backgroundColor: expenseCategoryColour,
+                data: [],
+                backgroundColor: [],
                 borderColor: '#F3F3F3'
             }]
         },
@@ -101,17 +95,16 @@ function addHomeData() {
 
     //Display income legend
     $('#incomeCategories').empty();
-    incomeCategoryLabel = [];
-    incomeCategoryAmount = [];
-    incomeCategoryColour = [];
+    var incomeCategoryLabel = [];
+    var incomeCategoryAmount = [];
+    var tempIncomeCategoryAmount = [];
+    var incomeCategoryColour = [];
     var totalIncome = 0;
-    for(var i = 0; i < incomeCategory.length; i++) {
-        var $legendIncomeCategory = $($.parseHTML(legendCategoryFormat));
-        $legendIncomeCategory.children('.legendCategoryColour').css('background-color', incomeCategory[i].colour);
-        $legendIncomeCategory.children('.legendCategoryName').text(incomeCategory[i].name);
 
+    //Calculate amount per category
+    for(var i = 0; i < incomeCategoryList.length; i++) {
         var transactionsInCategory = filteredTransaction.filter(e => {
-            return e.category == incomeCategory[i].name;
+            return e.category == incomeCategoryList[i].name;
         });
 
         var amount = 0;
@@ -119,29 +112,47 @@ function addHomeData() {
             amount += transactionsInCategory[t].amount;
         }
 
-        $legendIncomeCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
-
         totalIncome += amount;
+        tempIncomeCategoryAmount.push(amount);
         incomeCategoryAmount.push(amount);
-        incomeCategoryLabel.push(incomeCategory[i].name);
-        incomeCategoryColour.push(incomeCategory[i].colour);
+    }
+
+    //Sort amounts from highest to lowest
+    incomeCategoryAmount.sort((e1, e2) => {
+        return -1 * (e1-e2);
+    });
+
+    //Display categories on home page in order
+    for(var i = 0; i < incomeCategoryAmount.length; i++) {
+        var index = tempIncomeCategoryAmount.findIndex(e => {
+            return e == incomeCategoryAmount[i];
+        });
+
+        tempIncomeCategoryAmount[index] = -1;
+
+        var $legendIncomeCategory = $($.parseHTML(legendCategoryFormat));
+        $legendIncomeCategory.children('.legendCategoryColour').css('background-color', incomeCategoryList[index].colour);
+        $legendIncomeCategory.children('.legendCategoryName').text(incomeCategoryList[index].name);
+        $legendIncomeCategory.children('.legendCategoryAmount').text('$' + incomeCategoryAmount[i].toFixed(2));
+
+        incomeCategoryLabel.push(incomeCategoryList[index].name);
+        incomeCategoryColour.push(incomeCategoryList[index].colour);
 
         $('#incomeCategories').append($legendIncomeCategory);
     }
 
     //Display expense legend
     $('#expenseCategories').empty();
-    expenseCategoryLabel = [];
-    expenseCategoryAmount = [];
-    expenseCategoryColour = [];
+    var expenseCategoryLabel = [];
+    var expenseCategoryAmount = [];
+    var tempExpenseCategoryAmount = [];
+    var expenseCategoryColour = [];
     var totalExpenses = 0;
-    for(var i = 0; i < expenseCategory.length; i++) {
-        var $legendExpenseCategory = $($.parseHTML(legendCategoryFormat));
-        $legendExpenseCategory.children('.legendCategoryColour').css('background-color', expenseCategory[i].colour);
-        $legendExpenseCategory.children('.legendCategoryName').text(expenseCategory[i].name);
 
+    //Calculate amount per category
+    for(var i = 0; i < expenseCategoryList.length; i++) {
         var transactionsInCategory = filteredTransaction.filter(e => {
-            return e.category == expenseCategory[i].name;
+            return e.category == expenseCategoryList[i].name;
         });
 
         var amount = 0;
@@ -149,12 +160,31 @@ function addHomeData() {
             amount += transactionsInCategory[t].amount;
         }
 
-        $legendExpenseCategory.children('.legendCategoryAmount').text('$' + amount.toFixed(2));
-
         totalExpenses += amount;
         expenseCategoryAmount.push(amount);
-        expenseCategoryLabel.push(expenseCategory[i].name);
-        expenseCategoryColour.push(expenseCategory[i].colour);
+        tempExpenseCategoryAmount.push(amount);
+    }
+
+    //Sort amounts from highest to lowest
+    expenseCategoryAmount.sort((e1, e2) => { 
+        return -1 * (e1-e2);
+    });
+
+    //Display categories on home page in order
+    for(var i = 0; i < expenseCategoryAmount.length; i++) {
+        var index = tempExpenseCategoryAmount.findIndex(e => {
+            return e == expenseCategoryAmount[i];
+        });
+
+        tempExpenseCategoryAmount[index] = -1;
+
+        var $legendExpenseCategory = $($.parseHTML(legendCategoryFormat));
+        $legendExpenseCategory.children('.legendCategoryColour').css('background-color', expenseCategoryList[index].colour);
+        $legendExpenseCategory.children('.legendCategoryName').text(expenseCategoryList[index].name);
+        $legendExpenseCategory.children('.legendCategoryAmount').text('$' + expenseCategoryAmount[i].toFixed(2));
+
+        expenseCategoryLabel.push(expenseCategoryList[index].name);
+        expenseCategoryColour.push(expenseCategoryList[index].colour);
 
         $('#expenseCategories').append($legendExpenseCategory);
     }
@@ -190,6 +220,7 @@ function addHomeData() {
         expenseGraph.update();
     }
 
+    resetHome();
 }
 
 function addTransactionListData() {
@@ -222,12 +253,12 @@ function addTransactionListData() {
         var category = undefined;
         if(filteredTransaction[i].isIncome) {
             $transactionItem.children('.amount').addClass('income');
-            category = incomeCategory.find(e => {
+            category = incomeCategoryList.find(e => {
                 return e.name == filteredTransaction[i].category
             });
         } else {
             $transactionItem.children('.amount').addClass('expense');
-            category = expenseCategory.find(e => {
+            category = expenseCategoryList.find(e => {
                 return e.name == filteredTransaction[i].category
             });
         }
@@ -274,19 +305,19 @@ function homePage() {
             var category = undefined;
             if(isIncome) {
                 hideExpenseFields(true);
-                category = incomeCategory.find(e => {
+                category = incomeCategoryList.find(e => {
                     return e.name == $(this).find('.legendCategoryName:first').text();
                 });
 
-                currCategory = incomeCategory.findIndex(e => {
+                currCategory = incomeCategoryList.findIndex(e => {
                     return e == category;
                 });
             } else {
-                category = expenseCategory.find(e => {
+                category = expenseCategoryList.find(e => {
                     return e.name == $(this).find('.legendCategoryName:first').text();
                 });
 
-                currCategory = expenseCategory.findIndex(e => {
+                currCategory = expenseCategoryList.findIndex(e => {
                     return e == category;
                 });
             }
@@ -887,11 +918,11 @@ function addEditPages() {
         validateString: function(value) {
             var id = -1;
             if(isIncome) {
-                id = incomeCategory.findIndex(e => {
+                id = incomeCategoryList.findIndex(e => {
                     return e.name == value;
                 });
             } else {
-                id = incomeCategory.findIndex(e => {
+                id = incomeCategoryList.findIndex(e => {
                     return e.name == value;
                 });
             }
@@ -916,17 +947,17 @@ function addEditPages() {
                 if(isIncome) {
 
                     if(isNew) {
-                        incomeCategory.push(newCategory);
+                        incomeCategoryList.push(newCategory);
                     } else {
 
                         for(var i = 0; i < transactionList.length; i++) {
-                            if(transactionList[i].category == incomeCategory[currCategory].name) {
+                            if(transactionList[i].category == incomeCategoryList[currCategory].name) {
                                 transactionList[i].category = newCategory.name;
                             }
                         }
 
-                        incomeCategory[currCategory].name = newCategory.name;
-                        incomeCategory[currCategory].colour = newCategory.colour;
+                        incomeCategoryList[currCategory].name = newCategory.name;
+                        incomeCategoryList[currCategory].colour = newCategory.colour;
                     }
 
                 } else {
@@ -955,24 +986,24 @@ function addEditPages() {
                     }
 
                     if(isNew) {
-                        expenseCategory.push(newCategory);
+                        expenseCategoryList.push(newCategory);
                     } else {
 
                         for(var i = 0; i < transactionList.length; i++) {
-                            if(transactionList[i].category == expenseCategory[currCategory].name) {
+                            if(transactionList[i].category == expenseCategoryList[currCategory].name) {
                                 transactionList[i].category = newCategory.name;
                             }
                         }
 
-                        expenseCategory[currCategory].name = newCategory.name;
-                        expenseCategory[currCategory].colour = newCategory.colour;
-                        expenseCategory[currCategory].setBudget = newCategory.setBudget;
+                        expenseCategoryList[currCategory].name = newCategory.name;
+                        expenseCategoryList[currCategory].colour = newCategory.colour;
+                        expenseCategoryList[currCategory].setBudget = newCategory.setBudget;
 
                         if(setBudget) {
-                            expenseCategory[currCategory].budget = newCategory.budget;
-                            expenseCategory[currCategory].every_num = newCategory.every_num;
-                            expenseCategory[currCategory].every_timePeriod = newCategory.every_timePeriod;
-                            expenseCategory[currCategory].warning = newCategory.warning;
+                            expenseCategoryList[currCategory].budget = newCategory.budget;
+                            expenseCategoryList[currCategory].every_num = newCategory.every_num;
+                            expenseCategoryList[currCategory].every_timePeriod = newCategory.every_timePeriod;
+                            expenseCategoryList[currCategory].warning = newCategory.warning;
                         }
                     }
                 }
@@ -1351,9 +1382,9 @@ function resetAddEditCategoriesPage() {
 }
 
 function populateCategorySelect(isIncomeCategory) {
-    var categoryList = expenseCategory;
+    var categoryList = expenseCategoryList;
     if(isIncomeCategory)
-        categoryList = incomeCategory;
+        categoryList = incomeCategoryList;
 
     var options = "<option value='' selected=''>Select...</option>";
     for (var i = 0; i < categoryList.length; i++) {

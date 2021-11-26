@@ -1,5 +1,5 @@
 /* Categories */
-var incomeCategory = [
+var incomeCategoryList = [
     {
         name: "Salary",
         colour: "#72a2ff"
@@ -10,7 +10,7 @@ var incomeCategory = [
     }
 ];
 
-var expenseCategory = [
+var expenseCategoryList = [
     {
         name: "Rent",
         colour: "#895293",
