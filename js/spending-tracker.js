@@ -86,24 +86,13 @@ $(document).ready(function() {
     homePage();
     addEditPages();
     transactionsListPage();
+    settingsPage();
 	showMeTheBurger();
     changeTimePeriod();
 
     $('.settings').hide();
     $('.transactionsList').hide();
     $('.home').show();
-
-    $('#darkmode').click(function() {
-        console.log('clicked');
-        console.log($(this));
-    })
-
-    $('.switch').click(function() {
-        if( $(this).children('input').prop("checked"))
-            $(this).children('input').prop("checked", false);
-        else
-            $(this).children('input').prop("checked", true);
-    });
 });
 
 function addHomeData() {
@@ -1421,6 +1410,24 @@ function addEditPages() {
             this.selectionEnd = position - 1;
     });
     
+}
+
+function settingsPage() {
+    $('#saveMessage').hide();
+
+    $('.switch').click(function() {
+        if( $(this).children('input').prop("checked"))
+            $(this).children('input').prop("checked", false);
+        else
+            $(this).children('input').prop("checked", true);
+    });
+
+    $('.settings select').change(function() {
+        $('#saveMessage').fadeIn();
+        setTimeout(function() { 
+            $('#saveMessage').fadeOut();
+        }, 1000);
+    });
 }
 
 function resetHome() {
