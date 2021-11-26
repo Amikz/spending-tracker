@@ -198,6 +198,10 @@ input[type=checkbox] {
         font-size: 17pt;
     }
 
+    #topBar h1.addEditCategories {
+        font-size: 16pt;
+    }
+
     h2 {
         font-size: 17pt;
     }
@@ -262,20 +266,13 @@ input[type=checkbox] {
     }
 }
 
-@media only screen and (min-height: 710px) {
-    #topBar h1 {
+@media only screen and (min-height: 760px) {
+    #topBar h1.addEditCategories {
         font-size: 18pt;
     }
 }
 
 @media only screen and (min-height: 775px) {
-    #topBar h1 {
-        font-size: 20pt;
-    }
-}
-
-@media only screen and (min-height: 850px) {
-
     #topBar h1 {
         font-size: 22pt;
     }
@@ -334,5 +331,18 @@ input[type=checkbox] {
     *::-webkit-scrollbar {
         width: 10px;
         height: 10px;
+    }
+}
+
+@media only screen and (min-height: 835px) {
+    #topBar h1.addEditCategories {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (min-height: 910px) {
+
+    #topBar h1.addEditCategories {
+        font-size: 22pt;
     }
 }
