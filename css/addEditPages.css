@@ -117,6 +117,14 @@ div.addEditTransactions input[type=date] {
     border: none;
 }
 
+.existingCategory input[type=button] {
+    width: 185px;
+}
+
+.existingTransaction input[type=button] {
+    width: 210px;
+}
+
 #editCategory, #editTransaction {
     background-color: #454545;
     color: white;
@@ -140,5 +148,28 @@ div.addEditTransactions input[type=date] {
     .existingCategory input[type=button], .existingTransaction input[type=button] {
         margin: 30px auto;
         padding: 13px 20px;
+    }
+
+    .existingCategory input[type=button] {
+        width: 195px;
+    }
+
+    .existingTransaction input[type=button] {
+        width: 220px;
+    }
+}
+
+@media only screen and (min-height: 750px) {
+    .existingCategory input[type=button], .existingTransaction input[type=button] {
+        margin: 30px auto;
+        padding: 13px 20px;
+    }
+
+    .existingCategory input[type=button] {
+        width: 215px;
+    }
+
+    .existingTransaction input[type=button] {
+        width: 240px;
     }
 }

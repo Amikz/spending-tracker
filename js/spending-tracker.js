@@ -332,7 +332,7 @@ function homePage() {
                     $('#categoryWarning').val(category.warning);
             }
 
-            
+            $('h1.existingCategory').text(category.name);
             $('.addEditCategories').hide();
             $('.existingCategory').show();
         }
@@ -903,6 +903,7 @@ function transactionsListPage() {
 
             $('div.addEditTransactions').attr('transactionID', $(this).attr('transactionID'));
 
+            $('h1.existingTransaction').text(category);
             $('.addEditTransactions').hide();
             $('.existingTransaction').show();
         }
@@ -1210,6 +1211,8 @@ function addEditPages() {
         $(currPage).show();
         if(currPage == '.home') {
             resetHome();
+        } else if(currPage == '.transactionsList') {
+            resetTransactionsList();
         }
     });
 
