@@ -195,7 +195,7 @@ input[type=checkbox] {
     }
 
     #topBar h1 {
-        font-size: 18pt;
+        font-size: 17pt;
     }
 
     h2 {
@@ -262,7 +262,19 @@ input[type=checkbox] {
     }
 }
 
+@media only screen and (min-height: 710px) {
+    #topBar h1 {
+        font-size: 18pt;
+    }
+}
+
 @media only screen and (min-height: 775px) {
+    #topBar h1 {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (min-height: 850px) {
 
     #topBar h1 {
         font-size: 22pt;
