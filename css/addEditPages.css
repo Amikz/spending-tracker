@@ -81,6 +81,11 @@ div.addEditTransactions input[type=date] {
     position: relative;
 } */
 
+.ui-dialog > .ui-widget-header {
+    background: #b82525;
+    color: white;
+}
+
 #dialog {
     visibility: hidden;
     color: black;
