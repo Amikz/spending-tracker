@@ -1193,10 +1193,54 @@ function addEditPages() {
     $('#deleteTransaction').click(function() {
         //CRAIG
         var ID = $('div.addEditTransactions').attr('transactionID');
+        var index = transactionList.findIndex(e => {
+           return e.transactionID == ID;   
+        })
+        transactionList.splice(index,1);
+        addTransactionListData();
+        addHomeData();
+        $(currPage).hide();
+
+        var nextPage = '.home';
+        if(prevPage == '.transactionsList')
+            nextPage = '.transactionsList';
+
+        $(nextPage).show();
+        prevPage = currPage;
+        currPage = nextPage;
+
+        if(currPage == '.home')
+            resetHome();
+        else
+            resetTransactionsList();
+
+
+      
+      
+       
     });
 
-    $('#deletCategory').click(function() {
+    $('#deleteCategory').click(function() {
         //CRAIG
+        var categoryName = $('#categoryName').val();
+        if(isIncome) {
+            var index = incomeCategoryList.findIndex(e => {
+                return e.name == categoryName;   
+             })
+             incomeCategoryList.splice(index,1);
+        }
+        else {
+            var index = expenseCategoryList.findIndex(e => {
+                return e.name == categoryName;   
+             })
+             expenseCategoryList.splice(index,1);
+        }
+        addHomeData();
+       $(currPage).hide();
+       $(".home").show();
+       prevPage = currPage;
+       currPage = ".home";
+       resetHome();
     });
     
     $('#addTransactionWithinCategory').click(function() {
