@@ -305,6 +305,12 @@ function homePage() {
             isIncome = $(this).is('#addIncomeCategory');
             isNew = true;
             hideExpenseFields(isIncome);
+
+            if(isIncome) {
+                $('h1.addEditCategories').text('Income Category');
+            } else {
+                $('h1.addEditCategories').text('Expense Category');
+            }
         }
     });
 
