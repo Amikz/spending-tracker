@@ -1633,6 +1633,31 @@ function checkAmount(transCategory) {
                 });
             }
         }
+        else {
+            if (amount >= category.budget) {
+                // console.log("Boi ya fucked up lmao");
+                var msg = "You have reached your budget limit!" + 
+                    "<br />" + "<br />" + "Your Current Budget:\t$" +
+                    category.budget + "<br />" + "Amount Spent:\t$" +
+                    amount;
+    
+                $(function() {
+                    $('#dialog').css("visibility", "visible");
+                    $('#dialog').css("position", "static");
+                    $('#warningMessage').html(msg);
+                    $('#dialog').dialog({
+                        buttons: [
+                          {
+                                text: "OK",
+                                click: function() {
+                                    $( this ).dialog( "close" );
+                            }
+                          }
+                        ]
+                      });
+                });
+            }
+        }
     }
 }
 
