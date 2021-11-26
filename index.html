@@ -35,10 +35,20 @@
                             </svg>
                         </button>
                         <input class="addEditCategories addEditTransactions" type='button' id="cancelButton" value="&#x2715">
+                        <button id="leftArrow" class="transactionsList home">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                            </svg>
+                        </button>
                         <h1 class="addEditCategories">Category</h1>
                         <h1 class="addEditTransactions">Transaction</h1>
                         <h1 class="home transactionsList">November</h1>
                         <h1 class="settings">Settings</h1>
+                        <button id="rightArrow" class="transactionsList home" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
                         <button class="addEditCategories addEditTransactions" id='saveButton'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
                                 <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -46,9 +56,10 @@
                         </button>
                         <button id="addTransaction" class='transactionsList'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
                             </svg>
                         </button>
+
                     </div>
 
 					<nav class="burgerMenu">
@@ -188,7 +199,8 @@
                             <div class="addEditCategories">
                                 <label for="categoryName">Name:</label>
                                 <div class='requiredInput'>
-                                    <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
+                                    <input type="text" id="categoryName" name="categoryName" class='nameFormat' data-parsley-prevent-duplicate=""
+                                        data-parsley-required="" data-parsley-required-message="Enter a name for the category.">
                                 </div>
 
                                 <label for="categoryColour">Colour:</label>
@@ -204,7 +216,7 @@
                                 </label>
                                 <input type='checkbox' id='setCategoryBudget' name="setCategoryBudget" class="expenseCategory">
 
-                                <label for='categoryBudget' class='categoryBudget'>Budget:</label>
+                                <label for='categoryBudget' class='categoryBudget'>&nbsp;&nbsp;Budget:</label>
                                 <div class='requiredInput'><input type="text" id="categoryBudget" name="categoryBudget" class='categoryBudget monetaryAmount' 
                                         data-parsley-required="" data-parsley-required-message="Enter a dollar budget amount."></div>
 
@@ -227,7 +239,7 @@
                                     <div id="categoryBudgetEvery_ErrorContainer"></div>
                                 </div>
 
-                                <label for="categoryWarning" class='categoryBudget'>Warning:
+                                <label for="categoryWarning" class='categoryBudget'>&nbsp;&nbsp;Warning:
                                     <div id="dialog" title="Account Spending">
                                         <div id="warningMessage"></div>
                                     </div>
@@ -280,23 +292,53 @@
                                         <option value="months">Month(s)</option>
                                         <option value="years">Year(s)</option>
                                     </select>
-
                                     <div id="transactionRepeatEvery_ErrorContainer"></div>
                                 </div>
+                                
+                                <label for="repeatUntil_Select" class ='transactionRepeat'>&nbsp;&nbsp;Until:</label>
+                                <select id="repeatUntil_Select" name="repeatUntil_Select" class ='transactionRepeat' 
+                                    data-parsley-required="" data-parsley-required-message="Indicate when the transaction will stop being repeated.">
+                                    <option value="">Select...</option>
+                                    <option value="date">Specific date</option>
+                                    <option value="num">Specific number of times</option>
+                                    <option value="forever">Forever</option>
+                                </select>
+                                
+                                <label for="transactionEndDate" class="transactionEndDate repeatUntil">&nbsp;&nbsp;End Date:</label>
+                                <input type="date" id="transactionEndDate" name="transactionEndDate" class="transactionEndDate repeatUntil">
 
+                                <label for="numTimesRepeated" class='numTimesRepeated repeatUntil'>&nbsp;&nbsp;Number:</label>
+                                <input type="text" id='numTimesRepeated' name='numTimesRepeated' class="numTimesRepeated repeatUntil wholeNumber" maxlength="3" 
+                                    data-parsley-required="" data-parsley-required-message="Enter the number of times this transaction will recur.">
+                                
                                 <div id="editTransaction">
                                     <hr>
                                     <input type='button' id="deleteTransaction" value="Delete">
-
                                 </div>
                             </div>
                         </form>
                         <div class="settings">
-                            <div>Dark Mode&nbsp;&nbsp;</div>
-                            <label class="switch">
-                                <input type="checkbox" name="data[SplashPage][firstname]">
-                                <span class="slider"></span>
-                            </label>
+                            <label for="darkmode">Dark Mode</label>
+                            <div class="switch">
+                                <input type="checkbox" id="darkmode">
+                                <span class="slider round"></span>
+                            </div>
+                            <label for="notification">Notifications</label>
+                            <div class="switch">
+                                <input type="checkbox" id="notification">
+                                <span class="slider round"></span>
+                            </div>
+                            <label for="categorySortOrder">Category Sort Order</label>
+                            <select name="categorySortOrder" id="categorySortOrder">
+                                <option value="descending">Descending</option>
+                                <option value="ascending">Ascending</option>
+                            </select>
+                            <label for="categorySortOrder_by">&nbsp;&nbsp;&nbsp;&nbsp;By</label>
+                            <select name="categorySortOrder_by" id="categorySortOrder_by">
+                                <option value="amount">Amount</option>
+                                <option value="alphabetical">Alphabetical</option>
+                            </select>
+ 
                         </div>
                     </div>
                 </div>

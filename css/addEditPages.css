@@ -1,20 +1,3 @@
-#cancelButton, #saveButton, #addTransaction {
-    color: white;
-    font-size: 16pt;
-    border: none;
-    background-color: inherit;
-}
-
-#saveButton, #addTransaction {
-    height: 22pt;
-}
-
-#saveButton svg, #addTransaction svg {
-    height: 22pt;
-    width: 22pt;
-    color: white;
-}
-
 div.addEditCategories, div.addEditTransactions {
     width: inherit;
     max-width: 100%;
@@ -47,7 +30,7 @@ div.addEditCategories label, div.addEditTransactions label {
     align-self: center;
 }
 
-div.addEditCategories div.requiredInput, div.addEditCategories>input[type=text], #categoryBudgetEvery, div.addEditTransactions div.requiredInput, div.addEditTransactions>input[type=text], #transactionRepeatEvery {
+div.addEditCategories div.requiredInput, div.addEditCategories>input[type=text], #categoryBudgetEvery, div.addEditTransactions div.requiredInput, div.addEditTransactions>input[type=text], #transactionRepeatEvery, #repeatUntil {
     grid-column-start: input;
     justify-self: left;
     width: 100%;
@@ -154,19 +137,6 @@ div.addEditTransactions input[type=date] {
 }
 
 @media only screen and (min-width: 650px) {
-    #cancelButton, #saveButton, #addTransaction {
-        font-size: 20pt;
-    }
-    
-    #saveButton, #addTransaction {
-        height: 26pt;
-    }
-        
-    #saveButton svg, #addTransaction svg {
-        height: 26pt;
-        width: 26pt;
-    }
-
     #categoryBudgetEvery_Number, #transactionRepeatEvery_Number {
         width: 35px;
     }

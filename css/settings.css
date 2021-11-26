@@ -4,18 +4,34 @@
     position:relative;
 }*/
 
-.settings div {
-    display: inline-block;
+div.settings {
+    display: grid;
+    grid-template-columns: [setting-label] max-content  [control] 1fr;
+    grid-template-rows: repeat(1,max-content);
+    row-gap: 20px;
+    column-gap: 20px;
+    width: inherit;
+    max-width: 100%;
+}
+
+div.settings label {
+  grid-column-start: setting-label;
 }
 
  /* The switch - the box around the slider */
 .switch {
+  grid-column-start: control ;
+  justify-self: right;
   position: relative;
   display: inline-block;
   padding:0px;
   vertical-align:middle;
   width: 60px;
   height: 34px;
+}
+
+div.settings select {
+  grid-column-start: control;
 }
 
 /* Hide default HTML checkbox */
@@ -50,6 +66,17 @@
 
 input:checked + .slider {
     background-color: #2196F3;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
 
 input:focus + .slider {
