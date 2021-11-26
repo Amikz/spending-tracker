@@ -1697,7 +1697,7 @@ function deleteWarning(eType) {
                             var categoryName = $('#categoryName').val();
 
                             transactionList = transactionList.filter(e => {
-                                return !(e.category == categoryName);
+                                return e.category != categoryName;
                             });
 
                             if(isIncome) {
@@ -1705,6 +1705,7 @@ function deleteWarning(eType) {
                                     return e.name == categoryName;
                                 });
                                 incomeCategoryList.splice(index,1);
+
                             } else {
                                 var index = expenseCategoryList.findIndex(e => {
                                     return e.name == categoryName;
@@ -1713,6 +1714,7 @@ function deleteWarning(eType) {
                             }
 
                             addHomeData();
+                            addTransactionListData();
                             $(currPage).hide();
                             $(".home").show();
                             prevPage = currPage;
