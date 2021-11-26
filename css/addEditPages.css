@@ -102,6 +102,14 @@ div.addEditTransactions input[type=date] {
     font-size: small;
 }
 
+#deleteCatWarning {
+    visibility: hidden;
+    color: black;
+    text-align: left;
+    position: absolute;
+    font-size: small;
+}
+
 #categoryBudgetEvery, #transactionRepeatEvery {
     display: grid;
     grid-template-columns: [number] max-content [timePeriod] auto [end];

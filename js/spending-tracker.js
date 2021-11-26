@@ -1272,7 +1272,7 @@ function addEditPages() {
     $('#deleteTransaction').click(function() {
         
         
-        var ID = $('div.addEditTransactions').attr('transactionID');
+        //var ID = $('div.addEditTransactions').attr('transactionID');
         deleteWarning('transaction');
         // if (deleteMe) {
         //     var index = transactionList.findIndex(e => {
@@ -1642,28 +1642,31 @@ function deleteWarning(eType) {
     if (eType == 'transaction') {
         msg = 'transaction';
         cType = '#deleteTransWarning';
+        $('#transMessage').html("Are you sure you want to delete this " + msg + "?");
     }
     else {
         msg = 'category';
         cType = '#deleteCatWarning';
+        $('#catMessage').html("Are you sure you want to delete this " + msg + "?");
     }
     $(function() {
-        $('#deleteTransWarning').css("visibility", "visible");
-        $('#deleteTransWarning').css("position", "static");
-        $('#transMessage').html("Are you sure you want to delete this " + msg + "?");
+        $(cType).css("visibility", "visible");
+        $(cType).css("position", "static"); 
+        // $('#transMessage').html("Are you sure you want to delete this " + msg + "?");
         $(cType).dialog({
             buttons: [
                 {
                     text: "CANCEL",
                     click: function() {
-                        $( this ).dialog( "close" );                       
+                        $( this ).dialog( "close" );                     
                     }
                 },
                 {
                     text: "OK",
                     click: function() {
+                        $( this ).dialog( "close" );
                         if (eType == 'transaction') {
-                            $( this ).dialog( "close" );
+                            
                             var ID = $('div.addEditTransactions').attr('transactionID');
                             var index = transactionList.findIndex(e => {
                                 return e.transactionID == ID;   
@@ -1690,7 +1693,7 @@ function deleteWarning(eType) {
                                 disableButton();
                         }
                         if (eType == 'category') {
-                            $( this ).dialog( "close" );
+                            // $( this ).dialog( "close" );
                             var categoryName = $('#categoryName').val();
                             if(isIncome) {
                                 var index = incomeCategoryList.findIndex(e => {
