@@ -1695,6 +1695,11 @@ function deleteWarning(eType) {
                         if (eType == 'category') {
                             // $( this ).dialog( "close" );
                             var categoryName = $('#categoryName').val();
+
+                            transactionList = transactionList.filter(e => {
+                                return !(e.category == categoryName);
+                            });
+
                             if(isIncome) {
                                 var index = incomeCategoryList.findIndex(e => {
                                     return e.name == categoryName;
@@ -1706,6 +1711,7 @@ function deleteWarning(eType) {
                                 });
                                 expenseCategoryList.splice(index,1);
                             }
+
                             addHomeData();
                             $(currPage).hide();
                             $(".home").show();
