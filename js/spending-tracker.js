@@ -825,6 +825,14 @@ function addEditPages() {
 
     $('#deleteTransaction').click(function() {
         //CRAIG
+       // currTransaction = transaction.find((transactionID) => transactionID)
+        //if(currTransaction !== -1){  
+        //transaction.splice(currTransaction,1)
+        //return transaction;
+       // }
+
+      
+      
         var ID = $('div.addEditTransactions').attr('transactionID');
     });
 
