@@ -36,7 +36,7 @@ div.settings select {
 
 /* Hide default HTML checkbox */
 .switch input {
-    display:none;
+    display: none;
 }
 
 /* The slider */
@@ -66,9 +66,12 @@ div.settings select {
 
 input:checked + .slider {
     background-color: #2196F3;
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+}
+
+input:checked {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 .slider.round {
