@@ -371,8 +371,11 @@ function homePage() {
 
                 $('#incomeLegend').css('grid-column-start', 'graph');
                 $('#incomeLegend .legendItem').css('padding-top', '2.5%');
+                $('#incomeLegend .legendItem:first-child').removeAttr('style');
                 $('#incomeLegend .buttonWrapper').css('padding', '2.5% 0px');
                 $('#incomeLegend .legendContentWrapper').css('padding', '0px 2.5%');
+                $('#incomeLegend .legendContent').css('margin','2.5% 0px 2% 0px');
+                $('#incomeLegend .legendContent').css('height','92%');
                 $('#incomeLegend .expandPanelArrow').css('border-right', 'none');
 
                 if($(window).width() >= 650 && $(window).height() >= 775) {
@@ -388,6 +391,7 @@ function homePage() {
                 $('#incomeLegend,' +
                     '#incomeLegend .legendItem,' +
                     '#incomeLegend .buttonWrapper,' +
+                    '#incomeLegend .legendContent,' +
                     '#incomeLegend .legendContentWrapper,' +
                     '#incomeLegend .expandPanelArrow,' +
                     '#incomeLegend .expandPanelArrow,' +
@@ -405,7 +409,10 @@ function homePage() {
                 $('#expenseGraphContainer').hide();
                 $('#expenseLegend').css('grid-column-start', 'graph');
                 $('#expenseLegend .legendItem').css('padding-top', '2.5%');
+                $('#expenseLegend .legendItem:first-child').removeAttr('style');
                 $('#expenseLegend .buttonWrapper').css('padding', '2.5% 0px');
+                $('#expenseLegend .legendContent').css('margin', '2.5% 0px 2% 0px');
+                $('#expenseLegend .legendContent').css('height', '92%');
                 $('#expenseLegend .legendContentWrapper').css('padding', '0px 2.5%');
                 $('#expenseLegend .expandPanelArrow').css('border-right', 'none');
 
@@ -422,6 +429,7 @@ function homePage() {
                 $('#expenseLegend,' +
                     '#expenseLegend .legendItem,' +
                     '#expenseLegend .buttonWrapper,' +
+                    '#expenseLegend .legendContent,' +
                     '#expenseLegend .legendContentWrapper,' +
                     '#expenseLegend .expandPanelArrow,' +
                     '#expenseLegend .expandPanelArrow,' +
