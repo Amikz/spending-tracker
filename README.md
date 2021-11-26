@@ -1,4 +1,4 @@
-# spending-tracker
+# Spending-tracker
 Spending-tracker is a prototype web-application to keep track of one's personal expenses and incomes. This is a term project for COMP 3020.
 
 # Usage
@@ -6,8 +6,8 @@ All the feature in the application work as intended except the settings page. Th
 
 # Author and Acknowledgment 
 COMP 3020-Group F team members:
--Kimberly Wills
--JC Tan
--Amitshwersing Pannu
--Craig Banahene
--Abdullah Al Noman
+- Kimberly Wills
+- JC Tan
+- Amiteshwar Pannu  
+- Craig Banahene
+- Abdullah Al Noman
